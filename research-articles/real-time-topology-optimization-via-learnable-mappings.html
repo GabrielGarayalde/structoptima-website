@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Time Topology Optimization via Learnable Mappings</title>
+
+    <meta property="og:title" content="StructOptima" />
+    <meta
+      property="og:description"
+      content="Intuitive, easy to use applications for the Modern Engineer"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- import the tensorflow JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.8.0/dist/tf.min.js"></script>
+    <!-- Import Three JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/js/OrbitControls.js" type="module"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="nav collapsible">
+      <a href="../index.html"
+        ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
+      /></a>
+
+      <svg class="icon icon--white nav__toggler">
+        <use xlink:href="../images/sprite.svg#menu"></use>
+      </svg>
+      <ul class="list nav__list collapsible__content">
+        <li class="nav__item"><a href="">Apps</a></li>
+        <li class="nav__item">
+          <a href="/research-article-home.html">Research Articles</a>
+        </li>
+        <li class="nav__item"><a href="">Pricing</a></li>
+        <li class="nav__item"><a href="">About</a></li>
+        <li class="nav__item"><a href="">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Headings and info -->
+    <section class="block container">
+      <div class="">
+        <h1>Real Time Topology Optimization via Learnable Mappings</h1>
+        <p>
+          Submitted 07/2023 to International Journal for Numerical Methods in
+          Engineering for review
+        </p>
+      </div>
+    </section>
+    <!-- Research article body -->
+    <section class="block container">
+      <p>
+        Use the sliders to change the location of the supports and the forces.
+        Click on the radio buttons to switch between the optimal density values,
+        the Von Mises stresses, or the dominant principal stress elements.
+        PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
+      </p>
+      <canvas id="canvas"></canvas>
+      <div class="user-panel">
+        <div class="slider-group">
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="supportARange"
+            />Support A: <span id="supportAValue">7.5</span> m
+          </div>
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="supportBRange"
+            />Support B: <span id="supportBValue">7.5</span> m
+          </div>
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="forceARange"
+            />Force A: <span id="forceAValue">30</span> m
+          </div>
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="forceBRange"
+            />Force B: <span id="forceBValue">30</span> m
+          </div>
+        </div>
+        <div class="radio-group">
+          <div>
+            <input
+              type="radio"
+              id="topopt"
+              name="options"
+              value="topopt"
+              checked
+            />
+            <label for="option1">Optimal Topology</label>
+          </div>
+          <div>
+            <input type="radio" id="VM" name="options" value="VM" />
+            <label for="option2">Von Mises Stress</label>
+          </div>
+          <div>
+            <input type="radio" id="TC" name="options" value="TC" />
+            <label for="option3">Tension and Compression Regions</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="../js/DYNUTOP.js" type="module"></script>
+
+    <script src="../js/collapsible.js" type="module"></script>
+  </body>
+</html>
