@@ -12,35 +12,35 @@ const { OrbitControls } = THREE;
 //   import.meta.url
 // ).href;
 const MODEL_URL_topopt_FCM =
-  "/research-articles/DYNUTOP/3DBridge_topopt_FCM/model.json";
+  "../research-articles/DYNUTOP/3DBridge_topopt_FCM/model.json";
 // const MODEL_URL_topopt_FCM2 = new URL(
 //   "../research-articles/DYNUTOP/3DBridge_topopt_FCM2/model.json",
 //   import.meta.url
 // ).href;
 const MODEL_URL_topopt_FCM2 =
-  "/research-articles/DYNUTOP/3DBridge_topopt_FCM2/model.json";
+  "../research-articles/DYNUTOP/3DBridge_topopt_FCM2/model.json";
 // const MODEL_URL_VM_FCM = new URL(
 //   "../research-articles/DYNUTOP/3DBridge_VM_FCM/model.json",
 //   import.meta.url
 // ).href;
 const MODEL_URL_VM_FCM =
-  "/research-articles/DYNUTOP/3DBridge_VM_FCM/model.json";
+  "../research-articles/DYNUTOP/3DBridge_VM_FCM/model.json";
 // const MODEL_URL_VM_FCM2 = new URL(
 //   "../research-articles/DYNUTOP/3DBridge_VM_FCM2/model.json",
 //   import.meta.url
 // ).href;
 const MODEL_URL_VM_FCM2 =
-  "/research-articles/DYNUTOP/3DBridge_VM_FCM2/model.json";
+  "../research-articles/DYNUTOP/3DBridge_VM_FCM2/model.json";
 
 const MODEL_URL_TC_FCM =
-  "/research-articles/DYNUTOP/3DBridge_TC_FCM/model.json";
+  "../research-articles/DYNUTOP/3DBridge_TC_FCM/model.json";
 // const MODEL_URL_TC_FCM = new URL(
 //   "../research-articles/DYNUTOP/3DBridge_TC_FCM/model.json",
 //   import.meta.url
 // ).href;
 
 const MODEL_URL_TC_FCM2 =
-  "/research-articles/DYNUTOP/3DBridge_TC_FCM2/model.json";
+  "../research-articles/DYNUTOP/3DBridge_TC_FCM2/model.json";
 // const MODEL_URL_TC_FCM2 = new URL(
 //   "../research-articles/DYNUTOP/3DBridge_TC_FCM2/model.json",
 //   import.meta.url
