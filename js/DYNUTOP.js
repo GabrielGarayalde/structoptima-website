@@ -168,7 +168,7 @@ function updateElements(type) {
   if (type === "VM") {
     valuesTopopt = predictResult(params, model_topopt_FCM, model_topopt_FCM2);
     valuesVM = predictResult(params, model_VM_FCM, model_VM_FCM2);
-    valuesFinal = valuesTopopt.map((x, i) => x * valuesVM[i]);
+    // valuesFinal = valuesTopopt.map((x, i) => x * valuesVM[i]);
     valuesFinal = normalizeArray(valuesFinal);
   }
   if (type === "TC") {
