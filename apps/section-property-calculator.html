@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <title>Document</title>
+    <style></style>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <!-- NavBar -->
+    <header>
+      <nav class="nav collapsible">
+        <a href="../index.html"
+          ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
+        /></a>
+
+        <svg class="icon icon--white nav__toggler">
+          <use xlink:href="images/sprite.svg#menu"></use>
+        </svg>
+        <ul class="list nav__list collapsible__content">
+          <li class="nav__item">
+            <a href="../apps.html">Apps</a>
+          </li>
+          <li class="nav__item">
+            <a href="../research-articles.html">Research Articles</a>
+          </li>
+          <li class="nav__item"><a href="">About</a></li>
+          <li class="nav__item"><a href="">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Headings and info -->
+    <section class="block container">
+      <div class="">
+        <h1>Section Property Calculator</h1>
+        <p>
+          Click and drag on the canvas to create rectangles and calculate their
+          sectional properties
+        </p>
+      </div>
+    </section>
+
+    <section class="block container">
+      <canvas id="canvas"></canvas>
+      <br />
+      <div class="grid grid--1x2">
+        <div class="card">
+          <h2>Current Rectangle</h2>
+          <div>Width: <span id="current-width"></span></div>
+          <div>Height: <span id="current-height"></span></div>
+          <div>Area: <span id="current-area"></span></div>
+        </div>
+        <div class="card">
+          <h2>Total Rectangle</h2>
+          <div>COG: <span id="total-COG"></span></div>
+          <div>Moment of Inertia: <span id="total-MOI"></span></div>
+          <div>Area: <span id="total-area"></span></div>
+        </div>
+      </div>
+      <button class="button" id="clear-all-button">Clear All</button>
+      <button class="button" id="clear-button">Clear</button>
+    </section>
+    <script src="./section-property-calculator/grid.js" type="module"></script>
+  </body>
+</html>

@@ -1,50 +1,34 @@
-// import * as THREE from "/node_modules/three/build/three.js";
-// import * as THREE from "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js";
-// import { OrbitControls } from "/node_modules/three/examples/jsm/controls/OrbitControls.js";
 import predictResult from "./predictResult.js";
 import mapValueToColor from "./mapValueToColor.js";
 import normalizeArray from "./normalizeArray.js";
-const { OrbitControls } = THREE;
-// import * as tf from "/node_modules/@tensorflow/tfjs/dist/index.js";
 
-// const MODEL_URL_topopt_FCM = new URL(
-//   "../research-articles/DYNUTOP/3DBridge_topopt_FCM/model.json",
-//   import.meta.url
-// ).href;
+const { OrbitControls } = THREE;
+
+const qs = (s) => document.querySelector(s);
+const canvas = qs("#canvas");
+
+// TODO: this should be applied to the styles.css sheet
+canvas.width = 600;
+canvas.height = 400;
+canvas.style.border = "1px solid black";
+
 const MODEL_URL_topopt_FCM =
   "../research-articles/DYNUTOP/3DBridge_topopt_FCM/model.json";
-// const MODEL_URL_topopt_FCM2 = new URL(
-//   "../research-articles/DYNUTOP/3DBridge_topopt_FCM2/model.json",
-//   import.meta.url
-// ).href;
+
 const MODEL_URL_topopt_FCM2 =
   "../research-articles/DYNUTOP/3DBridge_topopt_FCM2/model.json";
-// const MODEL_URL_VM_FCM = new URL(
-//   "../research-articles/DYNUTOP/3DBridge_VM_FCM/model.json",
-//   import.meta.url
-// ).href;
+
 const MODEL_URL_VM_FCM =
   "../research-articles/DYNUTOP/3DBridge_VM_FCM/model.json";
-// const MODEL_URL_VM_FCM2 = new URL(
-//   "../research-articles/DYNUTOP/3DBridge_VM_FCM2/model.json",
-//   import.meta.url
-// ).href;
+
 const MODEL_URL_VM_FCM2 =
   "../research-articles/DYNUTOP/3DBridge_VM_FCM2/model.json";
 
 const MODEL_URL_TC_FCM =
   "../research-articles/DYNUTOP/3DBridge_TC_FCM/model.json";
-// const MODEL_URL_TC_FCM = new URL(
-//   "../research-articles/DYNUTOP/3DBridge_TC_FCM/model.json",
-//   import.meta.url
-// ).href;
 
 const MODEL_URL_TC_FCM2 =
   "../research-articles/DYNUTOP/3DBridge_TC_FCM2/model.json";
-// const MODEL_URL_TC_FCM2 = new URL(
-//   "../research-articles/DYNUTOP/3DBridge_TC_FCM2/model.json",
-//   import.meta.url
-// ).href;
 
 // Load models
 console.time("loadModels");
@@ -92,14 +76,6 @@ let valuesTC = [];
 let currentType = "topopt";
 valuesTopopt = predictResult(params, model_topopt_FCM, model_topopt_FCM2);
 
-const qs = (s) => document.querySelector(s);
-const canvas = qs("#canvas");
-
-// TODO: this should be applied to the styles.css sheet
-canvas.width = 600;
-canvas.height = 400;
-canvas.style.border = "1px solid black";
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -123,7 +99,6 @@ const gridHelper = new THREE.GridHelper(numRows, numRows);
 scene.add(gridHelper);
 
 renderer.setSize(canvas.width, canvas.height);
-
 renderer.setClearColor(0xffffff);
 
 // TODO: we really just need the for loops for the positions, the cubes can be initialized first and the positions updated later?
@@ -168,16 +143,12 @@ function updateElements(type) {
   if (type === "VM") {
     valuesTopopt = predictResult(params, model_topopt_FCM, model_topopt_FCM2);
     valuesVM = predictResult(params, model_VM_FCM, model_VM_FCM2);
-    // valuesFinal = valuesTopopt.map((x, i) => x * valuesVM[i]);
     valuesFinal = normalizeArray(valuesFinal);
   }
   if (type === "TC") {
     valuesTopopt = predictResult(params, model_topopt_FCM, model_topopt_FCM2);
     valuesTC = predictResult(params, model_TC_FCM, model_TC_FCM2);
     valuesFinal = valuesTC.map((x) => (x - 0.5) * 2);
-    // valuesFinal = valuesTopopt.map((x, i) => x * valuesTC[i]);
-    // console.log(valuesFinal);
-    // valuesFinal = normalizeArray(valuesFinal);
   }
   let chosen_value = 0;
   for (let index in cubesArray1) {
@@ -196,8 +167,6 @@ initializeElements();
 // Create an animation loop
 const animate = function () {
   requestAnimationFrame(animate);
-
-  // Render the scene with the camera
   renderer.render(scene, camera);
 };
 

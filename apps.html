@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Articles</title>
+
+    <meta property="og:title" content="StructOptima" />
+    <meta
+      property="og:description"
+      content="Intuitive, easy to use applications for the Modern Engineer"
+    />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="nav collapsible">
+      <a href="../index.html"
+        ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
+      /></a>
+
+      <svg class="icon icon--white nav__toggler">
+        <use xlink:href="../images/sprite.svg#menu"></use>
+      </svg>
+      <ul class="list nav__list collapsible__content">
+        <li class="nav__item"><a href="./apps.html">Apps</a></li>
+        <li class="nav__item">
+          <a href="./research-articles.html">Research Articles</a>
+        </li>
+        <li class="nav__item"><a href="">About</a></li>
+        <li class="nav__item"><a href="">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- Headings and info -->
+    <section class="block container">
+      <div class="">
+        <h1>Apps</h1>
+        <p>
+          Click on apps below to acces them. All apps are free to use and
+          require no sign up.
+        </p>
+      </div>
+    </section>
+    <!-- Research article body -->
+    <section class="block container block-plans">
+      <div class="grid grid--1x2">
+        <a href="/apps/section-property-calculator.html">
+          <div class="article card card--primary">
+            <header class="card__header">
+              <h3 class="plan__name">Section Property Calculator</h3>
+              <!-- <span class="plan__price">$14</span>
+            <span class="plan__billing-cycle">/month</span> -->
+              <span class="badge badge--primary badge--small">07/2023</span>
+            </header>
+            <div class="card__body">
+              <img
+                class="hero__image"
+                src="./images/section-property-calculator.png"
+                alt=""
+              />
+              <ul class="list">
+                <li class="list__item">
+                  Interactive section property calculator
+                </li>
+                <li class="list__item">
+                  instantly calculate important geometrical properties
+                </li>
+              </ul>
+              <button class="btn btn--outline btn--block">Learn more</button>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </body>
+</html>

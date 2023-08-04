@@ -1,0 +1,10 @@
+.card {
+  display: inline-block;
+  margin: 0 10px;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+h1 {
+  font-size: 2rem;
+}
