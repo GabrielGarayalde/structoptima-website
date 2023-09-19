@@ -7,10 +7,10 @@ const { OrbitControls } = THREE;
 const qs = (s) => document.querySelector(s);
 const canvas = qs("#canvas");
 
-// TODO: this should be applied to the styles.css sheet
-canvas.width = 600;
-canvas.height = 400;
-canvas.style.border = "1px solid black";
+// // TODO: this should be applied to the styles.css sheet
+// canvas.width = 400;
+// canvas.height = 400;
+// canvas.style.border = "1px solid black";
 
 const MODEL_URL_topopt_FCM =
   "../research-articles/DYNUTOP/3DBridge_topopt_FCM/model.json";
@@ -98,7 +98,7 @@ const controls = new OrbitControls(camera, canvas);
 const gridHelper = new THREE.GridHelper(numRows, numRows);
 scene.add(gridHelper);
 
-renderer.setSize(canvas.width, canvas.height);
+// renderer.setSize(canvas.width, canvas.height);
 renderer.setClearColor(0xffffff);
 
 // TODO: we really just need the for loops for the positions, the cubes can be initialized first and the positions updated later?

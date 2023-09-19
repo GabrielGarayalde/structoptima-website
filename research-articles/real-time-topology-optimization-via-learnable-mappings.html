@@ -34,7 +34,7 @@
         /></a>
 
         <svg class="icon icon--white nav__toggler">
-          <use xlink:href="images/sprite.svg#menu"></use>
+          <use xlink:href="../images/sprite.svg#menu"></use>
         </svg>
         <ul class="list nav__list collapsible__content">
           <li class="nav__item">
@@ -68,7 +68,7 @@
       </p>
       <p>Right click and orbit the 3D model using the mouse.</p>
       <div class="canvas-group">
-        <div class="canvas">
+        <div class="canvas-item">
           <canvas id="canvas"></canvas>
         </div>
         <div class="user-panel">
@@ -123,7 +123,7 @@
             </div>
           </div>
           <div class="radio-group">
-            <div>
+            <div class="radio-item">
               <input
                 type="radio"
                 id="topopt"
@@ -133,11 +133,11 @@
               />
               <label for="option1">Optimal Topology</label>
             </div>
-            <div>
+            <div class="radio-item">
               <input type="radio" id="VM" name="options" value="VM" />
               <label for="option2">Von Mises Stress</label>
             </div>
-            <div>
+            <div class="radio-item">
               <input type="radio" id="TC" name="options" value="TC" />
               <label for="option3">Tension and Compression Regions</label>
             </div>
