@@ -710,3 +710,8 @@ a {
   max-width: 300px;
   margin: 0 auto;
 }
+
+.grid--centred {
+  justify-items: center;
+  align-items: center;
+}
