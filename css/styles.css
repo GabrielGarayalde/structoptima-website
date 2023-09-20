@@ -715,3 +715,8 @@ a {
   justify-items: center;
   align-items: center;
 }
+
+#section-property-calculator-canvas {
+  border: 1.5px solid black;
+  border-radius: 10px;
+}

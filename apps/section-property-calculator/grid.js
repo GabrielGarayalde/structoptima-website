@@ -21,7 +21,7 @@ const qs = (s) => document.querySelector(s);
 
 const dotSize = 4;
 
-const canvas = qs("#canvas");
+const canvas = qs("#section-property-calculator-canvas");
 canvas.width = CANVAS_W;
 canvas.height = CANVAS_H;
 canvas.style.border = "1px solid black";
