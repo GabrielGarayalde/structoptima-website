@@ -32,64 +32,74 @@
       </nav>
     </header>
     <!-- Headings and info -->
-    <section class="container">
-      <div class="">
-        <h2>Column Design</h2>
-        <p>
-          The following program allows yields the optimal member size for a
-          simply supported beam column under combined axial compression and
-          major axis bending. The program takes as input the values of the
-          slider and calculates the most efficient member size for in-plane
-          Major axis bending. It assumes that the member is fully laterally
-          restrained.
-        </p>
-      </div>
-    </section>
-
-    <!-- Canvas, Results and User Panel-->
-    <div class="canvas-group">
-      <div class="canvas-item">
-        <canvas id="column-design-canvas"></canvas>
-      </div>
-      <div class="user-panel">
+    <div class="block container">
+      <section class="block__header">
+        <div class="">
+          <h1>Column Design to AS4100</h1>
+        </div>
+      </section>
+      <!-- Canvas, Results and User Panel-->
+      <section class="grid grid--70-30">
+        <div class="header">
+          <p>
+            The following program allows yields the optimal member size for a
+            simply supported beam column under combined axial compression and
+            major axis bending. The program takes as input the values of the
+            slider and calculates the most efficient member size for in-plane
+            Major axis bending. It assumes that the member is fully laterally
+            restrained.
+          </p>
+        </div>
+        <div class="canvas">
+          <canvas id="column-design-canvas"></canvas>
+        </div>
         <div class="slider-group">
-          <div>
+          <div class="slider-item">
             <input
               type="range"
               min="0"
               max="1"
               step="0.01"
               value="0.5"
-              class="slider"
+              class="slider-input"
               name="params"
               id="LexRange"
-            />Effective Length in x (Le_x):
-            <span id="LexRangeValue">7.5</span> [m]
+            />
+            <div>
+              Effective Length in x (Le_x):<span id="LexRangeValue">7.5</span>
+              [m]
+            </div>
           </div>
-          <div>
+          <div class="slider-item">
             <input
               type="range"
               min="0"
               max="1"
               step="0.01"
               value="0.5"
-              class="slider"
+              class="slider-input"
               name="params"
               id="NRange"
-            />Axial Compression (N*): <span id="NRangeValue">7.5</span> [kN]
+            />
+            <div>
+              Axial Compression (N*): <span id="NRangeValue">7.5</span> [kN]
+            </div>
           </div>
-          <div>
+          <div class="slider-item">
             <input
               type="range"
               min="0"
               max="1"
               step="0.01"
               value="0.5"
-              class="slider"
+              class="slider-input"
               name="params"
               id="MxiRange"
-            />Design bending moment (Mxi*):
-            <span id="MxiRangeValue">30</span> [kNm]
+            />
+            <div>
+              Design bending moment (Mxi*):<span id="MxiRangeValue">7.5</span>
+              [kNm]
+            </div>
           </div>
         </div>
         <div class="radio-group">
@@ -102,8 +112,9 @@
             <label for="option2">UC</label>
           </div>
         </div>
-      </div>
+      </section>
     </div>
     <script src="./column-design/main.js" type="module"></script>
+    <script src="../js/collapsible.js" type="module"></script>
   </body>
 </html>
