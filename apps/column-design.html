@@ -34,31 +34,76 @@
     <!-- Headings and info -->
     <section class="container">
       <div class="">
-        <h2>Section Property Calculator</h2>
-        <p>Stay tuned for the release of this app in October 2023.</p>
+        <h2>Column Design</h2>
+        <p>
+          The following program allows yields the optimal member size for a
+          simply supported beam column under combined axial compression and
+          major axis bending. The program takes as input the values of the
+          slider and calculates the most efficient member size for in-plane
+          Major axis bending. It assumes that the member is fully laterally
+          restrained.
+        </p>
       </div>
     </section>
 
-    <!-- <section class="block container">
-      <canvas id="canvas"></canvas>
-      <br />
-      <div class="grid grid--1x2">
-        <div class="card">
-          <h2>Current Rectangle</h2>
-          <div>Width: <span id="current-width"></span></div>
-          <div>Height: <span id="current-height"></span></div>
-          <div>Area: <span id="current-area"></span></div>
+    <!-- Canvas, Results and User Panel-->
+    <div class="canvas-group">
+      <div class="canvas-item">
+        <canvas id="column-design-canvas"></canvas>
+      </div>
+      <div class="user-panel">
+        <div class="slider-group">
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="LexRange"
+            />Effective Length in x (Le_x):
+            <span id="LexRangeValue">7.5</span> [m]
+          </div>
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="NRange"
+            />Axial Compression (N*): <span id="NRangeValue">7.5</span> [kN]
+          </div>
+          <div>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider"
+              name="params"
+              id="MxiRange"
+            />Design bending moment (Mxi*):
+            <span id="MxiRangeValue">30</span> [kNm]
+          </div>
         </div>
-        <div class="card">
-          <h2>Total Rectangle</h2>
-          <div>COG: <span id="total-COG"></span></div>
-          <div>Moment of Inertia: <span id="total-MOI"></span></div>
-          <div>Area: <span id="total-area"></span></div>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" id="UB" name="options" value="UB" checked />
+            <label for="option1">UB</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="UC" name="options" value="UC" />
+            <label for="option2">UC</label>
+          </div>
         </div>
       </div>
-      <button class="button" id="clear-all-button">Clear All</button>
-      <button class="button" id="clear-button">Clear</button>
-    </section>
-    <script src="./section-property-calculator/grid.js" type="module"></script> -->
+    </div>
+    <script src="./column-design/main.js" type="module"></script>
   </body>
 </html>
