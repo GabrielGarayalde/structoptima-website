@@ -1,8 +1,11 @@
-import React from "react";
-import UB from "./UB";
+import UB from "./UB.js";
 // import { axialCapacity } from "../functions/axialCapacity";
 
-import { axialbendingCapacity } from "./axialbendingCapacity";
+import axialbendingCapacity from "./axialbendingCapacity.js";
+
+// import test from "./test.js";
+
+// test();
 
 function findClosestIndex(array) {
   let minDiff = Number.POSITIVE_INFINITY;
@@ -19,7 +22,11 @@ function findClosestIndex(array) {
   return closestIndex;
 }
 
-Results = ({ Le_x, N_load, M_x_load }) => {
+export function predictResult(params) {
+  let Le_x = params[0];
+  let N_load = params[1];
+  let M_x_load = params[2];
+
   const scores = [];
   const phi = 0.9; // this is the safety factor -
 
@@ -68,25 +75,25 @@ Results = ({ Le_x, N_load, M_x_load }) => {
   const score_N_load = N_load / ((phi * answer.Nc_x) / 1000);
   const score_M_x_load = M_x_load / ((phi * answer.Mi_x) / 1000000);
 
-  return (
-    <div>
-      <h2>Member chosen: {id} [m]</h2>
-      <p> Axial Compression Capacity</p>
-      <p>
-        {" "}
-        N* = {N_load} &#8804; &phi;N<sub>c</sub> ={" "}
-        {((phi * answer.Nc_x) / 1000).toFixed(2)} [kN] Strength Capacity:{" "}
-        {(score_N_load * 100).toFixed(2)} %{" "}
-      </p>
-      <p> In-plane Member Moment Capacity</p>
-      <p>
-        {" "}
-        M*<sub>x</sub> = {M_x_load} &#8804; &phi;M<sub>ix</sub> ={" "}
-        {((phi * answer.Mi_x) / 1000000).toFixed(2)} [kNm] Strength Capacity:{" "}
-        {(score_M_x_load * 100).toFixed(2)} %{" "}
-      </p>
-    </div>
-  );
-};
+  return { answer, score_N_load, score_M_x_load };
 
-export default Results;
+  // <div>
+  //   <h2>Member chosen: {id} [m]</h2>
+  //   <p> Axial Compression Capacity</p>
+  //   <p>
+  //     {" "}
+  //     N* = {N_load} &#8804; &phi;N<sub>c</sub> ={" "}
+  //     {((phi * answer.Nc_x) / 1000).toFixed(2)} [kN] Strength Capacity:{" "}
+  //     {(score_N_load * 100).toFixed(2)} %{" "}
+  //   </p>
+  //   <p> In-plane Member Moment Capacity</p>
+  //   <p>
+  //     {" "}
+  //     M*<sub>x</sub> = {M_x_load} &#8804; &phi;M<sub>ix</sub> ={" "}
+  //     {((phi * answer.Mi_x) / 1000000).toFixed(2)} [kNm] Strength Capacity:{" "}
+  //     {(score_M_x_load * 100).toFixed(2)} %{" "}
+  //   </p>
+  // </div>
+}
+
+export default predictResult;

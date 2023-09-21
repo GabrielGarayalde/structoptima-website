@@ -1,11 +1,11 @@
-export const drawdimArrow = (
+export default function drawdimArrow(
   context,
   startX,
   startY,
   endX,
   endY,
   sliderValue1
-) => {
+) {
   // endY = sliderValue1 *20 ;
   // Draw dimension leader
   context.beginPath();
@@ -42,4 +42,4 @@ export const drawdimArrow = (
   context.fillText("Effective Length ", 0, 0); // draw the first line of text
   context.fillText("Le: " + sliderValue1.toString() + " [m]", 0, 14); // draw the second line of text below the first
   context.restore();
-};
+}
