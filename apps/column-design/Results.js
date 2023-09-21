@@ -1,5 +1,5 @@
 import React from "react";
-import UB from "../data/UB";
+import UB from "./UB";
 // import { axialCapacity } from "../functions/axialCapacity";
 
 import { axialbendingCapacity } from "./axialbendingCapacity";

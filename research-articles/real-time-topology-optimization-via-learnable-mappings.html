@@ -49,102 +49,106 @@
       </nav>
     </header>
     <!-- Headings and info -->
-    <section class="block container">
-      <div class="">
-        <h1>Real Time Topology Optimization via Learnable Mappings</h1>
-        <p>
-          Submitted 07/2023 to International Journal for Numerical Methods in
-          Engineering for review
-        </p>
-      </div>
-    </section>
-    <!-- Research article body -->
-    <section class="block container">
-      <p>
-        Use the sliders to change the location of the supports and the forces.
-        Click on the radio buttons to switch between the optimal density values,
-        the Von Mises stresses, or the dominant principal stress elements.
-        PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
-      </p>
-      <p>Right click and orbit the 3D model using the mouse.</p>
-      <div class="canvas-group">
-        <div class="canvas-item">
+    <div class="block container">
+      <section class="block__header">
+        <div class="">
+          <h1>Real Time Topology Optimization via Learnable Mappings</h1>
+          <p>
+            Submitted 07/2023 to International Journal for Numerical Methods in
+            Engineering for review
+          </p>
+        </div>
+      </section>
+      <!-- Research article body -->
+      <section class="grid grid--70-30">
+        <div class="header">
+          <p>
+            Use the sliders to change the location of the supports and the
+            forces. Click on the radio buttons to switch between the optimal
+            density values, the Von Mises stresses, or the dominant principal
+            stress elements. PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
+          </p>
+          <p>Right click and orbit the 3D model using the mouse.</p>
+        </div>
+        <div class="canvas">
           <canvas id="canvas"></canvas>
         </div>
-        <div class="user-panel">
-          <div class="slider-group">
-            <div>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.5"
-                class="slider"
-                name="params"
-                id="supportARange"
-              />Support A: <span id="supportAValue">7.5</span> m
-            </div>
-            <div>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.5"
-                class="slider"
-                name="params"
-                id="supportBRange"
-              />Support B: <span id="supportBValue">7.5</span> m
-            </div>
-            <div>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.5"
-                class="slider"
-                name="params"
-                id="forceARange"
-              />Force A: <span id="forceAValue">30</span> m
-            </div>
-            <div>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value="0.5"
-                class="slider"
-                name="params"
-                id="forceBRange"
-              />Force B: <span id="forceBValue">30</span> m
-            </div>
+        <div class="slider-group">
+          <div class="slider-item">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider-input"
+              name="params"
+              id="supportARange"
+            />
+            <div>Support A:<span id="supportAValue">7.5</span> m</div>
           </div>
-          <div class="radio-group">
-            <div class="radio-item">
-              <input
-                type="radio"
-                id="topopt"
-                name="options"
-                value="topopt"
-                checked
-              />
-              <label for="option1">Optimal Topology</label>
-            </div>
-            <div class="radio-item">
-              <input type="radio" id="VM" name="options" value="VM" />
-              <label for="option2">Von Mises Stress</label>
-            </div>
-            <div class="radio-item">
-              <input type="radio" id="TC" name="options" value="TC" />
-              <label for="option3">Tension and Compression Regions</label>
-            </div>
+          <div class="slider-item">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider-input"
+              name="params"
+              id="supportBRange"
+            />
+            <div>Support B:<span id="supportBValue">7.5</span> m</div>
+          </div>
+          <div class="slider-item">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider-input"
+              name="params"
+              id="forceARange"
+            />
+            <div>Force A:<span id="forceAValue">7.5</span> m</div>
+          </div>
+          <div class="slider-item">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.5"
+              class="slider-input"
+              name="params"
+              id="forceBRange"
+            />
+            <div>Force B:<span id="ForceBValue">7.5</span> m</div>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input
+              type="radio"
+              id="topopt"
+              name="options"
+              value="topopt"
+              checked
+            />
+            <label for="option1">Optimal Topology</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="VM" name="options" value="VM" />
+            <label for="option2">Von Mises Stress</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" id="TC" name="options" value="TC" />
+            <label for="option3">Tension and Compression Regions</label>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <script src="../js/DYNUTOP.js" type="module"></script>
 
