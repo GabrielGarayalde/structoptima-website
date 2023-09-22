@@ -1,4 +1,5 @@
 import drawdimArrow from "./dimArrow.js";
+import colorChange from "./colorChange.js";
 import { predictResult } from "./predictResult.js";
 const qs = (s) => document.querySelector(s);
 
@@ -57,6 +58,10 @@ paramSliders.forEach((param, index) =>
     id_3_Output.textContent = resultsSorted[2][0];
     score_Nx_3_Output.textContent = resultsSorted[2][1].toFixed(3);
     score_Mxi_3_Output.textContent = resultsSorted[2][2].toFixed(3);
+
+    colorChange(resultsSorted[0][2].toFixed(3), "results-1");
+    colorChange(resultsSorted[1][2].toFixed(3), "results-2");
+    colorChange(resultsSorted[2][2].toFixed(3), "results-3");
 
     drawdimArrow(
       canvas,

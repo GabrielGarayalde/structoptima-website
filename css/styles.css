@@ -781,3 +781,23 @@ a {
   box-shadow: 0 0 20px 10px lightgrey;
   margin: 5px;
 }
+
+.red-color {
+  background-color: red;
+  color: black;
+}
+
+.orange-color {
+  background-color: orange;
+  color: black;
+}
+
+.yellow-color {
+  background-color: yellow;
+  color: black;
+}
+
+.green-color {
+  background-color: lightgreen;
+  color: black;
+}

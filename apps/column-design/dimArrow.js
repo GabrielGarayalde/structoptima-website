@@ -44,6 +44,6 @@ export default function drawdimArrow(
   context.textAlign = "center";
   context.fillStyle = "black";
   context.fillText("Effective Length ", 0, 0); // draw the first line of text
-  context.fillText("Le: " + sliderValue1.toString() + " [m]", 0, 14); // draw the second line of text below the first
+  context.fillText("Le: " + (sliderValue1 / 1000).toString() + " [m]", 0, 14); // draw the second line of text below the first
   context.restore();
 }
