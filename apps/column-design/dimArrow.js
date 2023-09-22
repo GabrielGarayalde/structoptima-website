@@ -1,11 +1,15 @@
 export default function drawdimArrow(
-  context,
+  canvas,
   startX,
   startY,
   endX,
   endY,
   sliderValue1
 ) {
+  const context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
   // endY = sliderValue1 *20 ;
   // Draw dimension leader
   context.beginPath();
