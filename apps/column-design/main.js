@@ -1,5 +1,6 @@
 import drawdimArrow from "./dimArrow.js";
-import colorChange from "./colorChange.js";
+import selectedOptions from "./selectedOptions.js";
+import updateResults from "./updateResults.js";
 import { predictResult } from "./predictResult.js";
 const qs = (s) => document.querySelector(s);
 
@@ -13,18 +14,6 @@ const ctx = canvas.getContext("2d");
 let LexRangeOutput = document.getElementById("LexRangeValue");
 let NRangeOutput = document.getElementById("NRangeValue");
 let MxiRangeOutput = document.getElementById("MxiRangeValue");
-
-let id_1_Output = document.getElementById("id_1");
-let score_Nx_1_Output = document.getElementById("score_Nx_1");
-let score_Mxi_1_Output = document.getElementById("score_Mxi_1");
-
-let id_2_Output = document.getElementById("id_2");
-let score_Nx_2_Output = document.getElementById("score_Nx_2");
-let score_Mxi_2_Output = document.getElementById("score_Mxi_2");
-
-let id_3_Output = document.getElementById("id_3");
-let score_Nx_3_Output = document.getElementById("score_Nx_3");
-let score_Mxi_3_Output = document.getElementById("score_Mxi_3");
 
 let paramSliders = document.querySelectorAll("input[name=params]");
 
@@ -48,20 +37,12 @@ paramSliders.forEach((param, index) =>
       //  convert [kNm] to [Nmm]
       params[index] = number * 1000000;
     }
-    let resultsSorted = predictResult(params, currentType); // updateElements(currentType);
-    id_1_Output.textContent = resultsSorted[0][0];
-    score_Nx_1_Output.textContent = resultsSorted[0][1].toFixed(3);
-    score_Mxi_1_Output.textContent = resultsSorted[0][2].toFixed(3);
-    id_2_Output.textContent = resultsSorted[1][0];
-    score_Nx_2_Output.textContent = resultsSorted[1][1].toFixed(3);
-    score_Mxi_2_Output.textContent = resultsSorted[1][2].toFixed(3);
-    id_3_Output.textContent = resultsSorted[2][0];
-    score_Nx_3_Output.textContent = resultsSorted[2][1].toFixed(3);
-    score_Mxi_3_Output.textContent = resultsSorted[2][2].toFixed(3);
 
-    colorChange(resultsSorted[0][2].toFixed(3), "results-1");
-    colorChange(resultsSorted[1][2].toFixed(3), "results-2");
-    colorChange(resultsSorted[2][2].toFixed(3), "results-3");
+    let selectedTypes = selectedOptions();
+    if (selectedTypes.length > 0) {
+      let resultsSorted = predictResult(params, selectedTypes);
+      updateResults(resultsSorted);
+    }
 
     drawdimArrow(
       canvas,
@@ -74,36 +55,18 @@ paramSliders.forEach((param, index) =>
   })
 );
 
-let radButtons = document.querySelectorAll("input[name=options]");
+// CHECKBOXES
 
-radButtons.forEach((rb) =>
-  rb.addEventListener("change", () => {
-    currentType = rb.value;
-    updateElements(currentType);
-  })
-);
+const checkboxes = document.querySelectorAll(".multiselect-checkbox");
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", () => {
+    let selectedTypes = selectedOptions();
+    if (selectedTypes.length > 0) {
+      let resultsSorted = predictResult(params, selectedTypes);
+      updateResults(resultsSorted);
+    }
+  });
+});
 
 let params = [5000, 250000, 50000000];
-let currentType = "UB";
-let resultsSorted = predictResult(params, currentType);
-
-console.log(resultsSorted);
-// function updateElements(type) {
-//   if (type === "UB") {
-//     let results = predictResult(params, currentType);
-//   }
-//   if (type === "UC") {
-//     let results = predictResult(params, currentType);
-//   }
-// }
-
-drawdimArrow(
-  canvas,
-  canvas.width / 2, // startX
-  50, // startY
-  canvas.width / 2, // endX
-  canvas.height - 20, // endY
-  params[0] // dimLength
-);
-
-console.log(params);
