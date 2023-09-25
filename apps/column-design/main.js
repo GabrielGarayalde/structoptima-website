@@ -12,8 +12,10 @@ canvas.height = CANVAS_H;
 const ctx = canvas.getContext("2d");
 
 let LexRangeOutput = document.getElementById("LexRangeValue");
+let LeyRangeOutput = document.getElementById("LeyRangeValue");
 let NRangeOutput = document.getElementById("NRangeValue");
 let MxiRangeOutput = document.getElementById("MxiRangeValue");
+let MyiRangeOutput = document.getElementById("MyiRangeValue");
 
 let paramSliders = document.querySelectorAll("input[name=params]");
 
@@ -27,13 +29,24 @@ paramSliders.forEach((param, index) =>
     }
 
     if (index === 1) {
+      LeyRangeOutput.textContent = number.toFixed(2);
+      //  convert [m] to [mm]
+      params[index] = number * 1000;
+    }
+
+    if (index === 2) {
       NRangeOutput.textContent = number.toFixed(2);
       //  convert [kN] to [N]
       params[index] = number * 1000;
     }
 
-    if (index === 2) {
+    if (index === 3) {
       MxiRangeOutput.textContent = number.toFixed(2);
+      //  convert [kNm] to [Nmm]
+      params[index] = number * 1000000;
+    }
+    if (index === 4) {
+      MyiRangeOutput.textContent = number.toFixed(2);
       //  convert [kNm] to [Nmm]
       params[index] = number * 1000000;
     }
@@ -57,7 +70,7 @@ paramSliders.forEach((param, index) =>
 
 // CHECKBOXES
 
-const checkboxes = document.querySelectorAll(".multiselect-checkbox");
+const checkboxes = document.querySelectorAll(".checkbox-steel-sizes");
 
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", () => {
@@ -69,4 +82,4 @@ checkboxes.forEach((checkbox) => {
   });
 });
 
-let params = [5000, 250000, 50000000];
+let params = [5000, 5000, 250000, 50000000, 50000000];

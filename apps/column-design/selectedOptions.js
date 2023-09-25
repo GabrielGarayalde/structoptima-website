@@ -1,6 +1,6 @@
 export default function SelectedOptions() {
   const selectedCheckboxes = document.querySelectorAll(
-    ".multiselect-checkbox:checked"
+    ".checkbox-steel-sizes:checked"
   );
   const selectedValues = Array.from(selectedCheckboxes).map((checkbox) =>
     checkbox.getAttribute("data-value")

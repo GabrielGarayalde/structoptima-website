@@ -53,61 +53,12 @@
         <div class="canvas">
           <canvas id="column-design-canvas"></canvas>
         </div>
-        <div class="slider-group">
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="10"
-              step="0.1"
-              value="5"
-              class="slider-input"
-              name="params"
-              id="LexRange"
-            />
-            <div>
-              Effective Length in x (Le_x):<span id="LexRangeValue">5</span>
-              [m]
-            </div>
-          </div>
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="500"
-              step="1"
-              value="250"
-              class="slider-input"
-              name="params"
-              id="NRange"
-            />
-            <div>
-              Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
-            </div>
-          </div>
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value="50"
-              class="slider-input"
-              name="params"
-              id="MxiRange"
-            />
-            <div>
-              Design bending moment (Mxi*):<span id="MxiRangeValue">50</span>
-              [kNm]
-            </div>
-          </div>
-        </div>
         <div class="radio-group">
           <div class="radio-item">
             <label>
               <input
                 type="checkbox"
-                class="multiselect-checkbox"
+                class="checkbox-steel-sizes"
                 data-value="UB"
                 checked
               />
@@ -118,22 +69,124 @@
             <label>
               <input
                 type="checkbox"
-                class="multiselect-checkbox"
+                class="checkbox-steel-sizes"
                 data-value="UC"
               />
               UC
             </label>
           </div>
+          <div class="radio-item">
+            <label>
+              <input
+                type="checkbox"
+                class="checkbox-steel-sizes"
+                data-value="SHS"
+              />
+              SHS
+            </label>
+          </div>
         </div>
-        <div class="results-group">
+        <div class="slider-group border-style grid--full-span">
+          <div class="slider-item">
+            <div>
+              Effective Length in x, Le_x: <span id="LexRangeValue">5</span>
+              [m]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="5"
+              class="slider-input"
+              name="params"
+              id="LexRange"
+            />
+          </div>
+          <div class="slider-item">
+            <span>
+              Effective Length in y, Le_y: <span id="LeyRangeValue">5</span>
+              [m]
+            </span>
+            <span class="radio-item">
+              <label>
+                <input type="checkbox" class="checkbox-FLR" data-value="FLR" />
+                FLR
+              </label>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="5"
+              class="slider-input"
+              name="params"
+              id="LeyRange"
+            />
+          </div>
+        </div>
+        <div class="slider-group border-style grid--full-span">
+          <div class="slider-item">
+            <div>
+              Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="500"
+              step="1"
+              value="250"
+              class="slider-input"
+              name="params"
+              id="NRange"
+            />
+          </div>
+          <div class="slider-item">
+            <div>
+              Design Moment Mxi*:<span id="MxiRangeValue">50</span>
+              [kNm]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="50"
+              class="slider-input"
+              name="params"
+              id="MxiRange"
+            />
+          </div>
+          <div class="slider-item">
+            <div>
+              Design Moment Myi*:<span id="MyiRangeValue">50</span>
+              [kNm]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="50"
+              class="slider-input"
+              name="params"
+              id="MyiRange"
+            />
+          </div>
+        </div>
+
+        <div class="grid--full-span">
           <div class="results-header">
             <div class="results-title">
               <h1>Top 3 Results</h1>
             </div>
             <div class="results-parameters">
               <div class="results-parameters-items"><h3>ID</h3></div>
-              <div class="results-parameters-items"><h3>Score Nx [%]</h3></div>
-              <div class="results-parameters-items"><h3>Score Mxi [%]</h3></div>
+              <div class="results-parameters-items">
+                <h3>Closest Failure Mode</h3>
+              </div>
+              <div class="results-parameters-items"><h3>Score [%]</h3></div>
             </div>
           </div>
           <div class="results-item green-color" id="results-1">
