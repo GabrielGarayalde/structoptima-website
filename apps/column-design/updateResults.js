@@ -1,48 +1,46 @@
 import colorChange from "./colorChange.js";
 
-let id_1_Output = document.getElementById("id_1");
-let score_Nx_1_Output = document.getElementById("score_Nx_1");
-let score_Mxi_1_Output = document.getElementById("score_Mxi_1");
-
-let id_2_Output = document.getElementById("id_2");
-let score_Nx_2_Output = document.getElementById("score_Nx_2");
-let score_Mxi_2_Output = document.getElementById("score_Mxi_2");
-
-let id_3_Output = document.getElementById("id_3");
-let score_Nx_3_Output = document.getElementById("score_Nx_3");
-let score_Mxi_3_Output = document.getElementById("score_Mxi_3");
+const resultsItems = document.querySelectorAll(".results-item");
 
 export default function updateResults(resultsSorted) {
   console.log(resultsSorted);
   const slicedMatrix = resultsSorted.slice(1); // Extract headers (excluding "id")
-
   const trimmedMatrix = slicedMatrix.map((row) => row.slice(1));
 
-  const max1 = Math.max(...trimmedMatrix[0]);
-  const maxIndex1 = trimmedMatrix[0].indexOf(max1);
-  const headerValue1 = resultsSorted[0][maxIndex1 + 1];
+  // Iterate over each resultsItem
+  resultsItems.forEach((resultsItem, resultsItem_index) => {
+    // Selects on the elements within the resultsItem
+    const resultsSubItems = resultsItem.querySelectorAll(".results-sub-item");
+    const resultsId = resultsItem.querySelector(".results-id");
+    const texts = resultsItem.querySelectorAll(".results-text");
+    const scores = resultsItem.querySelectorAll(".results-score");
 
-  id_1_Output.textContent = resultsSorted[1][0];
-  score_Nx_1_Output.textContent = headerValue1;
-  score_Mxi_1_Output.textContent = max1.toFixed(3);
+    // Replace the content of each <span> with a predetermined value
+    resultsId.textContent = resultsSorted[resultsItem_index + 1][0];
 
-  const max2 = Math.max(...trimmedMatrix[1]);
-  const maxIndex2 = trimmedMatrix[1].indexOf(max2);
-  const headerValue2 = resultsSorted[0][maxIndex2 + 1];
+    // Create an array of objects with number and index
+    const numberObjects = trimmedMatrix[resultsItem_index].map(
+      (number, index) => ({ number, index })
+    );
 
-  id_2_Output.textContent = resultsSorted[2][0];
-  score_Nx_2_Output.textContent = headerValue2;
-  score_Mxi_2_Output.textContent = max2.toFixed(3);
+    // Sort the array in descending order based on the numbers
+    numberObjects.sort((a, b) => b.number - a.number);
 
-  const max3 = Math.max(...trimmedMatrix[2]);
-  const maxIndex3 = trimmedMatrix[2].indexOf(max3);
-  const headerValue3 = resultsSorted[0][maxIndex3 + 1];
+    // Extract the sorted numbers and indices
+    const sortedNumbers = numberObjects.map((item) => item.number);
+    const sortedIndices = numberObjects.map((item) => item.index);
 
-  id_3_Output.textContent = resultsSorted[3][0];
-  score_Nx_3_Output.textContent = headerValue3;
-  score_Mxi_3_Output.textContent = max3.toFixed(3);
+    scores.forEach((score, scores_index) => {
+      const value = sortedNumbers[scores_index];
+      score.textContent = value.toFixed(3);
+    });
 
-  colorChange(max1.toFixed(3), "results-1");
-  colorChange(max2.toFixed(3), "results-2");
-  colorChange(max3.toFixed(3), "results-3");
+    texts.forEach((text, texts_index) => {
+      text.textContent = resultsSorted[0][sortedIndices[texts_index] + 1];
+    });
+
+    resultsSubItems.forEach((resultSubItem, resultSubItem_index) => {
+      colorChange(sortedNumbers[resultSubItem_index], resultSubItem);
+    });
+  });
 }

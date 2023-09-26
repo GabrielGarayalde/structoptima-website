@@ -39,17 +39,17 @@
         </div>
       </section>
       <!-- Canvas, Results and User Panel-->
+      <div class="header">
+        <p>
+          The following program yields the optimal member size for a simply
+          supported beam column under combined axial compression and major axis
+          bending. The program takes as input the values of the slider and
+          calculates the most efficient member size for in-plane Major axis
+          bending. It assumes that the member is fully laterally restrained.
+        </p>
+      </div>
+
       <section class="grid grid--70-30">
-        <div class="header">
-          <p>
-            The following program yields the optimal member size for a simply
-            supported beam column under combined axial compression and major
-            axis bending. The program takes as input the values of the slider
-            and calculates the most efficient member size for in-plane Major
-            axis bending. It assumes that the member is fully laterally
-            restrained.
-          </p>
-        </div>
         <div class="canvas">
           <canvas id="column-design-canvas"></canvas>
         </div>
@@ -86,127 +86,197 @@
             </label>
           </div>
         </div>
-        <div class="slider-group border-style grid--full-span">
-          <div class="slider-item">
-            <div>
-              Effective Length in x, Le_x: <span id="LexRangeValue">5</span>
-              [m]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="10"
-              step="0.1"
-              value="5"
-              class="slider-input"
-              name="params"
-              id="LexRange"
-            />
-          </div>
-          <div class="slider-item">
-            <span>
-              Effective Length in y, Le_y: <span id="LeyRangeValue">5</span>
-              [m]
-            </span>
-            <span class="radio-item">
-              <label>
-                <input type="checkbox" class="checkbox-FLR" data-value="FLR" />
-                FLR
-              </label>
-            </span>
-            <input
-              type="range"
-              min="0"
-              max="10"
-              step="0.1"
-              value="5"
-              class="slider-input"
-              name="params"
-              id="LeyRange"
-            />
-          </div>
-        </div>
-        <div class="slider-group border-style grid--full-span">
-          <div class="slider-item">
-            <div>
-              Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="500"
-              step="1"
-              value="250"
-              class="slider-input"
-              name="params"
-              id="NRange"
-            />
-          </div>
-          <div class="slider-item">
-            <div>
-              Design Moment Mxi*:<span id="MxiRangeValue">50</span>
-              [kNm]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value="50"
-              class="slider-input"
-              name="params"
-              id="MxiRange"
-            />
-          </div>
-          <div class="slider-item">
-            <div>
-              Design Moment Myi*:<span id="MyiRangeValue">50</span>
-              [kNm]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value="50"
-              class="slider-input"
-              name="params"
-              id="MyiRange"
-            />
-          </div>
-        </div>
-
-        <div class="grid--full-span">
-          <div class="results-header">
-            <div class="results-title">
-              <h1>Top 3 Results</h1>
-            </div>
-            <div class="results-parameters">
-              <div class="results-parameters-items"><h3>ID</h3></div>
-              <div class="results-parameters-items">
-                <h3>Closest Failure Mode</h3>
-              </div>
-              <div class="results-parameters-items"><h3>Score [%]</h3></div>
-            </div>
-          </div>
-          <div class="results-item green-color" id="results-1">
-            <span id="id_1">Move the sliders to get started</span>
-            <span id="score_Nx_1"></span>
-            <span id="score_Mxi_1"></span>
-          </div>
-          <div class="results-item green-color" id="results-2">
-            <span id="id_2">Move the sliders to get started</span>
-            <span id="score_Nx_2"></span>
-            <span id="score_Mxi_2"></span>
-          </div>
-          <div class="results-item green-color" id="results-3">
-            <span id="id_3">Move the sliders to get started</span>
-            <span id="score_Nx_3"></span>
-            <span id="score_Mxi_3"></span>
-          </div>
-        </div>
       </section>
-    </div>
+      <div class="slider-group border-style">
+        <div class="slider-item">
+          <div>
+            Effective Length in x, Le_x: <span id="LexRangeValue">5</span>
+            [m]
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="10"
+            step="0.1"
+            value="5"
+            class="slider-input"
+            name="params"
+            id="LexRange"
+          />
+        </div>
+        <div class="slider-item">
+          <span>
+            Effective Length in y, Le_y: <span id="LeyRangeValue">5</span>
+            [m]
+          </span>
+          <span class="radio-item">
+            <label>
+              <input type="checkbox" class="checkbox-FLR" data-value="FLR" />
+              FLR
+            </label>
+          </span>
+          <input
+            type="range"
+            min="0"
+            max="10"
+            step="0.1"
+            value="5"
+            class="slider-input"
+            name="params"
+            id="LeyRange"
+          />
+        </div>
+      </div>
+
+      <div class="slider-group border-style">
+        <div class="slider-item">
+          <div>
+            Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="500"
+            step="1"
+            value="250"
+            class="slider-input"
+            name="params"
+            id="NRange"
+          />
+        </div>
+        <div class="slider-item">
+          <div>
+            Design Moment Mxi*:<span id="MxiRangeValue">50</span>
+            [kNm]
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+            class="slider-input"
+            name="params"
+            id="MxiRange"
+          />
+        </div>
+        <div class="slider-item">
+          <div>
+            Design Moment Myi*:<span id="MyiRangeValue">50</span>
+            [kNm]
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value="50"
+            class="slider-input"
+            name="params"
+            id="MyiRange"
+          />
+        </div>
+      </div>
+
+      <div class="results-header border-style">
+        <div class="results-title">
+          <h1>Top 3 Results</h1>
+        </div>
+        <div class="results-parameters grid grid--1x4">
+          <div class="results-parameters-items"></div>
+          <div class="results-parameters-items"><h3>ID</h3></div>
+          <div class="results-parameters-items">
+            <h3>Closest Failure Mode</h3>
+          </div>
+          <div class="results-parameters-items"><h3>Score [%]</h3></div>
+        </div>
+      </div>
+      
+      <div class="collapsible results-item border-style">
+        <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
+          <img
+            class="icon icon--white collapsible__chevron"
+            src="../images/chevron.svg"
+            alt=""
+          />
+          <span class="results-id">Move the sliders to get started</span>
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+      </div>
+      <div class="collapsible results-item border-style">
+        <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
+          <img
+            class="icon icon--white collapsible__chevron"
+            src="../images/chevron.svg"
+            alt=""
+          />
+          <span class="results-id">Move the sliders to get started</span>
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+      </div>
+      <div class="collapsible results-item border-style">
+        <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
+          <img
+            class="icon icon--white collapsible__chevron"
+            src="../images/chevron.svg"
+            alt=""
+          />
+          <span class="results-id">Move the sliders to get started</span>
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+          <span class="results-text"></span>
+          <span class="results-score"></span>
+        </div>
+      </div>
+      
     <script src="./column-design/main.js" type="module"></script>
     <script src="./column-design/colorChange.js" type="module"></script>
     <script src="../js/collapsible.js" type="module"></script>

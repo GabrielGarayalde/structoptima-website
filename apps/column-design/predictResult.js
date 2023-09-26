@@ -9,7 +9,6 @@ import sectionMomentCapacityMs from "./Analysis/sectionMomentCapacityMs.js";
 import { filterScoresArray } from "./filterScoresArray.js";
 
 export function predictResult(params, selectedTypes) {
-  console.log(params);
   let Le_x = params[0];
   let Le_y = params[1];
 
@@ -20,15 +19,15 @@ export function predictResult(params, selectedTypes) {
   const scores = [
     [
       "id",
-      "scoreMemberCompressionCapacityNc_x",
-      "scoreMemberCompressionCapacityNc_y",
-      "scoreMemberMomentCapacityMb_x",
-      "scoreSectionMomentCapacityMs_y",
-      "scoreReducedSectionMomentCapacityMr_x",
-      "scoreReducedSectionMomentCapacityMr_y",
-      "scoreinplaneMemberMomentCapacityMi_x",
-      "scoreinplaneMemberMomentCapacityMi_y",
-      "scoreMemberCapacityBiaxialBending",
+      "Member Compression Capacity Nc_x",
+      "Member Compression Capacity Nc_y",
+      "Member Moment Capacity Mb_x",
+      "Section Moment Capacity Ms_y",
+      "Reduced Section Moment Capacity Mr_x",
+      "Reduced Section Moment Capacity Mr_y",
+      "In-plane Member Moment Capacity Mi_x",
+      "In-plane Member Moment Capacity Mi_y",
+      "Member Biaxial Bending Capacity",
     ],
   ];
   const phi = 0.9; // this is the safety factor -

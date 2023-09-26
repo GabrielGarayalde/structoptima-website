@@ -1,5 +1,5 @@
-export default function colorChange(value, id) {
-  let result = document.getElementById(id);
+export default function colorChange(value, result) {
+  // let result = document.getElementById(id);
 
   // Remove existing color classes for each individual item
   result.classList.remove(
