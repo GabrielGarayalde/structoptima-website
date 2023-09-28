@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="#" type="image/x-icon" />
     <title>Document</title>
-    <style></style>
+    
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/normalize.css" />
-  </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
   <body>
     <!-- NavBar -->
     <header>
@@ -55,7 +56,7 @@
         </div>
         <div class="save-group border-style">
           <div>print button</div>
-          <div>save button</div>
+          <button id="saveAsPdfButton">Save as PDF</button>        
         </div>
         <div class="border-style">
           <div class="results-card-header"><h3>Steel Section</h3></div>
@@ -293,8 +294,10 @@
         </div>
       </div>
     </div>
+
     <script src="./column-design/main.js" type="module"></script>
     <script src="./column-design/colorChange.js" type="module"></script>
     <script src="../js/collapsible.js" type="module"></script>
+    <script src="./column-design/saveAsPdfButton.js" type="module"></script>
   </body>
 </html>
