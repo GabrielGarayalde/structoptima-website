@@ -3,7 +3,6 @@ import colorChange from "./colorChange.js";
 const resultsItems = document.querySelectorAll(".results-item");
 
 export default function updateResults(resultsSorted) {
-  console.log(resultsSorted);
   const slicedMatrix = resultsSorted.slice(1); // Extract headers (excluding "id")
   const trimmedMatrix = slicedMatrix.map((row) => row.slice(1));
 
@@ -31,8 +30,8 @@ export default function updateResults(resultsSorted) {
     const sortedIndices = numberObjects.map((item) => item.index);
 
     scores.forEach((score, scores_index) => {
-      const value = sortedNumbers[scores_index];
-      score.textContent = value.toFixed(3);
+      const value = sortedNumbers[scores_index] * 100;
+      score.textContent = value.toFixed(2);
     });
 
     texts.forEach((text, texts_index) => {

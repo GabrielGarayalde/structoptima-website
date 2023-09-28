@@ -50,153 +50,197 @@
       </div>
 
       <section class="grid grid--70-30">
-        <div class="canvas">
+        <div class="canvas border-style">
           <canvas id="column-design-canvas"></canvas>
         </div>
-        <div class="radio-group">
-          <div class="radio-item">
-            <label>
-              <input
-                type="checkbox"
-                class="checkbox-steel-sizes"
-                data-value="UB"
-                checked
-              />
-              UB
-            </label>
-          </div>
-          <div class="radio-item">
-            <label>
-              <input
-                type="checkbox"
-                class="checkbox-steel-sizes"
-                data-value="UC"
-              />
-              UC
-            </label>
-          </div>
-          <div class="radio-item">
-            <label>
-              <input
-                type="checkbox"
-                class="checkbox-steel-sizes"
-                data-value="SHS"
-              />
-              SHS
-            </label>
+        <div class="save-group border-style">
+          <div>print button</div>
+          <div>save button</div>
+        </div>
+        <div class="border-style">
+          <div class="results-card-header"><h3>Steel Section</h3></div>
+
+          <div class="radio-group">
+            <div class="radio-item">
+              <label>
+                <input
+                  type="checkbox"
+                  class="checkbox-steel-sizes"
+                  data-value="UB"
+                  checked
+                />
+                UB
+              </label>
+            </div>
+            <div class="radio-item">
+              <label>
+                <input
+                  type="checkbox"
+                  class="checkbox-steel-sizes"
+                  data-value="UC"
+                />
+                UC
+              </label>
+            </div>
+            <div class="radio-item">
+              <label>
+                <input
+                  type="checkbox"
+                  class="checkbox-steel-sizes"
+                  data-value="SHS"
+                />
+                SHS
+              </label>
+            </div>
           </div>
         </div>
       </section>
-      <div class="slider-group border-style">
-        <div class="slider-item">
-          <div>
-            Effective Length in x, Le_x: <span id="LexRangeValue">5</span>
-            [m]
+      <div class="border-style">
+        <div class="results-card-header"><h3>Column Lengths and Restraints</h3></div>
+
+        <div class="slider-group ">
+          <div class="slider-item">
+            <div>
+              Effective Length in x, L<sub>ex</sub>: <span id="LexRangeValue">5</span>
+              [m]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="5"
+              class="slider-input"
+              name="params"
+              id="LexRange"
+            />
           </div>
-          <input
-            type="range"
-            min="0"
-            max="10"
-            step="0.1"
-            value="5"
-            class="slider-input"
-            name="params"
-            id="LexRange"
-          />
-        </div>
-        <div class="slider-item">
-          <span>
-            Effective Length in y, Le_y: <span id="LeyRangeValue">5</span>
-            [m]
-          </span>
-          <span class="radio-item">
-            <label>
-              <input type="checkbox" class="checkbox-FLR" data-value="FLR" />
-              FLR
-            </label>
-          </span>
-          <input
-            type="range"
-            min="0"
-            max="10"
-            step="0.1"
-            value="5"
-            class="slider-input"
-            name="params"
-            id="LeyRange"
-          />
+          <div class="slider-item">
+            <span>
+              Effective Length in y, L<sub>ey</sub>: <span id="LeyRangeValue">5</span>
+              [m]
+            </span>
+            <span class="radio-item">
+              <label>
+                <input type="checkbox" class="checkbox-FLR" data-value="FLR" />
+                FLR
+              </label>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="5"
+              class="slider-input"
+              name="params"
+              id="LeyRange"
+            />
+          </div>
         </div>
       </div>
 
-      <div class="slider-group border-style">
-        <div class="slider-item">
-          <div>
-            Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
+      <div class="border-style">
+        <div class="results-card-header"><h3>Design Loads</h3></div>
+
+        <div class="slider-group ">
+          <div class="slider-item">
+            <div>
+              Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="500"
+              step="1"
+              value="250"
+              class="slider-input"
+              name="params"
+              id="NRange"
+            />
           </div>
-          <input
-            type="range"
-            min="0"
-            max="500"
-            step="1"
-            value="250"
-            class="slider-input"
-            name="params"
-            id="NRange"
-          />
-        </div>
-        <div class="slider-item">
-          <div>
-            Design Moment Mxi*:<span id="MxiRangeValue">50</span>
-            [kNm]
+          <div class="slider-item">
+            <div>
+              Design Moment M<sub>xi</sub>*:<span id="MxiRangeValue">50</span>
+              [kNm]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="50"
+              class="slider-input"
+              name="params"
+              id="MxiRange"
+            />
           </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value="50"
-            class="slider-input"
-            name="params"
-            id="MxiRange"
-          />
-        </div>
-        <div class="slider-item">
-          <div>
-            Design Moment Myi*:<span id="MyiRangeValue">50</span>
-            [kNm]
+          <div class="slider-item">
+            <div>
+              Design Moment M<sub>yi</sub>*:<span id="MyiRangeValue">50</span>
+              [kNm]
+            </div>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="50"
+              class="slider-input"
+              name="params"
+              id="MyiRange"
+            />
           </div>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value="50"
-            class="slider-input"
-            name="params"
-            id="MyiRange"
-          />
         </div>
       </div>
 
-      <div class="results-header border-style">
-        <div class="results-title">
-          <h1>Top 3 Results</h1>
-        </div>
-        <div class="results-parameters grid grid--1x4">
+      <div class="border-style">
+        <div class="results-card-header"><h3>Top 3 Results</h3></div>
+        <div class="results-parameters grid grid--1x4 grid--centred">
           <div class="results-parameters-items"></div>
-          <div class="results-parameters-items"><h3>ID</h3></div>
+          <div class="results-parameters-items"><h3>Section ID</h3></div>
           <div class="results-parameters-items">
             <h3>Closest Failure Mode</h3>
           </div>
           <div class="results-parameters-items"><h3>Score [%]</h3></div>
         </div>
-      </div>
+        <div class="collapsible results-item border-style">
+          <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
+            <img
+              class="icon--small collapsible__chevron"
+              src="../images/icons8-triangle-24.png"
+              alt=""
+            />
+            <span class="results-id">Move the sliders to get started</span>
+            <span class="results-text"></span>
+            <span class="results-score"></span>
+          </div>
+          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+       
+            <span class="results-text"></span>
+            <span class="results-score"></span>
+          </div>
+          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+            <span class="results-text"></span>
+            <span class="results-score"></span>
+          </div>
+          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+            <span class="results-text"></span>
+            <span class="results-score"></span>
+          </div>
+          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
+            <span class="results-text"></span>
+            <span class="results-score"></span>
+          </div>
+        </div>
+      
+      
       
       <div class="collapsible results-item border-style">
         <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
           <img
-            class="icon icon--white collapsible__chevron"
-            src="../images/chevron.svg"
+            class="icon--small collapsible__chevron"
+            src="../images/icons8-triangle-24.png"
             alt=""
           />
           <span class="results-id">Move the sliders to get started</span>
@@ -223,8 +267,8 @@
       <div class="collapsible results-item border-style">
         <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
           <img
-            class="icon icon--white collapsible__chevron"
-            src="../images/chevron.svg"
+            class="icon--small collapsible__chevron"
+            src="../images/icons8-triangle-24.png"
             alt=""
           />
           <span class="results-id">Move the sliders to get started</span>
@@ -248,35 +292,7 @@
           <span class="results-score"></span>
         </div>
       </div>
-      <div class="collapsible results-item border-style">
-        <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
-          <img
-            class="icon icon--white collapsible__chevron"
-            src="../images/chevron.svg"
-            alt=""
-          />
-          <span class="results-id">Move the sliders to get started</span>
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-      </div>
-      
+    </div>
     <script src="./column-design/main.js" type="module"></script>
     <script src="./column-design/colorChange.js" type="module"></script>
     <script src="../js/collapsible.js" type="module"></script>

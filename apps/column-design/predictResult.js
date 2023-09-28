@@ -19,14 +19,14 @@ export function predictResult(params, selectedTypes) {
   const scores = [
     [
       "id",
-      "Member Compression Capacity Nc_x",
-      "Member Compression Capacity Nc_y",
-      "Member Moment Capacity Mb_x",
-      "Section Moment Capacity Ms_y",
-      "Reduced Section Moment Capacity Mr_x",
-      "Reduced Section Moment Capacity Mr_y",
-      "In-plane Member Moment Capacity Mi_x",
-      "In-plane Member Moment Capacity Mi_y",
+      "Member Compression Capacity Ncx",
+      "Member Compression Capacity Ncy",
+      "Member Moment Capacity Mbx",
+      "Section Moment Capacity Msy",
+      "Reduced Section Moment Capacity Mrx",
+      "Reduced Section Moment Capacity Mry",
+      "In-plane Member Moment Capacity Mix",
+      "In-plane Member Moment Capacity Miy",
       "Member Biaxial Bending Capacity",
     ],
   ];

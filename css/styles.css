@@ -45,7 +45,7 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 p {
@@ -172,6 +172,10 @@ a {
 
 .icon--white {
   fill: #fff;
+}
+
+.icon--small {
+  padding: 0.5rem;
 }
 
 /* Buttons */
@@ -656,6 +660,9 @@ a {
 }
 
 /* DYNUTOP */
+.canvas {
+  grid-row: 1 / span 2;
+}
 
 #canvas {
   width: 100%;
@@ -683,9 +690,6 @@ a {
 #column-design-canvas {
   width: 100%;
   height: auto;
-  border: 1.5px solid navy;
-  border-radius: 10px;
-  box-shadow: 0 0 20px 10px lightgrey;
 }
 
 /* GRID */
@@ -695,7 +699,7 @@ a {
 }
 
 .grid--70-30 {
-  grid-template-columns: 70fr 30fr;
+  grid-template: auto auto / 70fr 30fr;
 }
 
 .grid--1x4 {
@@ -703,21 +707,38 @@ a {
   justify-items: center;
 }
 
-.header {
+/* .header {
   grid-column: 1 / -1;
-}
+} */
 
 .border-style {
   border: 1.5px solid navy;
   border-radius: 10px;
   box-shadow: 0 0 20px 10px lightgrey;
   margin: 1rem 0;
+  overflow: hidden;
+}
+
+.grid .border-style {
+  margin: 0;
+}
+
+.results-card-header {
+  background-color: navy;
+}
+.results-card-header h3 {
+  margin-top: 0;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 0;
+  margin: 0;
 }
 
 .slider-group {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding: 1rem;
 }
 
 .slider-input {
@@ -725,13 +746,16 @@ a {
 }
 
 .radio-group {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   padding: 1rem;
-  border: 1.5px solid navy;
-  border-radius: 10px;
-  box-shadow: 0 0 20px 10px lightgrey;
+}
+
+.save-group {
+  padding: 1rem;
 }
 
 .grid--full-span {
@@ -746,11 +770,10 @@ a {
   } */
 }
 
-.results-header {
+/* .results-header {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-}
+} */
 
 .results-header h1,
 .results-header h3 {
@@ -762,14 +785,24 @@ a {
   justify-content: space-around;
 }
 
-.results-sub-item-content .results-text {
+.results-text {
   grid-column: 3 / span 1;
+  text-align: center;
+}
+
+.results-sub-item {
+  border-bottom: 1px solid navy;
 }
 
 .results-item {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  overflow: hidden;
+}
+
+.results-parameters-items h3 {
+  margin: 0.5rem 0;
 }
 
 .red-color {
