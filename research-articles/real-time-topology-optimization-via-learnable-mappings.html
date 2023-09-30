@@ -33,7 +33,7 @@
           ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
         /></a>
 
-        <svg class="icon icon--white nav__toggler">
+        <svg class="icon icon--small icon--white nav__toggler">
           <use xlink:href="../images/sprite.svg#menu"></use>
         </svg>
         <ul class="list nav__list collapsible__content">
@@ -60,20 +60,20 @@
         </div>
       </section>
       <!-- Research article body -->
+      <div class="header">
+        <p>
+          Use the sliders to change the location of the supports and the forces.
+          Click on the radio buttons to switch between the optimal density
+          values, the Von Mises stresses, or the dominant principal stress
+          elements. PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
+        </p>
+        <p>Right click and orbit the 3D model using the mouse.</p>
+      </div>
       <section class="grid grid--70-30">
-        <div class="header">
-          <p>
-            Use the sliders to change the location of the supports and the
-            forces. Click on the radio buttons to switch between the optimal
-            density values, the Von Mises stresses, or the dominant principal
-            stress elements. PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
-          </p>
-          <p>Right click and orbit the 3D model using the mouse.</p>
-        </div>
         <div class="canvas">
           <canvas id="canvas"></canvas>
         </div>
-        <div class="slider-group">
+        <div class="slider-group border-style">
           <div class="slider-item">
             <input
               type="range"
@@ -127,7 +127,7 @@
             <div>Force B:<span id="forceBValue">7.5</span> m</div>
           </div>
         </div>
-        <div class="radio-group">
+        <div class="radio-group border-style">
           <div class="radio-item">
             <input
               type="radio"

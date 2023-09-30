@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="../css/normalize.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
-  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+    <body>
     <!-- NavBar -->
     <header>
       <nav class="nav collapsible">
         <a href="../index.html"
           ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
         /></a>
-        <svg class="icon icon--white nav__toggler">
+        <svg class="icon icon--small icon--white nav__toggler">
           <use xlink:href="../images/sprite.svg#menu"></use>
         </svg>
         <ul class="list nav__list collapsible__content">
@@ -32,6 +34,7 @@
         </ul>
       </nav>
     </header>
+    
     <!-- Headings and info -->
     <div class="block container">
       <section class="block__header">
@@ -49,14 +52,55 @@
           bending. It assumes that the member is fully laterally restrained.
         </p>
       </div>
-
+      
       <section class="grid grid--70-30">
         <div class="canvas border-style">
           <canvas id="column-design-canvas"></canvas>
         </div>
-        <div class="save-group border-style">
-          <div>print button</div>
-          <button id="saveAsPdfButton">Save as PDF</button>        
+        <div class="flex">
+          <button class="save-group border-style" id="saveAsPdfButton">
+            <img
+              class="icon--extra-small icon--white"
+              src="../images/save-icon.svg"
+              alt=""
+            />
+            <p>Results PDF</p>
+          </button>
+          <button class="popover--button" popovertarget="info">
+            Info❔
+          </button>
+            <div class="border-style popover--centred" id="info" popover>
+              <button  popovertarget="info" popovertargetaction="hide">
+                <span aria-hidden="true">❌</span>
+              </button>
+              <h1>Failure Modes</h1>
+              <p>9 Checks are carried out for the beam-column member under compression and applied Moments.
+                The score is a measure of the capacity of utilization of the load with respect to the
+                capacity.
+              </p>
+              <div class="grid grid--1x2">
+                <h2>Failure Mode</h2>
+                <h2>Score Calculation</h2>
+                <p>1(a). Member Compression Capacity Ncx </p>
+                <p>$$ = \frac{N^*}{\phi N_cx}$$</p>
+                <p>1(b). Member Compression Capacity Ncy </p>
+                <p>$$ = \frac{N^*}{\phi N_cy}$$</p>
+                <p>2. Member Moment Capacity Mbx </p>
+                <p>$$ = \frac{M_x^*}{\phi M_{bx}}$$</p>
+                <p>3. Section Moment Capacity Msy </p>
+                <p>$$ = \frac{M_y^*}{\phi M_{sy}}$$</p>
+                <p>4(a). Reduced Section Moment Capacity Mrx </p>
+                <p>$$ = \frac{M_x^*}{\phi M_{rx}}$$</p>
+                <p>4(b). Reduced Section Moment Capacity Mry </p>
+                <p>$$ = \frac{M_y^*}{\phi M_{ry}}$$</p>
+                <p>5(a). In-plane Member Moment Capacity Mix </p>
+                <p>$$ = \frac{M_x^*}{\phi M_{ix}}$$</p>
+                <p>5(b). In-plane Member Moment Capacity Miy </p>
+                <p>$$ = \frac{M_y^*}{\phi M_{iy}}$$</p>
+                <p>6. Member Biaxial Bending Capacity </p>
+                <p>$$ = [\frac{M_x^*}{\phi M_{cx}}]^{1.4} + [\frac{M_y^*}{\phi M_{iy}}]^{1.4} $$</p>
+              </div>
+            </div>
         </div>
         <div class="border-style">
           <div class="results-card-header"><h3>Steel Section</h3></div>
@@ -199,10 +243,13 @@
         <div class="results-card-header"><h3>Top 3 Results</h3></div>
         <div class="results-parameters grid grid--1x4 grid--centred">
           <div class="results-parameters-items"></div>
-          <div class="results-parameters-items"><h3>Section ID</h3></div>
+          <div class="results-parameters-items">
+            <h3>Section ID</h3>
+          </div>
           <div class="results-parameters-items">
             <h3>Closest Failure Mode</h3>
           </div>
+
           <div class="results-parameters-items"><h3>Score [%]</h3></div>
         </div>
         <div class="collapsible results-item border-style">
