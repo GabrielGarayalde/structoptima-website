@@ -1,4 +1,4 @@
-import drawdimArrow from "./dimArrow.js";
+import updateCanvas from "./updateCanvas.js";
 import selectedOptions from "./selectedOptions.js";
 import updateResults from "./updateResults.js";
 import { predictResult } from "./predictResult.js";
@@ -55,16 +55,8 @@ paramSliders.forEach((param, index) =>
     if (selectedTypes.length > 0) {
       let resultsSorted = predictResult(params, selectedTypes);
       updateResults(resultsSorted);
+      updateCanvas(canvas, resultsSorted, params);
     }
-
-    drawdimArrow(
-      canvas,
-      canvas.width / 2, // startX
-      50, // startY
-      canvas.width / 2, // endX
-      canvas.height - 20, // endY
-      params[0] // dimLength
-    );
   })
 );
 
