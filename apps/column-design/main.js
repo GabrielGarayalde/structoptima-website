@@ -74,4 +74,32 @@ checkboxes.forEach((checkbox) => {
   });
 });
 
+// Get references to the checkbox and slider elements
+const checkboxFLR = document.getElementById("checkbox-FLR");
+const LeyRange = document.getElementById("LeyRange");
+
+// Add an event listener to the checkbox
+checkboxFLR.addEventListener("change", function () {
+  // Check if the checkbox is checked
+  if (checkboxFLR.checked) {
+    // If checked, disable the slider
+    LeyRange.disabled = true;
+    let selectedTypes = selectedOptions();
+    if (selectedTypes.length > 0) {
+      let resultsSorted = predictResult(params, selectedTypes);
+      updateResults(resultsSorted);
+      updateCanvas(canvas, resultsSorted, params);
+    }
+  } else {
+    // If unchecked, enable the slider
+    LeyRange.disabled = false;
+    let selectedTypes = selectedOptions();
+    if (selectedTypes.length > 0) {
+      let resultsSorted = predictResult(params, selectedTypes);
+      updateResults(resultsSorted);
+      updateCanvas(canvas, resultsSorted, params);
+    }
+  }
+});
+
 let params = [5000, 5000, 250000, 50000000, 50000000];

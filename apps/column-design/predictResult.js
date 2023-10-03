@@ -16,20 +16,41 @@ export function predictResult(params, selectedTypes) {
   let M_x_load = params[3];
   let M_y_load = params[4];
 
-  const scores = [
-    [
-      "id",
-      "Member Compression Capacity Ncx",
-      "Member Compression Capacity Ncy",
-      "Member Moment Capacity Mbx",
-      "Section Moment Capacity Msy",
-      "Reduced Section Moment Capacity Mrx",
-      "Reduced Section Moment Capacity Mry",
-      "In-plane Member Moment Capacity Mix",
-      "In-plane Member Moment Capacity Miy",
-      "Member Biaxial Bending Capacity",
-    ],
-  ];
+  const checkboxFLR = document.getElementById("checkbox-FLR");
+
+  let scores = [];
+
+  if (checkboxFLR.checked) {
+    scores = [
+      [
+        "id",
+        "Member Compression Capacity Ncx",
+        "Member Moment Capacity Mbx",
+        "Section Moment Capacity Msy",
+        "Reduced Section Moment Capacity Mrx",
+        "Reduced Section Moment Capacity Mry",
+        "Section Biaxial Bending Capacity",
+        "In-plane Member Moment Capacity Mix",
+        "Member Biaxial Bending Capacity FLR",
+      ],
+    ];
+  } else {
+    scores = [
+      [
+        "id",
+        "Member Compression Capacity Ncx",
+        "Member Compression Capacity Ncy",
+        "Member Moment Capacity Mbx",
+        "Section Moment Capacity Msy",
+        "Reduced Section Moment Capacity Mrx",
+        "Reduced Section Moment Capacity Mry",
+        "Section Biaxial Bending Capacity",
+        "In-plane Member Moment Capacity Mix",
+        "In-plane Member Moment Capacity Miy",
+        "Member Biaxial Bending Capacity",
+      ],
+    ];
+  }
   const phi = 0.9; // this is the safety factor -
 
   selectedTypes.forEach((selectedType) => {
@@ -104,7 +125,8 @@ export function predictResult(params, selectedTypes) {
       const scoreReducedSectionMomentCapacityMr_x = M_x_load / (phi * Mr_x);
       const scoreReducedSectionMomentCapacityMr_y = M_y_load / (phi * Mr_y);
 
-      // ADD THE SECTION CAPACITY UNDER BIAXIAL BENDING CHECK HERE
+      const scoreSectionCapacityBiaxialBending =
+        N_load / (phi * Ns) + M_x_load / (phi * Ms_x) + M_y_load / (phi * Ms_y);
 
       const scoreinplaneMemberMomentCapacityMi_x = M_x_load / (phi * Mi_x);
       const scoreinplaneMemberMomentCapacityMi_y = M_y_load / (phi * Mi_y);
@@ -113,19 +135,38 @@ export function predictResult(params, selectedTypes) {
         Math.pow(M_x_load / (phi * Mc_x), 1.4) +
         Math.pow(M_y_load / (phi * Mi_y), 1.4);
 
-      scores.push([
-        id,
-        scoreMemberCompressionCapacityNc_x,
-        scoreMemberCompressionCapacityNc_y,
-        scoreMemberMomentCapacityMb_x,
-        scoreSectionMomentCapacityMs_y,
-        scoreReducedSectionMomentCapacityMr_x,
-        scoreReducedSectionMomentCapacityMr_y,
-        scoreinplaneMemberMomentCapacityMi_x,
-        scoreinplaneMemberMomentCapacityMi_y,
-        scoreMemberCapacityBiaxialBending,
-      ]);
-      // console.log([id, score_N_load, score_M_x_load]);
+      const scoreMemberCapacityBiaxialBendingFLR =
+        Math.pow(M_x_load / (phi * Mi_x), 1.4) +
+        Math.pow(M_y_load / (phi * Mi_y), 1.4);
+
+      // IF FLR
+      if (checkboxFLR.checked) {
+        scores.push([
+          id,
+          scoreMemberCompressionCapacityNc_x,
+          scoreMemberMomentCapacityMb_x,
+          scoreSectionMomentCapacityMs_y,
+          scoreReducedSectionMomentCapacityMr_x,
+          scoreReducedSectionMomentCapacityMr_y,
+          scoreSectionCapacityBiaxialBending,
+          scoreinplaneMemberMomentCapacityMi_x,
+          scoreMemberCapacityBiaxialBendingFLR,
+        ]);
+      } else {
+        scores.push([
+          id,
+          scoreMemberCompressionCapacityNc_x,
+          scoreMemberCompressionCapacityNc_y,
+          scoreMemberMomentCapacityMb_x,
+          scoreSectionMomentCapacityMs_y,
+          scoreReducedSectionMomentCapacityMr_x,
+          scoreReducedSectionMomentCapacityMr_y,
+          scoreSectionCapacityBiaxialBending,
+          scoreinplaneMemberMomentCapacityMi_x,
+          scoreinplaneMemberMomentCapacityMi_y,
+          scoreMemberCapacityBiaxialBending,
+        ]);
+      }
     }
   });
 

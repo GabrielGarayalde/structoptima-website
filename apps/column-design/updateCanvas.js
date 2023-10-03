@@ -8,6 +8,7 @@ export default function updateCanvas(canvas, resultsSorted, params) {
   // -------------------------------------------
   displaySectionSelect(canvas, resultsSorted[1][0], params[3], params[4]);
   // Define translation values
+  const checkboxFLR = document.getElementById("checkbox-FLR");
 
   // -------------------------------------
   // DRAWING THE FIRST EFFECTIVE LENGTH X
@@ -136,11 +137,20 @@ export default function updateCanvas(canvas, resultsSorted, params) {
   context.fillStyle = "black";
   context.font = "36px Arial";
   context.textAlign = "center";
-  context.fillText(
-    `Ley* = ${Le_y / 1000}m`,
-    start_x_Le_y + width_Le_y / 2,
-    start_y_Le_y + height_Le_y + canvas.height * 0.07
-  );
+
+  if (checkboxFLR.checked) {
+    context.fillText(
+      `Ley* = FLR`,
+      start_x_Le_y + width_Le_y / 2,
+      start_y_Le_y + height_Le_y + canvas.height * 0.07
+    );
+  } else {
+    context.fillText(
+      `Ley* = ${Le_y / 1000}m`,
+      start_x_Le_y + width_Le_y / 2,
+      start_y_Le_y + height_Le_y + canvas.height * 0.07
+    );
+  }
 
   // -------------------------------------
   // AXIAL COMPRESSION ARROW ABOVE THE LEX
