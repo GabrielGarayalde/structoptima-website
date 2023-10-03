@@ -66,43 +66,11 @@
             />
             <p>Results PDF</p>
           </button>
-          <button class="popover--button" popovertarget="info">
+          <button class="popover--button" onclick="showModal()">
             Info❔
           </button>
-            <div class="border-style popover--centred" id="info" popover>
-              <button  popovertarget="info" popovertargetaction="hide">
-                <span aria-hidden="true">❌</span>
-              </button>
-              <h1>Failure Modes</h1>
-              <p>9 Checks are carried out for the beam-column member under compression and applied Moments.
-                The score is a measure of the capacity of utilization of the load with respect to the
-                capacity.
-              </p>
-              <div class="grid grid--1x2">
-                <h2>Failure Mode</h2>
-                <h2>Score Calculation</h2>
-                <p>1(a). Member Compression Capacity Ncx </p>
-                <p>$$ = \frac{N^*}{\phi N_cx}$$</p>
-                <p>1(b). Member Compression Capacity Ncy </p>
-                <p>$$ = \frac{N^*}{\phi N_cy}$$</p>
-                <p>2. Member Moment Capacity Mbx </p>
-                <p>$$ = \frac{M_x^*}{\phi M_{bx}}$$</p>
-                <p>3. Section Moment Capacity Msy </p>
-                <p>$$ = \frac{M_y^*}{\phi M_{sy}}$$</p>
-                <p>4(a). Reduced Section Moment Capacity Mrx </p>
-                <p>$$ = \frac{M_x^*}{\phi M_{rx}}$$</p>
-                <p>4(b). Reduced Section Moment Capacity Mry </p>
-                <p>$$ = \frac{M_y^*}{\phi M_{ry}}$$</p>
-                <p>5(a). In-plane Member Moment Capacity Mix </p>
-                <p>$$ = \frac{M_x^*}{\phi M_{ix}}$$</p>
-                <p>5(b). In-plane Member Moment Capacity Miy </p>
-                <p>$$ = \frac{M_y^*}{\phi M_{iy}}$$</p>
-                <p>6. Member Biaxial Bending Capacity </p>
-                <p>$$ = [\frac{M_x^*}{\phi M_{cx}}]^{1.4} + [\frac{M_y^*}{\phi M_{iy}}]^{1.4} $$</p>
-              </div>
-            </div>
         </div>
-        <div class="border-style">
+        <div class="border-style" id="steel-section">
           <div class="results-card-header"><h3>Steel Section</h3></div>
 
           <div class="radio-group">
@@ -342,6 +310,51 @@
       </div>
     </div>
 
+    <!-- Modal -->
+    <div id="info-backdrop">
+      <div class="border-style popover--centred" id="info">
+        <button onclick="hideModal()">
+          <span aria-hidden="true">❌</span>
+        </button>
+        <h1>Failure Modes</h1>
+        <p>9 Checks are carried out for the beam-column member under compression and applied Moments.
+          The score is a measure of the capacity of utilization of the load with respect to the
+          capacity.
+        </p>
+        <div class="grid grid--1x2">
+          <h2>Failure Mode</h2>
+          <h2>Score Calculation</h2>
+          <p>1(a). Member Compression Capacity Ncx </p>
+          <p>$$ = \frac{N^*}{\phi N_cx}$$</p>
+          <p>1(b). Member Compression Capacity Ncy </p>
+          <p>$$ = \frac{N^*}{\phi N_cy}$$</p>
+          <p>2. Member Moment Capacity Mbx </p>
+          <p>$$ = \frac{M_x^*}{\phi M_{bx}}$$</p>
+          <p>3. Section Moment Capacity Msy </p>
+          <p>$$ = \frac{M_y^*}{\phi M_{sy}}$$</p>
+          <p>4(a). Reduced Section Moment Capacity Mrx </p>
+          <p>$$ = \frac{M_x^*}{\phi M_{rx}}$$</p>
+          <p>4(b). Reduced Section Moment Capacity Mry </p>
+          <p>$$ = \frac{M_y^*}{\phi M_{ry}}$$</p>
+          <p>5(a). In-plane Member Moment Capacity Mix </p>
+          <p>$$ = \frac{M_x^*}{\phi M_{ix}}$$</p>
+          <p>5(b). In-plane Member Moment Capacity Miy </p>
+          <p>$$ = \frac{M_y^*}{\phi M_{iy}}$$</p>
+          <p>6. Member Biaxial Bending Capacity </p>
+          <p>$$ = [\frac{M_x^*}{\phi M_{cx}}]^{1.4} + [\frac{M_y^*}{\phi M_{iy}}]^{1.4} $$</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let failureModesModal = document.getElementById("info-backdrop");
+      function showModal() {
+        failureModesModal.style.display = "block"
+      }
+      function hideModal() {
+        failureModesModal.style.display = "none"
+      }
+    </script>
     <script src="./column-design/main.js" type="module"></script>
     <script src="./column-design/colorChange.js" type="module"></script>
     <script src="../js/collapsible.js" type="module"></script>

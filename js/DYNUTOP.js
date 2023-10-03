@@ -30,20 +30,49 @@ const MODEL_URL_TC_FCM =
 const MODEL_URL_TC_FCM2 =
   "../research-articles/DYNUTOP/3DBridge_TC_FCM2/model.json";
 
+let loadingBarInner = document.querySelector("#loading-bar .inner")
+let loadingBarContainer = document.querySelector("#loading-bar-container")
+function sizeLoadingBar(val) {loadingBarInner.style.width = val*100 + "%"}
+
+function afterLoad() {
+
+  // loadingBarContainer.style.width = "100%"
+  // loadingBarContainer.style.height = "100%"
+  // loadingBarContainer.style.left = "0"
+  // loadingBarContainer.style.top = "0"
+  // loadingBarContainer.style.transform = "unset"
+
+  loadingBarContainer.innerHTML = `
+    <p id="loading-bar-message">Right click and orbit the 3D model using the mouse.</p>
+  `
+  canvas.addEventListener('mousedown', ()=>{
+    loadingBarContainer.style.display = "none"
+  })
+}
+
 // Load models
 console.time("loadModels");
 const model_topopt_FCM = await tf.loadGraphModel(MODEL_URL_topopt_FCM);
+sizeLoadingBar(1/6)
 const model_topopt_FCM2 = await tf.loadGraphModel(MODEL_URL_topopt_FCM2);
+sizeLoadingBar(2/6)
 const model_VM_FCM = await tf.loadGraphModel(MODEL_URL_VM_FCM);
+sizeLoadingBar(3/6)
 const model_VM_FCM2 = await tf.loadGraphModel(MODEL_URL_VM_FCM2);
+sizeLoadingBar(4/6)
 const model_TC_FCM = await tf.loadGraphModel(MODEL_URL_TC_FCM);
+sizeLoadingBar(5/6)
 const model_TC_FCM2 = await tf.loadGraphModel(MODEL_URL_TC_FCM2);
+sizeLoadingBar(1)
+afterLoad()
 console.timeEnd("loadModels");
 
 let supportAOutput = document.getElementById("supportAValue");
 let supportBOutput = document.getElementById("supportBValue");
 let forceAOutput = document.getElementById("forceAValue");
 let forceBOutput = document.getElementById("forceBValue");
+
+
 
 let paramSliders = document.querySelectorAll("input[name=params]");
 

@@ -17,6 +17,7 @@ let NRangeOutput = document.getElementById("NRangeValue");
 let MxiRangeOutput = document.getElementById("MxiRangeValue");
 let MyiRangeOutput = document.getElementById("MyiRangeValue");
 
+
 let paramSliders = document.querySelectorAll("input[name=params]");
 
 paramSliders.forEach((param, index) =>
@@ -103,3 +104,4 @@ checkboxFLR.addEventListener("change", function () {
 });
 
 let params = [5000, 5000, 250000, 50000000, 50000000];
+

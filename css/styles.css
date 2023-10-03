@@ -710,6 +710,10 @@ a {
 }
 
 .grid--70-30 {
+  /* 
+  grid-template-rows: 7fr 3fr;
+  grid-template-columns: auto auto;
+  */
   grid-template: auto auto / 70fr 30fr;
 }
 
@@ -754,10 +758,10 @@ a {
 
 .radio-group {
   width: 100%;
-  height: auto;
+  flex-grow: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   padding: 1rem;
 }
 
@@ -830,15 +834,36 @@ a {
 
 /* Popover */
 
-#info::backdrop {
-  background: rgba(190, 190, 190, 0.5);
+#info {
+  /* background: rgba(190, 190, 190, 0.5); */
+  background-color: white;
+}
+
+#info-backdrop {
+  display: none;
+  position: fixed;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
 }
 
 .popover--centred {
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 100px;
+  bottom: 100px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  width: 650px;
+  max-width: 95%;
+  transform: translateX(-50%);
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.modal {
+  background-color: white;
 }
 
 .close-btn {
@@ -866,4 +891,39 @@ a {
   color: white;
   margin-left: 1rem;
   max-height: 50px;
+}
+
+#canvas-research {
+  position: relative;
+}
+
+#loading-bar-container {
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+}
+
+#loading-bar {
+  height: 50px;
+  border: 1px solid black;
+}
+
+#loading-bar .inner {
+  height: 100%;
+  width: 0%;
+  background-color: gray;
+}
+
+#loading-bar-message {
+  font-size: 3rem;
+  background-color: white;
+  color: navy;
+  padding: 1rem;
+}
+
+#steel-section {
+  display: flex;
+  flex-direction: column;
 }

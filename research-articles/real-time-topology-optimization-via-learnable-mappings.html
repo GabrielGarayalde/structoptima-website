@@ -48,6 +48,9 @@
         </ul>
       </nav>
     </header>
+
+
+
     <!-- Headings and info -->
     <div class="block container">
       <section class="block__header">
@@ -67,11 +70,17 @@
           values, the Von Mises stresses, or the dominant principal stress
           elements. PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
         </p>
-        <p>Right click and orbit the 3D model using the mouse.</p>
+        
       </div>
       <section class="grid grid--70-30">
-        <div class="canvas">
+        <div class="canvas" id="canvas-research">
           <canvas id="canvas"></canvas>
+          <div id="loading-bar-container">
+            <p>Loading...</p>
+            <div id="loading-bar">
+              <div class="inner"></div>
+            </div>
+          </div>
         </div>
         <div class="slider-group border-style">
           <div class="slider-item">
