@@ -43,7 +43,7 @@ function afterLoad() {
   // loadingBarContainer.style.transform = "unset"
 
   loadingBarContainer.innerHTML = `
-    <p id="loading-bar-message">Right click and orbit the 3D model using the mouse.</p>
+    <p id="loading-bar-message">Left click and orbit the 3D model using the mouse.</p>
   `
   canvas.addEventListener('mousedown', ()=>{
     loadingBarContainer.style.display = "none"

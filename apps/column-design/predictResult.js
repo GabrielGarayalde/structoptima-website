@@ -66,6 +66,7 @@ export function predictResult(params, selectedTypes) {
       const Ze_x = typeData[key].Zex;
       const Ze_y = typeData[key].Zey;
       const I_x = typeData[key].Ix;
+      const I_y = typeData[key].Iy;
       const Iw = typeData[key].Iw;
       const E = 2e5; //200,000 [MPa]
       const G = 8e4; // 80,000 [MPa]
@@ -79,7 +80,7 @@ export function predictResult(params, selectedTypes) {
       const Ms_x = sectionMomentCapacityMs(Ze_x, fy); //Nominal section moment capacity
       const Ms_y = sectionMomentCapacityMs(Ze_y, fy); //Nominal section moment capacity
 
-      const Mb_x = memberMomentCapacityMb(Ms_x, E, I_x, Le_x, G, J, Iw);
+      const Mb_x = memberMomentCapacityMb(Ms_x, E, I_y, Le_x, G, J, Iw);
 
       const Mr_x = reducedSectionMomentCapacityMr(
         selectedType,
@@ -87,6 +88,7 @@ export function predictResult(params, selectedTypes) {
         Ms_x,
         Ns
       );
+
       const Mr_y = reducedSectionMomentCapacityMr(
         selectedType,
         N_load,
@@ -117,27 +119,50 @@ export function predictResult(params, selectedTypes) {
       // SCORES
       // -----------------
       const scoreMemberCompressionCapacityNc_x = N_load / (phi * Nc_x);
+      
       const scoreMemberCompressionCapacityNc_y = N_load / (phi * Nc_y);
+      
 
-      const scoreMemberMomentCapacityMb_x = M_x_load / (phi * Mb_x);
+      let scoreMemberMomentCapacityMb_x;
+      console.log(selectedType);
+      if (selectedType == "SHS") {
+        scoreMemberMomentCapacityMb_x = 0;
+      } else {
+        scoreMemberMomentCapacityMb_x = M_x_load / (phi * Mb_x);
+      }
+
       const scoreSectionMomentCapacityMs_y = M_y_load / (phi * Ms_y);
-
+      
       const scoreReducedSectionMomentCapacityMr_x = M_x_load / (phi * Mr_x);
       const scoreReducedSectionMomentCapacityMr_y = M_y_load / (phi * Mr_y);
+      
 
       const scoreSectionCapacityBiaxialBending =
         N_load / (phi * Ns) + M_x_load / (phi * Ms_x) + M_y_load / (phi * Ms_y);
+      
 
       const scoreinplaneMemberMomentCapacityMi_x = M_x_load / (phi * Mi_x);
       const scoreinplaneMemberMomentCapacityMi_y = M_y_load / (phi * Mi_y);
+      
 
-      const scoreMemberCapacityBiaxialBending =
-        Math.pow(M_x_load / (phi * Mc_x), 1.4) +
-        Math.pow(M_y_load / (phi * Mi_y), 1.4);
+      let scoreMemberCapacityBiaxialBending
+      let scoreMemberCapacityBiaxialBendingFLR
+      if (selectedType == "SHS") {
+        scoreMemberCapacityBiaxialBending = 0;
+        scoreMemberCapacityBiaxialBendingFLR = 0;
+      } else {
+        scoreMemberCapacityBiaxialBending =
+          Math.pow(M_x_load / (phi * Mc_x), 1.4) +
+          Math.pow(M_y_load / (phi * Mi_y), 1.4);
+        scoreMemberCapacityBiaxialBendingFLR =
+          Math.pow(M_x_load / (phi * Mi_x), 1.4) +
+          Math.pow(M_y_load / (phi * Mi_y), 1.4);
+      }
 
-      const scoreMemberCapacityBiaxialBendingFLR =
-        Math.pow(M_x_load / (phi * Mi_x), 1.4) +
-        Math.pow(M_y_load / (phi * Mi_y), 1.4);
+
+      
+      
+      
 
       // IF FLR
       if (checkboxFLR.checked) {

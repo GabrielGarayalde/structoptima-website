@@ -4,7 +4,6 @@ export default function memberMomentCapacityMb(Ms, E, I, Le, G, J, Iw) {
     ((Math.pow(Math.PI, 2) * E * I) / Math.pow(Le, 2)) *
       (G * J + (Math.pow(Math.PI, 2) * E * Iw) / Math.pow(Le, 2))
   );
-
   // Beam slenderness reduction factor
   const alpha_s = 0.6 * (Math.sqrt(Math.pow(Ms / Mo, 2) + 3) - Ms / Mo);
 

@@ -1242,6 +1242,566 @@ const steelSectionData = {
       Comp_y: "N",
       Zey: 2.94e5,
     },
+    "200SHS5.0": {
+      "kg/m": 29.9,
+      d: 200,
+      b: 200,
+      t: 5.0,
+      Ag: 3810,
+
+      Ix: 2.39e7,
+      Zx: 2.39e5,
+      Sx: 2.77e5,
+      rx: 79.1,
+
+      Iy: 2.39e7,
+      Zy: 2.39e5,
+      Sy: 2.77e5,
+      ry: 79.1,
+
+      Zn: 1.75e5,
+
+      J: 3.78e7,
+      C: 3.62e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 0.89,
+
+      slenderness_ex: 45.0,
+      Comp_x: "S",
+      Zex: 2.23e5,
+
+      slenderness_ey: 45.0,
+      Comp_y: "S",
+      Zey: 2.23e5,
+    },
+    "150SHS9.0": {
+      "kg/m": 37.7,
+      d: 150,
+      b: 150,
+      t: 9.0,
+      Ag: 4800,
+
+      Ix: 1.54e7,
+      Zx: 2.05e5,
+      Sx: 2.48e5,
+      rx: 56.6,
+
+      Iy: 1.54e7,
+      Zy: 2.05e5,
+      Sy: 2.48e5,
+      ry: 56.6,
+
+      Zn: 1.59e5,
+
+      J: 2.61e7,
+      C: 3.16e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 17.4,
+      Comp_x: "C",
+      Zex: 2.48e5,
+
+      slenderness_ey: 17.4,
+      Comp_y: "C",
+      Zey: 2.48e5,
+    },
+    "150SHS6.0": {
+      "kg/m": 26.2,
+      d: 150,
+      b: 150,
+      t: 6.0,
+      Ag: 3330,
+
+      Ix: 1.13e7,
+      Zx: 1.5e5,
+      Sx: 1.78e5,
+      rx: 58.2,
+
+      Iy: 1.13e7,
+      Zy: 1.5e5,
+      Sy: 1.78e5,
+      ry: 58.2,
+
+      Zn: 1.13e5,
+
+      J: 1.84e7,
+      C: 2.29e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 27.2,
+      Comp_x: "C",
+      Zex: 1.78e5,
+
+      slenderness_ey: 27.2,
+      Comp_y: "C",
+      Zey: 1.78e5,
+    },
+    "150SHS5.0": {
+      "kg/m": 22.1,
+      d: 150,
+      b: 150,
+      t: 5.0,
+      Ag: 2810,
+
+      Ix: 9.7e6,
+      Zx: 1.29e5,
+      Sx: 1.51e5,
+      rx: 58.7,
+
+      Iy: 9.7e6,
+      Zy: 1.29e5,
+      Sy: 1.51e5,
+      ry: 58.7,
+
+      Zn: 9.61e4,
+
+      J: 1.56e7,
+      C: 1.97e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 33.1,
+      Comp_x: "C",
+      Zex: 1.44e5,
+
+      slenderness_ey: 33.1,
+      Comp_y: "C",
+      Zey: 1.44e5,
+    },
+    "125SHS9.0": {
+      "kg/m": 30.6,
+      d: 125,
+      b: 125,
+      t: 9.0,
+      Ag: 3900,
+
+      Ix: 8.38e6,
+      Zx: 1.34e5,
+      Sx: 1.65e5,
+      rx: 46.4,
+
+      Iy: 8.38e6,
+      Zy: 1.34e5,
+      Sy: 1.65e5,
+      ry: 46.4,
+
+      Zn: 1.06e5,
+
+      J: 1.45e7,
+      C: 2.08e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 14.1,
+      Comp_x: "C",
+      Zex: 1.65e5,
+
+      slenderness_ey: 14.1,
+      Comp_y: "C",
+      Zey: 1.65e5,
+    },
+    "125SHS6.0": {
+      "kg/m": 21.4,
+      d: 125,
+      b: 125,
+      t: 6.0,
+      Ag: 2730,
+
+      Ix: 6.29e6,
+      Zx: 1.01e5,
+      Sx: 1.2e5,
+      rx: 48.0,
+
+      Iy: 6.29e6,
+      Zy: 1.01e5,
+      Sy: 1.2e5,
+      ry: 48.0,
+
+      Zn: 7.65e4,
+
+      J: 1.04e7,
+      C: 1.54e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 22.3,
+      Comp_x: "C",
+      Zex: 1.2e5,
+
+      slenderness_ey: 22.3,
+      Comp_y: "C",
+      Zey: 1.2e5,
+    },
+    "125SHS5.0": {
+      "kg/m": 18.2,
+      d: 125,
+      b: 125,
+      t: 5.0,
+      Ag: 2310,
+
+      Ix: 5.44e6,
+      Zx: 8.71e4,
+      Sx: 1.03e5,
+      rx: 48.5,
+
+      Iy: 5.44e6,
+      Zy: 8.71e4,
+      Sy: 1.03e5,
+      ry: 48.5,
+
+      Zn: 6.54e4,
+
+      J: 8.87e6,
+      C: 1.33e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 27.2,
+      Comp_x: "C",
+      Zex: 1.03e5,
+
+      slenderness_ey: 27.2,
+      Comp_y: "C",
+      Zey: 1.03e5,
+    },
+    "100SHS9.0": {
+      "kg/m": 23.5,
+      d: 100,
+      b: 100,
+      t: 9.0,
+      Ag: 3000,
+
+      Ix: 3.91e6,
+      Zx: 7.81e4,
+      Sx: 9.86e4,
+      rx: 36.1,
+
+      Iy: 3.91e6,
+      Zy: 7.81e4,
+      Sy: 9.86e4,
+      ry: 36.1,
+
+      Zn: 6.36e4,
+
+      J: 7.00e6,
+      C: 1.23e5,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 10.8,
+      Comp_x: "C",
+      Zex: 9.86e4,
+
+      slenderness_ey: 10.8,
+      Comp_y: "C",
+      Zey: 9.86e4,
+    },
+    "100SHS6.0": {
+      "kg/m": 16.7,
+      d: 100,
+      b: 100,
+      t: 6.0,
+      Ag: 2130,
+
+      Ix: 3.04e6,
+      Zx: 6.07e4,
+      Sx: 7.35e4,
+      rx: 37.7,
+
+      Iy: 3.04e6,
+      Zy: 6.07e4,
+      Sy: 7.35e4,
+      ry: 37.7,
+
+      Zn: 4.71e4,
+
+      J: 5.15e6,
+      C: 9.36e4,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 17.4,
+      Comp_x: "C",
+      Zex: 7.35e4,
+
+      slenderness_ey: 17.4,
+      Comp_y: "C",
+      Zey: 7.35e4,
+    },
+    "100SHS5.0": {
+      "kg/m": 14.2,
+      d: 100,
+      b: 100,
+      t: 5.0,
+      Ag: 1810,
+
+      Ix: 2.66e6,
+      Zx: 5.31e4,
+      Sx: 6.35e4,
+      rx: 38.3,
+
+      Iy: 2.66e6,
+      Zy: 5.31e4,
+      Sy: 6.35e4,
+      ry: 38.3,
+
+      Zn: 4.05e4,
+
+      J: 4.42e6,
+      C: 8.14e4,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 21.3,
+      Comp_x: "C",
+      Zex: 6.35e4,
+
+      slenderness_ey: 21.3,
+      Comp_y: "C",
+      Zey: 6.35e4,
+    },
+    "89SHS6.0": {
+      "kg/m": 14.6,
+      d: 89,
+      b: 89,
+      t: 6.0,
+      Ag: 1870,
+
+      Ix: 2.06e6,
+      Zx: 4.62e4,
+      Sx: 5.66e4,
+      rx: 33.2,
+
+      Iy: 2.06e6,
+      Zy: 4.62e4,
+      Sy: 5.66e4,
+      ry: 33.2,
+
+      Zn: 3.63e4,
+
+      J: 3.54e6,
+      C: 7.16e4,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 15.2,
+      Comp_x: "C",
+      Zex: 5.66e4,
+
+      slenderness_ey: 15.2,
+      Comp_y: "C",
+      Zey: 5.66e4,
+    },
+    "89SHS5.0": {
+      "kg/m": 12.5,
+      d: 89,
+      b: 89,
+      t: 5.0,
+      Ag: 1590,
+
+      Ix: 1.81e6,
+      Zx: 4.07e4,
+      Sx: 4.91e4,
+      rx: 33.7,
+
+      Iy: 1.81e6,
+      Zy: 4.07e4,
+      Sy: 4.91e4,
+      ry: 33.7,
+
+      Zn: 3.14e4,
+
+      J: 3.05e6,
+      C: 6.27e4,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 18.7,
+      Comp_x: "C",
+      Zex: 4.91e4,
+
+      slenderness_ey: 18.7,
+      Comp_y: "C",
+      Zey: 4.91e4,
+    },
+    "89SHS3.5": {
+      "kg/m": 9.06,
+      d: 89,
+      b: 89,
+      t: 3.5,
+      Ag: 1150,
+
+      Ix: 1.37e6,
+      Zx: 3.09e4,
+      Sx: 3.65e4,
+      rx: 34.5,
+
+      Iy: 1.37e6,
+      Zy: 3.09e4,
+      Sy: 3.65e4,
+      ry: 34.5,
+
+      Zn: 2.32e4,
+
+      J: 2.24e6,
+      C: 4.71e4,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 27.7,
+      Comp_x: "C",
+      Zex: 3.65e4,
+
+      slenderness_ey: 27.7,
+      Comp_y: "C",
+      Zey: 3.65e4,
+    },
+    "75SHS6.0": {
+      "kg/m": 12.0,
+      d: 75,
+      b: 75,
+      t: 6.0,
+      Ag: 1530,
+
+      Ix: 1.16e6,
+      Zx: 30.9e3,
+      Sx: 38.4e3,
+      rx: 27.5,
+
+      Iy: 1.16e6,
+      Zy: 30.9e3,
+      Sy: 38.4e3,
+      ry: 27.5,
+
+      Zn: 24.7e3,
+
+      J: 2.04e6,
+      C: 48.2e3,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 12.4,
+      Comp_x: "C",
+      Zex: 38.4e3,
+
+      slenderness_ey: 12.4,
+      Comp_y: "C",
+      Zey: 38.4e3,
+    },
+    "75SHS5.0": {
+      "kg/m": 10.3,
+      d: 75,
+      b: 75,
+      t: 5.0,
+      Ag: 1310,
+
+      Ix: 1.03e6,
+      Zx: 27.5e3,
+      Sx: 33.6e3,
+      rx: 28.0,
+
+      Iy: 1.03e6,
+      Zy: 27.5e3,
+      Sy: 33.6e3,
+      ry: 28.0,
+
+      Zn: 21.6e3,
+
+      J: 1.77e6,
+      C: 42.6e3,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 15.4,
+      Comp_x: "C",
+      Zex: 33.6e3,
+
+      slenderness_ey: 15.4,
+      Comp_y: "C",
+      Zey: 33.6e3,
+    },
+    "75SHS4.0": {
+      "kg/m": 8.49,
+      d: 75,
+      b: 75,
+      t: 4.0,
+      Ag: 1080,
+
+      Ix: 0.882e6,
+      Zx: 23.5e3,
+      Sx: 28.2e3,
+      rx: 28.6,
+
+      Iy: 0.882e6,
+      Zy: 23.5e3,
+      Sy: 28.2e3,
+      ry: 28.6,
+
+      Zn: 18.0e3,
+
+      J: 1.48e6,
+      C: 36.1e3,
+
+      fyf: 350,
+      fu: 430,
+
+      kf: 1.0,
+
+      slenderness_ex: 19.8,
+      Comp_x: "C",
+      Zex: 28.2e3,
+
+      slenderness_ey: 19.8,
+      Comp_y: "C",
+      Zey: 28.2e3,
+    },
   },
 };
 

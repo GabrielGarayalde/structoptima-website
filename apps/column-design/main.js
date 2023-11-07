@@ -17,7 +17,6 @@ let NRangeOutput = document.getElementById("NRangeValue");
 let MxiRangeOutput = document.getElementById("MxiRangeValue");
 let MyiRangeOutput = document.getElementById("MyiRangeValue");
 
-
 let paramSliders = document.querySelectorAll("input[name=params]");
 
 paramSliders.forEach((param, index) =>
@@ -55,6 +54,7 @@ paramSliders.forEach((param, index) =>
     let selectedTypes = selectedOptions();
     if (selectedTypes.length > 0) {
       let resultsSorted = predictResult(params, selectedTypes);
+      console.log(resultsSorted);
       updateResults(resultsSorted);
       updateCanvas(canvas, resultsSorted, params);
     }
@@ -104,4 +104,3 @@ checkboxFLR.addEventListener("change", function () {
 });
 
 let params = [5000, 5000, 250000, 50000000, 50000000];
-
