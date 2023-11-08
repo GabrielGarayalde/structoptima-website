@@ -119,35 +119,31 @@ export function predictResult(params, selectedTypes) {
       // SCORES
       // -----------------
       const scoreMemberCompressionCapacityNc_x = N_load / (phi * Nc_x);
-      
+
       const scoreMemberCompressionCapacityNc_y = N_load / (phi * Nc_y);
-      
 
       let scoreMemberMomentCapacityMb_x;
       console.log(selectedType);
-      if (selectedType == "SHS") {
+      if (selectedType == "SHS" || selectedType == "CHS") {
         scoreMemberMomentCapacityMb_x = 0;
       } else {
         scoreMemberMomentCapacityMb_x = M_x_load / (phi * Mb_x);
       }
 
       const scoreSectionMomentCapacityMs_y = M_y_load / (phi * Ms_y);
-      
+
       const scoreReducedSectionMomentCapacityMr_x = M_x_load / (phi * Mr_x);
       const scoreReducedSectionMomentCapacityMr_y = M_y_load / (phi * Mr_y);
-      
 
       const scoreSectionCapacityBiaxialBending =
         N_load / (phi * Ns) + M_x_load / (phi * Ms_x) + M_y_load / (phi * Ms_y);
-      
 
       const scoreinplaneMemberMomentCapacityMi_x = M_x_load / (phi * Mi_x);
       const scoreinplaneMemberMomentCapacityMi_y = M_y_load / (phi * Mi_y);
-      
 
-      let scoreMemberCapacityBiaxialBending
-      let scoreMemberCapacityBiaxialBendingFLR
-      if (selectedType == "SHS") {
+      let scoreMemberCapacityBiaxialBending;
+      let scoreMemberCapacityBiaxialBendingFLR;
+      if (selectedType == "SHS" || selectedType == "CHS") {
         scoreMemberCapacityBiaxialBending = 0;
         scoreMemberCapacityBiaxialBendingFLR = 0;
       } else {
@@ -158,11 +154,6 @@ export function predictResult(params, selectedTypes) {
           Math.pow(M_x_load / (phi * Mi_x), 1.4) +
           Math.pow(M_y_load / (phi * Mi_y), 1.4);
       }
-
-
-      
-      
-      
 
       // IF FLR
       if (checkboxFLR.checked) {
@@ -195,8 +186,9 @@ export function predictResult(params, selectedTypes) {
     }
   });
 
+  console.log(scores);
   let resultsSorted = filterScoresArray(scores);
-
+  console.log(resultsSorted.length);
   return resultsSorted;
 }
 
