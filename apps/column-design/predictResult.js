@@ -123,7 +123,6 @@ export function predictResult(params, selectedTypes) {
       const scoreMemberCompressionCapacityNc_y = N_load / (phi * Nc_y);
 
       let scoreMemberMomentCapacityMb_x;
-      console.log(selectedType);
       if (selectedType == "SHS" || selectedType == "CHS") {
         scoreMemberMomentCapacityMb_x = 0;
       } else {
@@ -186,9 +185,7 @@ export function predictResult(params, selectedTypes) {
     }
   });
 
-  console.log(scores);
   let resultsSorted = filterScoresArray(scores);
-  console.log(resultsSorted.length);
   return resultsSorted;
 }
 

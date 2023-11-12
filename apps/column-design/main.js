@@ -54,7 +54,6 @@ paramSliders.forEach((param, index) =>
     let selectedTypes = selectedOptions();
     if (selectedTypes.length > 0) {
       let resultsSorted = predictResult(params, selectedTypes);
-      console.log(resultsSorted);
       updateResults(resultsSorted);
       updateCanvas(canvas, resultsSorted, params);
     }
@@ -71,6 +70,7 @@ checkboxes.forEach((checkbox) => {
     if (selectedTypes.length > 0) {
       let resultsSorted = predictResult(params, selectedTypes);
       updateResults(resultsSorted);
+      updateCanvas(canvas, resultsSorted, params);
     }
   });
 });
