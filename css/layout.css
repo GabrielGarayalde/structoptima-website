@@ -1,0 +1,26 @@
+/* Breakpoints */
+/* min widths for different sizes */
+
+/* --min-width-phone: 350px;
+--min-width-tablet: 700px;
+--min-width-desktop: 1024px;
+--min-width-large: 1400px; */
+
+
+/* ----     LAYOUT     ---- */
+.container {
+  max-width: 924px;
+  margin: 0 10px;
+}
+
+@media screen and (min-width: 700px) {
+  .container {
+    margin: 0 50px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    margin: 0 auto;
+  }
+}

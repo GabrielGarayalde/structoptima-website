@@ -1,0 +1,46 @@
+.footer {
+  padding: 0 1rem;
+}
+
+.footer__brand {
+  align-self: center;
+  max-width: 175px;
+}
+
+.footer__heading {
+  font-size: 2rem;
+  margin: 0;
+  color: white;
+}
+
+.footer__brand__heading {
+  font-size: 2rem;
+  margin: 0;
+  color: white;
+  width: 100px;
+}
+
+/* The footer links */
+.footer__list__item {
+  width: 100%;
+  margin: 0;
+}
+
+.footer__list__item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #444444;
+}
+
+.footer__list__item > a {
+  font-size: 1.5rem;
+  color: #9b99a0;
+  transition: color 0.3s;
+}
+
+.footer__list__item > a:hover {
+  color: #fff;
+}
+
+.footer__copyright {
+  color: #d2d0db;
+}

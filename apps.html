@@ -16,29 +16,61 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/normalize.css" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/block.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/callout.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/list.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="nav collapsible">
-      <a href="../index.html"
-        ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
-      /></a>
+    <header>
+      <nav class="nav collapsible">
+        <!-- Navbar Logo -->
+        <a href="../index.html">
+          <div class="flex flex--center flex--smallgap">
+            <img
+              class="icon icon--small"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="nav__heading">Struct Optima</span>
+          </div>
+        </a>
 
-      <svg class="icon icon--small icon--white nav__toggler">
-        <use xlink:href="../images/sprite.svg#menu"></use>
-      </svg>
-      <ul class="list nav__list collapsible__content">
-        <li class="nav__item"><a href="./apps.html">Apps</a></li>
-        <li class="nav__item">
-          <a href="./research-articles.html">Research Articles</a>
-        </li>
-        <li class="nav__item"><a href="./about.html">About</a></li>
-        <li class="nav__item"><a href="./contact.html">Contact</a></li>
-      </ul>
-    </nav>
+        <!-- Mobile Menu bars -->
+        <div class="nav__toggler">
+          <i class="fa-solid fa-bars fa-2xl" style="color: white"></i>
+        </div>
+
+        <!-- Navbar Items -->
+        <ul class="list nav__list collapsible__content">
+          <li class="nav__item">
+            <a href="../apps.html">Apps</a>
+          </li>
+          <li class="nav__item">
+            <a href="../research-articles.html">Research Articles</a>
+          </li>
+          <li class="nav__item"><a href="../about.html">About</a></li>
+          <li class="nav__item"><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
     <!-- Headings and info -->
     <section class="block container">
       <div class="">
@@ -49,57 +81,56 @@
         </p>
       </div>
     </section>
+
+
     <!-- APPS -->
-    <section class="block container block-plans">
-      <div class="grid grid--1x2">
-        <!-- Section Property Calculator -->
+    <section class="block container">
+      <div class="flex flex--wrap flex--largegap flex--center">
+      <!-- Section property calculator -->
         <a href="/apps/section-property-calculator.html">
-          <div class="article card card--primary">
+          <div class="card">
             <header class="card__header">
-              <h1 class="plan__name">Section Property Calculator</h1>
-              <span class="badge badge--primary badge--small">07/2023</span>
+              <h4>Section Property Calculator</h4>
+              <h5>07/2023</h5>
             </header>
             <div class="card__body">
               <img
-                class="hero__image"
-                src="./images/section-property-calculator.png"
+                class="card__image"
+                src="./images/section-property-calculator.jpg"
                 alt=""
               />
-              <ul class="list">
-                <li class="list__item">
-                  Interactive section property calculator
-                </li>
-                <li class="list__item">
-                  instantly calculate important geometrical properties
-                </li>
-              </ul>
-              <button class="btn btn--outline btn--block">Learn more</button>
+            </div>
+            <div class="card__footer">
+              <p>
+                Interactive section property calculator. Instantly calculate
+                important geometrical properties
+              </p>
             </div>
           </div>
         </a>
+
         <!-- Column Design -->
         <a href="/apps/column-design.html">
-          <div class="article card card--primary">
+          <div class="card">
             <header class="card__header">
-              <h1 class="plan__name">Beam-Column Design to AS 4100</h1>
-              <span class="badge badge--primary badge--small">10/2023</span>
+              <h4>Beam-Column Design to AS 4100</h4>
+              <h5>10/2023</h5>
             </header>
             <div class="card__body">
               <img
-                class="hero__image"
+                class="card__image"
                 src="./images/column-design.png"
                 alt=""
               />
-              <ul class="list">
-                <li class="list__item">Interactive column design calculator</li>
-                <li class="list__item">
-                  Yields optimal steel section for members subject to combined actions
-                </li>
-              </ul>
-              <button class="btn btn--outline btn--block">Learn more</button>
+            </div>
+            <div class="card__footer">
+              <p>
+                Interactive column design calculator. Yields optimal steel section for members subject to combined actions
+              </p>
             </div>
           </div>
         </a>
+
       </div>
     </section>
   </body>

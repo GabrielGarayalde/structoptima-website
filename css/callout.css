@@ -1,0 +1,37 @@
+/* Callouts */
+.callout {
+    padding: 4rem;
+    border-radius: 5px;
+  }
+  
+  .callout--primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  
+  .callout__heading {
+    color: #fff;
+    margin-top: 0;
+    font-size: 2rem;
+  }
+  
+  .callout .btn {
+    justify-self: center;
+    align-self: center;
+  }
+  
+  .callout__content {
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 768px) {
+
+    .callout__content {
+      text-align: left;
+    }
+  
+    .callout .btn {
+      justify-self: start;
+      margin: 0 2rem;
+    }
+  }

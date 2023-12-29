@@ -1,0 +1,30 @@
+.navbar__logo {
+  max-width: 160px;
+}
+
+.icon--extra-small {
+  width: 15px;
+  height: 15px;
+}
+
+.icon--small {
+  width: 40px;
+  height: 40px;
+}
+
+.icon--large {
+  width: 60px;
+  height: 60px;
+}
+
+
+.icon--white {
+  background: white;
+}
+
+.icon {
+  padding: 0.5rem;
+  vertical-align: bottom;
+}
+
+

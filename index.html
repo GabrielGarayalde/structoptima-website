@@ -21,38 +21,68 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/block.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/callout.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/list.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
-    <!-- TODO: add testimonials block later -->
-    <!-- NavBar -->
+    <!-- Navbar -->
     <header>
       <nav class="nav collapsible">
-        <a href="../index.html"
-          ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
-        /></a>
+        <!-- Navbar Logo -->
+        <a href="../index.html">
+          <div class="flex flex--center flex--smallgap">
+            <img
+              class="icon icon--small"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="nav__heading">Struct Optima</span>
+          </div>
+        </a>
 
-        <svg class="icon icon--small icon--white nav__toggler">
-          <use xlink:href="images/sprite.svg#menu"></use>
-        </svg>
+        <!-- Mobile Menu bars -->
+        <div class="nav__toggler">
+          <i class="fa-solid fa-bars fa-2xl" style="color: white"></i>
+        </div>
+
+        <!-- Navbar Items -->
         <ul class="list nav__list collapsible__content">
           <li class="nav__item">
-            <a href="apps.html">Apps</a>
+            <a href="../apps.html">Apps</a>
           </li>
           <li class="nav__item">
-            <a href="research-articles.html">Research Articles</a>
+            <a href="../research-articles.html">Research Articles</a>
           </li>
-          <li class="nav__item"><a href="about.html">About</a></li>
-          <li class="nav__item"><a href="contact.html">Contact</a></li>
+          <li class="nav__item"><a href="../about.html">About</a></li>
+          <li class="nav__item"><a href="../contact.html">Contact</a></li>
         </ul>
       </nav>
     </header>
-    <!-- Hero Block -->
+
+    <!-- Block Hero -->
     <section class="block block--dark block--skewed-left hero">
-      <div class="container grid grid--1x2">
-        <header class="block__header hero__content" data-aos="fade-right">
+      <div class="container flex flex--columntorow">
+        <!-- block__header hero__content -->
+        <header
+          class="block__header flex flex--col flex--center"
+          data-aos="fade-right"
+        >
           <h1 class="block__heading">
             Apps for the Modern Structural Engineer
           </h1>
@@ -64,22 +94,21 @@
             >Get started</a
           >
         </header>
+
         <img
           class="hero__image"
-          src="images/bridge.webp"
+          src="images/StructOptima_hero_image.png"
           alt=""
           data-aos="fade-left"
         />
       </div>
     </section>
 
-    <!-- ------------------------------ -->
     <!-- Features Block -->
-
     <section class="block container">
       <header class="block__header">
-        <h2>Welcome to StructOptima</h2>
-        <h3>The app repository to enhance your engineering</h3>
+        <h1>Welcome to StructOptima</h1>
+        <h2>The app repository to enhance your engineering</h2>
         <p>
           Here you can find a collection of useful apps in the 'apps' tab that
           are free and require no sign up.
@@ -92,10 +121,9 @@
       </header>
     </section>
 
-    <!-- -------------------------------- -->
-    <!-- Callout Block -->
+    <!--  Callout -->
     <div class="callout callout--primary">
-      <div class="grid grid--1x2">
+      <div class="flex flex--columntorow flex--space-around">
         <div class="callout__content">
           <h2 class="callout__heading">Ready to get started?</h2>
           <p>
@@ -103,74 +131,48 @@
             getting to know more or signing up, please stay tuned.
           </p>
         </div>
-        <a href="apps.html" class="btn btn--secondary btn--stretch"
-          >Get Started</a
-        >
+        <a href="#" class="btn btn--secondary btn--stretch">Get Started</a>
       </div>
     </div>
-    <!-- ---------------------------------------- -->
-    <!-- Footer Block -->
-    <footer class="block block--dark footer">
-      <div class="container grid footer__sections">
-        <!-- Section 1 -->
-        <section class="collapsible collapsible--expanded footer__section">
-          <div class="collapsible__header">
-            <h2 class="collapsible__heading footer__heading">Products</h2>
-            <img
-              class="icon icon--small icon--white collapsible__chevron"
-              src="images/chevron.svg"
-              alt=""
-            />
-          </div>
-          <div class="collapsible__content">
-            <ul class="list">
-              <li class="list__item"><a href="">Apps</a></li>
-              <li class="list__item"><a href="">Eurocodes</a></li>
-              <li class="list__item"><a href="">AS/NZ Standards</a></li>
-            </ul>
-          </div>
-        </section>
-        <!-- Section 2 -->
-        <section class="collapsible footer__section">
-          <div class="collapsible__header">
-            <h2 class="collapsible__heading footer__heading">Company</h2>
-            <img
-              class="icon icon--small icon--white collapsible__chevron"
-              src="images/chevron.svg"
-              alt=""
-            />
-          </div>
-          <div class="collapsible__content">
-            <ul class="list">
-              <li class="list__item"><a href="">About</a></li>
-              <li class="list__item"><a href="">Research Articles</a></li>
-              <li class="list__item"><a href="">Blog</a></li>
-            </ul>
-          </div>
-        </section>
-        <!-- Section 3 -->
-        <section class="collapsible footer__section">
-          <div class="collapsible__header">
-            <h2 class="collapsible__heading footer__heading">Support</h2>
-            <img
-              class="icon icon--small icon--white collapsible__chevron"
-              src="images/chevron.svg"
-              alt=""
-            />
-          </div>
-          <div class="collapsible__content">
-            <ul class="list">
-              <li class="list__item"><a href="">Contact</a></li>
-              <li class="list__item"><a href="">Knowledge Base</a></li>
-              <li class="list__item"><a href="">FAQ</a></li>
-            </ul>
-          </div>
-        </section>
-        <div class="footer__brand">
-          <img class="footer__logo" src="images/StructOptima_var1.png" alt="" />
 
+    <!-- Footer  -->
+    <footer class="block block--dark footer">
+      <div class="container flex flex--center flex--largegap">
+        <!-- Footer logo -->
+        <section class="footer__brand">
+          <div class="flex flex--smallgap flex--wrap">
+            <img
+              class="icon icon--large"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="footer__brand__heading">Struct Optima</span>
+          </div>
           <p class="footer__copyright">Copyright 2023 Gabriel Garayalde</p>
-        </div>
+        </section>
+        <!-- Section 1 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Products</li>
+          <li class="footer__list__item"><a href="">Apps</a></li>
+          <li class="footer__list__item"><a href="">Eurocodes</a></li>
+          <li class="footer__list__item"><a href="">AS/NZ Standards</a></li>
+        </ul>
+
+        <!-- Section 2 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Company</li>
+          <li class="footer__list__item"><a href="">About</a></li>
+          <li class="footer__list__item"><a href="">Research Articles</a></li>
+          <li class="footer__list__item"><a href="">Blog</a></li>
+        </ul>
+
+        <!-- Section 3 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Support</li>
+          <li class="footer__list__item"><a href="">Contact</a></li>
+          <li class="footer__list__item"><a href="">Knowledge Base</a></li>
+          <li class="footer__list__item"><a href="">FAQ</a></li>
+        </ul>
       </div>
     </footer>
 
