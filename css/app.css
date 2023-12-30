@@ -1,5 +1,5 @@
 /* Canvas */
-#myCanvas {
+.canvas {
   width: 300px;
   height: 200px;
   border: 1px solid #9c9898;
@@ -7,7 +7,7 @@
 
 /* tablet */
 @media screen and (min-width: 700px) {
-  #myCanvas {
+  .canvas {
     width: 400px;
     height: 300px;
   }
@@ -15,7 +15,7 @@
 
 /* desktop */
 @media screen and (min-width: 1024px) {
-  #myCanvas {
+  .canvas {
     width: 500px;
     height: 400px;
   }
@@ -23,7 +23,7 @@
 
 /* large */
 @media screen and (min-width: 1400px) {
-  #myCanvas {
+  .canvas {
     width: 600px;
     height: 500px;
   }
