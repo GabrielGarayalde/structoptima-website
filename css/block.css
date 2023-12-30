@@ -9,6 +9,10 @@
   margin-bottom: 4rem;
 }
 
+.block--small {
+  padding: 1rem 0;
+}
+
 .block--dark {
   background: #000;
   color: #7b858b;

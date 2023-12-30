@@ -2,7 +2,10 @@
 .canvas {
   width: 300px;
   height: 200px;
-  border: 1px solid #9c9898;
+}
+
+canvas:focus {
+  outline: none;
 }
 
 /* tablet */

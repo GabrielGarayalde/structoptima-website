@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/css/callout.css" />
     <link rel="stylesheet" href="/css/card.css" />
     <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/DYNUTOP.css" />
     <link rel="stylesheet" href="/css/flex.css" />
     <link rel="stylesheet" href="/css/footer.css" />
     <link rel="stylesheet" href="/css/grid.css" />
@@ -81,14 +82,15 @@
     </header>
 
     <!-- Headings and info -->
-    <div class="block container">
-      <section class="block__header">
+    <div class="container">
+      <section class="block--small block__header">
         <div class="">
           <h1>Real Time Topology Optimization via Learnable Mappings</h1>
           <p>
             Submitted 07/2023 to International Journal for Numerical Methods in
             Engineering for review
           </p>
+          <br>
           <p>
             Use the sliders to change the location of the supports and the forces.
             Click on the radio buttons to switch between the optimal density
@@ -97,14 +99,17 @@
           </p>
         </div>
       </section>
+      
     </div>
 
     <!-- Research article body -->
-    <div class="block container">
-      
+    <div class="block--small container">
       <section class="flex flex--columntorow">
-        <div class="app__tile canvas" id="canvas-research">
-          <canvas id="canvas"></canvas>
+        <div class="app__tile" id="">
+          <div class="app__tile__header">
+            <h4>3D Canvas Render</h4>
+          </div>
+          <canvas class="canvas" id=""> </canvas>
           <div id="loading-bar-container">
             <p>Loading...</p>
             <div id="loading-bar">
@@ -116,11 +121,10 @@
         <div class="flex flex--col">
           <div class="app__tile">
             <div class="app__tile__header">
-              <h4>Sliders</h4>
+              <h4>Parameter Controls</h4>
             </div>
 
             <div class="app__tile__body">
-
               <div class="form__group">
                 <div class="">
                   <input
@@ -159,7 +163,7 @@
                     name="params"
                     id="forceARange"
                   />
-                  <div>Force A:<span id="forceAValue">7.5</span> m</div>
+                  <div>Force A:<span id="forceAValue">30.0</span> m</div>
                 </div>
                 <div class="">
                   <input
@@ -172,15 +176,14 @@
                     name="params"
                     id="forceBRange"
                   />
-                  <div>Force B:<span id="forceBValue">7.5</span> m</div>
+                  <div>Force B:<span id="forceBValue">30.0</span> m</div>
                 </div>
               </div>
-
             </div>
           </div>
           <div class="app__tile">
             <div class="app__tile__header">
-              <h4>Radio Buttons</h4>
+              <h4>Select View Type</h4>
             </div>
             <div class="app__tile__body">
               <div class="form__group">
@@ -204,15 +207,10 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
-
       </section>
-
     </div>
-    
 
     <!-- Footer  -->
     <footer class="block block--dark footer">
