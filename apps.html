@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Research Articles</title>
+    <title>Apps</title>
 
     <meta property="og:title" content="StructOptima" />
     <meta
       property="og:description"
       content="Intuitive, easy to use applications for the Modern Engineer"
     />
-
+    <script
+      src="https://kit.fontawesome.com/78b2bdc1b5.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
@@ -70,7 +73,6 @@
       </nav>
     </header>
 
-
     <!-- Headings and info -->
     <section class="block container">
       <div class="">
@@ -82,11 +84,10 @@
       </div>
     </section>
 
-
     <!-- APPS -->
     <section class="block container">
       <div class="flex flex--wrap flex--largegap flex--center">
-      <!-- Section property calculator -->
+        <!-- Section property calculator -->
         <a href="/apps/section-property-calculator.html">
           <div class="card">
             <header class="card__header">
@@ -125,13 +126,54 @@
             </div>
             <div class="card__footer">
               <p>
-                Interactive column design calculator. Yields optimal steel section for members subject to combined actions
+                Interactive column design calculator. Yields optimal steel
+                section for members subject to combined actions
               </p>
             </div>
           </div>
         </a>
-
       </div>
     </section>
+
+    <!-- Footer  -->
+    <footer class="block block--dark footer">
+      <div class="container flex flex--center flex--largegap">
+        <!-- Footer logo -->
+        <section class="footer__brand">
+          <div class="flex flex--smallgap flex--wrap">
+            <img
+              class="icon icon--large"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="footer__brand__heading">Struct Optima</span>
+          </div>
+          <p class="footer__copyright">Copyright 2023 Gabriel Garayalde</p>
+        </section>
+        <!-- Section 1 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Products</li>
+          <li class="footer__list__item"><a href="">Apps</a></li>
+          <li class="footer__list__item"><a href="">Eurocodes</a></li>
+          <li class="footer__list__item"><a href="">AS/NZ Standards</a></li>
+        </ul>
+
+        <!-- Section 2 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Company</li>
+          <li class="footer__list__item"><a href="">About</a></li>
+          <li class="footer__list__item"><a href="">Research Articles</a></li>
+          <li class="footer__list__item"><a href="">Blog</a></li>
+        </ul>
+
+        <!-- Section 3 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Support</li>
+          <li class="footer__list__item"><a href="">Contact</a></li>
+          <li class="footer__list__item"><a href="">Knowledge Base</a></li>
+          <li class="footer__list__item"><a href="">FAQ</a></li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>
