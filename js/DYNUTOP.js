@@ -5,12 +5,9 @@ import normalizeArray from "./normalizeArray.js";
 const { OrbitControls } = THREE;
 
 const qs = (s) => document.querySelector(s);
-const canvas = qs("#canvas");
+const canvas = qs("canvas");
 
-// // TODO: this should be applied to the styles.css sheet
-// canvas.width = 400;
-// canvas.height = 400;
-// canvas.style.border = "1px solid black";
+
 
 const MODEL_URL_topopt_FCM =
   "../research-articles/DYNUTOP/3DBridge_topopt_FCM/model.json";
@@ -35,12 +32,6 @@ let loadingBarContainer = document.querySelector("#loading-bar-container")
 function sizeLoadingBar(val) {loadingBarInner.style.width = val*100 + "%"}
 
 function afterLoad() {
-
-  // loadingBarContainer.style.width = "100%"
-  // loadingBarContainer.style.height = "100%"
-  // loadingBarContainer.style.left = "0"
-  // loadingBarContainer.style.top = "0"
-  // loadingBarContainer.style.transform = "unset"
 
   loadingBarContainer.innerHTML = `
     <p id="loading-bar-message">Left click and orbit the 3D model using the mouse.</p>

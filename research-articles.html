@@ -10,35 +10,69 @@
       property="og:description"
       content="Intuitive, easy to use applications for the Modern Engineer"
     />
-
+    <script
+      src="https://kit.fontawesome.com/78b2bdc1b5.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/normalize.css" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/block.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/callout.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/list.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="nav collapsible">
-      <a href="../index.html"
-        ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
-      /></a>
+    <header>
+      <nav class="nav collapsible">
+        <!-- Navbar Logo -->
+        <a href="../index.html">
+          <div class="flex flex--center flex--smallgap">
+            <img
+              class="icon icon--small"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="nav__heading">Struct Optima</span>
+          </div>
+        </a>
 
-      <svg class="icon icon--small icon--white nav__toggler">
-        <use xlink:href="../images/sprite.svg#menu"></use>
-      </svg>
-      <ul class="list nav__list collapsible__content">
-        <li class="nav__item"><a href="./apps.html">Apps</a></li>
-        <li class="nav__item">
-          <a href="./research-articles.html">Research Articles</a>
-        </li>
-        <li class="nav__item"><a href="./about.html">About</a></li>
-        <li class="nav__item"><a href="./contact.html">Contact</a></li>
-      </ul>
-    </nav>
+        <!-- Mobile Menu bars -->
+        <div class="nav__toggler">
+          <i class="fa-solid fa-bars fa-2xl" style="color: white"></i>
+        </div>
+
+        <!-- Navbar Items -->
+        <ul class="list nav__list collapsible__content">
+          <li class="nav__item">
+            <a href="../apps.html">Apps</a>
+          </li>
+          <li class="nav__item">
+            <a href="../research-articles.html">Research Articles</a>
+          </li>
+          <li class="nav__item"><a href="../about.html">About</a></li>
+          <li class="nav__item"><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
     <!-- Headings and info -->
     <section class="block container">
       <div class="">
@@ -49,30 +83,78 @@
         </p>
       </div>
     </section>
-    <!-- Research article body -->
-    <section class="block container block-plans">
-      <div class="grid grid--1x2">
+
+    <!-- RESEARCH ARTICLES -->
+    <section class="block container">
+      <div class="flex flex--wrap flex--largegap flex--center">
+        <!-- Section property calculator -->
         <a
-          href="research-articles/real-time-topology-optimization-via-learnable-mappings.html"
+          href="/research-articles/real-time-topology-optimization-via-learnable-mappings.html"
         >
-          <div class="article card card--primary">
+          <div class="card">
             <header class="card__header">
-              <h3 class="plan__name">
+              <h4>
                 Real Time Topology Optimization via Learnable Mappings (pending
                 review)
-              </h3>
-              <span class="badge badge--primary badge--small">07/2023</span>
+              </h4>
+              <h5>11/2023</h5>
             </header>
             <div class="card__body">
-              <img class="hero__image" src="../images/bridge.webp" alt="" />
-              <ul class="list">
-                <li class="list__item">Submitted for Review</li>
-              </ul>
+              <img
+                class="card__image"
+                src="./images/StructOptima_hero_image_white.jpg"
+                alt=""
+              />
+            </div>
+            <div class="card__footer">
+              <p>Submitted for Review</p>
               <button class="btn btn--outline btn--block">Learn more</button>
             </div>
           </div>
         </a>
       </div>
     </section>
+
+    <!-- Footer  -->
+    <footer class="block block--dark footer">
+      <div class="container flex flex--wrap flex--center">
+        <!-- Footer logo -->
+        <section class="footer__brand">
+          <div class="flex flex--smallgap flex--wrap">
+            <img
+              class="icon icon--large"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="footer__brand__heading">Struct Optima</span>
+          </div>
+          <p class="footer__copyright">Copyright 2023 Gabriel Garayalde</p>
+        </section>
+        <!-- Section 1 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Products</li>
+          <li class="footer__list__item"><a href="">Apps</a></li>
+          <li class="footer__list__item"><a href="">Eurocodes</a></li>
+          <li class="footer__list__item"><a href="">AS/NZ Standards</a></li>
+        </ul>
+
+        <!-- Section 2 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Company</li>
+          <li class="footer__list__item"><a href="">About</a></li>
+          <li class="footer__list__item"><a href="">Research Articles</a></li>
+          <li class="footer__list__item"><a href="">Blog</a></li>
+        </ul>
+
+        <!-- Section 3 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Support</li>
+          <li class="footer__list__item"><a href="">Contact</a></li>
+          <li class="footer__list__item"><a href="">Knowledge Base</a></li>
+          <li class="footer__list__item"><a href="">FAQ</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script src="js/collapsible.js" type="module"></script>
   </body>
 </html>

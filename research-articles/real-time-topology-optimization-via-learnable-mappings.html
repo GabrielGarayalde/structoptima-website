@@ -10,13 +10,34 @@
       property="og:description"
       content="Intuitive, easy to use applications for the Modern Engineer"
     />
+    <script
+      src="https://kit.fontawesome.com/78b2bdc1b5.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/normalize.css" />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="/css/about.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/block.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/callout.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/DYNUTOP.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/list.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- import the tensorflow JS -->
@@ -29,13 +50,24 @@
     <!-- Navbar -->
     <header>
       <nav class="nav collapsible">
-        <a href="../index.html"
-          ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
-        /></a>
+        <!-- Navbar Logo -->
+        <a href="../index.html">
+          <div class="flex flex--center flex--smallgap">
+            <img
+              class="icon icon--small"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="nav__heading">Struct Optima</span>
+          </div>
+        </a>
 
-        <svg class="icon icon--small icon--white nav__toggler">
-          <use xlink:href="../images/sprite.svg#menu"></use>
-        </svg>
+        <!-- Mobile Menu bars -->
+        <div class="nav__toggler">
+          <i class="fa-solid fa-bars fa-2xl" style="color: white"></i>
+        </div>
+
+        <!-- Navbar Items -->
         <ul class="list nav__list collapsible__content">
           <li class="nav__item">
             <a href="../apps.html">Apps</a>
@@ -49,8 +81,6 @@
       </nav>
     </header>
 
-
-
     <!-- Headings and info -->
     <div class="block container">
       <section class="block__header">
@@ -60,21 +90,25 @@
             Submitted 07/2023 to International Journal for Numerical Methods in
             Engineering for review
           </p>
+          <br />
+          <p>
+            Use the sliders to change the location of the supports and the
+            forces. Click on the radio buttons to switch between the optimal
+            density values, the Von Mises stresses, or the dominant principal
+            stress elements. PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
+          </p>
         </div>
       </section>
-      <!-- Research article body -->
-      <div class="header">
-        <p>
-          Use the sliders to change the location of the supports and the forces.
-          Click on the radio buttons to switch between the optimal density
-          values, the Von Mises stresses, or the dominant principal stress
-          elements. PLEASE ALLOW A FEW SECONDS FOR THE MODEL TO LOAD.
-        </p>
-        
-      </div>
-      <section class="grid grid--70-30">
-        <div class="canvas" id="canvas-research">
-          <canvas id="canvas"></canvas>
+    </div>
+
+    <!-- Research article body -->
+    <div class="block block--btm container">
+      <section class="flex flex--columntorow">
+        <div class="app__tile" id="">
+          <div class="app__tile__header">
+            <h4>3D Canvas Render</h4>
+          </div>
+          <canvas class="canvas" id=""> </canvas>
           <div id="loading-bar-container">
             <p>Loading...</p>
             <div id="loading-bar">
@@ -82,85 +116,142 @@
             </div>
           </div>
         </div>
-        <div class="slider-group border-style">
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.5"
-              class="slider-input"
-              name="params"
-              id="supportARange"
-            />
-            <div>Support A:<span id="supportAValue">7.5</span> m</div>
+
+        <div class="flex flex--col">
+          <div class="app__tile">
+            <div class="app__tile__header">
+              <h4>Parameter Controls</h4>
+            </div>
+
+            <div class="app__tile__body">
+              <div class="form__group">
+                <div class="">
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.5"
+                    class="slider__input"
+                    name="params"
+                    id="supportARange"
+                  />
+                  <div>Support A:<span id="supportAValue">7.5</span> m</div>
+                </div>
+                <div class="">
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.5"
+                    class="slider__input"
+                    name="params"
+                    id="supportBRange"
+                  />
+                  <div>Support B:<span id="supportBValue">7.5</span> m</div>
+                </div>
+                <div class="">
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.5"
+                    class="slider__input"
+                    name="params"
+                    id="forceARange"
+                  />
+                  <div>Force A:<span id="forceAValue">30.0</span> m</div>
+                </div>
+                <div class="">
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.5"
+                    class="slider__input"
+                    name="params"
+                    id="forceBRange"
+                  />
+                  <div>Force B:<span id="forceBValue">30.0</span> m</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.5"
-              class="slider-input"
-              name="params"
-              id="supportBRange"
-            />
-            <div>Support B:<span id="supportBValue">7.5</span> m</div>
-          </div>
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.5"
-              class="slider-input"
-              name="params"
-              id="forceARange"
-            />
-            <div>Force A:<span id="forceAValue">7.5</span> m</div>
-          </div>
-          <div class="slider-item">
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value="0.5"
-              class="slider-input"
-              name="params"
-              id="forceBRange"
-            />
-            <div>Force B:<span id="forceBValue">7.5</span> m</div>
-          </div>
-        </div>
-        <div class="radio-group border-style">
-          <div class="radio-item">
-            <input
-              type="radio"
-              id="topopt"
-              name="options"
-              value="topopt"
-              checked
-            />
-            <label for="option1">Optimal Topology</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="VM" name="options" value="VM" />
-            <label for="option2">Von Mises Stress</label>
-          </div>
-          <div class="radio-item">
-            <input type="radio" id="TC" name="options" value="TC" />
-            <label for="option3">Tension and Compression Regions</label>
+          <div class="app__tile">
+            <div class="app__tile__header">
+              <h4>Select View Type</h4>
+            </div>
+            <div class="app__tile__body">
+              <div class="form__group">
+                <div class="">
+                  <input
+                    type="radio"
+                    id="topopt"
+                    name="options"
+                    value="topopt"
+                    checked
+                  />
+                  <label for="option1">Optimal Topology</label>
+                </div>
+                <div class="">
+                  <input type="radio" id="VM" name="options" value="VM" />
+                  <label for="option2">Von Mises Stress</label>
+                </div>
+                <div class="">
+                  <input type="radio" id="TC" name="options" value="TC" />
+                  <label for="option3">Tension and Compression Regions</label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </div>
 
-    <script src="../js/DYNUTOP.js" type="module"></script>
+    <!-- Footer  -->
+    <footer class="block block--dark footer">
+      <div class="container flex flex--wrap flex--center">
+        <!-- Footer logo -->
+        <section class="footer__brand">
+          <div class="flex flex--smallgap flex--wrap">
+            <img
+              class="icon icon--large"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="footer__brand__heading">Struct Optima</span>
+          </div>
+          <p class="footer__copyright">Copyright 2023 Gabriel Garayalde</p>
+        </section>
+        <!-- Section 1 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Products</li>
+          <li class="footer__list__item"><a href="">Apps</a></li>
+          <li class="footer__list__item"><a href="">Eurocodes</a></li>
+          <li class="footer__list__item"><a href="">AS/NZ Standards</a></li>
+        </ul>
 
+        <!-- Section 2 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Company</li>
+          <li class="footer__list__item"><a href="">About</a></li>
+          <li class="footer__list__item"><a href="">Research Articles</a></li>
+          <li class="footer__list__item"><a href="">Blog</a></li>
+        </ul>
+
+        <!-- Section 3 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Support</li>
+          <li class="footer__list__item"><a href="">Contact</a></li>
+          <li class="footer__list__item"><a href="">Knowledge Base</a></li>
+          <li class="footer__list__item"><a href="">FAQ</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script src="../js/DYNUTOP.js" type="module"></script>
     <script src="../js/collapsible.js" type="module"></script>
   </body>
 </html>

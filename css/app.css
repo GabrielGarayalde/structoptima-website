@@ -1,0 +1,134 @@
+/* Canvas */
+.canvas {
+  width: 300px;
+  height: 200px;
+}
+
+canvas:focus {
+  outline: none;
+}
+
+/* tablet */
+@media screen and (min-width: 700px) {
+  .canvas {
+    width: 400px;
+    height: 300px;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 1024px) {
+  .canvas {
+    width: 500px;
+    height: 400px;
+  }
+}
+
+/* large */
+@media screen and (min-width: 1400px) {
+  .canvas {
+    width: 600px;
+    height: 500px;
+  }
+}
+
+/* Typography */
+.app p {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+  .app p {
+    font-size: 1.2rem;
+  }
+}
+
+/* App tile */
+.app__tile {
+  border: 1px solid #9c9898;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.app__tile__header {
+  background-color: var(--color-headings);
+  border: 1px solid #9c9898;
+  padding: 0.1rem 2rem;
+  color: beige;
+}
+
+.app__tile__header h4 {
+  color: beige;
+}
+
+.app__tile__body {
+  padding: 1rem 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Form group  */
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form__group--wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Sliders */
+.slider__input {
+  width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .mobile--30 {
+    flex: 0 0 30%;
+  }
+  .mobile--50 {
+    flex: 0 0 50%;
+  }
+  .mobile--70 {
+    flex: 0 0 70%;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1024px) {
+  .tablet--30 {
+    flex: 0 0 30%;
+  }
+  .tablet--50 {
+    flex: 0 0 50%;
+  }
+  .tablet--70 {
+    flex: 0 0 70%;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1400px) {
+  .laptop--30 {
+    flex: 0 0 30%;
+  }
+  .laptop--50 {
+    flex: 0 0 50%;
+  }
+  .laptop--70 {
+    flex: 0 0 70%;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .desktop--30 {
+    flex: 0 0 30%;
+  }
+  .desktop--50 {
+    flex: 0 0 50%;
+  }
+  .desktop--70 {
+    flex: 0 0 70%;
+  }
+}

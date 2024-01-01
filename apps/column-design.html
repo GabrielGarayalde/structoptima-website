@@ -3,25 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="#" type="image/x-icon" />
     <title>Beam-Column Design to AS4100</title>
-    
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/normalize.css" />
+
+    <meta property="og:title" content="StructOptima" />
+    <meta
+      property="og:description"
+      content="Intuitive, easy to use applications for the Modern Engineer"
+    />
+    <script
+      src="https://kit.fontawesome.com/78b2bdc1b5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/about.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/block.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/callout.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/column-design.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/list.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/popover.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   </head>
   <body>
-    <!-- NavBar -->
+    <!-- Navbar -->
     <header>
       <nav class="nav collapsible">
-        <a href="../index.html"
-          ><img class="navbar__logo" src="../images/StructOptima.png" alt=""
-        /></a>
-        <svg class="icon icon--small icon--white nav__toggler">
-          <use xlink:href="../images/sprite.svg#menu"></use>
-        </svg>
+        <!-- Navbar Logo -->
+        <a href="../index.html">
+          <div class="flex flex--center flex--smallgap">
+            <img
+              class="icon icon--small"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="nav__heading">Struct Optima</span>
+          </div>
+        </a>
+
+        <!-- Mobile Menu bars -->
+        <div class="nav__toggler">
+          <i class="fa-solid fa-bars fa-2xl" style="color: white"></i>
+        </div>
+
+        <!-- Navbar Items -->
         <ul class="list nav__list collapsible__content">
           <li class="nav__item">
             <a href="../apps.html">Apps</a>
@@ -34,302 +79,6 @@
         </ul>
       </nav>
     </header>
-    
-    <!-- Headings and info -->
-    <div class="block container">
-      <section class="block__header">
-        <div class="">
-          <h1>Column Design to AS4100</h1>
-        </div>
-      </section>
-      <!-- Canvas, Results and User Panel-->
-      <div class="header">
-        <p>
-          The following program yields the optimal member size for a simply
-          supported beam-column under combined axial compression and biaxial
-          bending. The design checks are performed following the procedure 
-          outlined in AS 4100 (click on info for further details on the checks performed).
-        </p>
-        <p>
-          It is possible to fully laterally restrain the column by clicking "FLR". Additionally, 
-          the section types can be filtered by selecting the checkboxes under the "Steel Section" 
-          panel.
-        </p>
-        <p>
-          The top 3 sections are given in the "Results" panel at the bottom. These are given in order 
-          of the most highly stressed and thus the most effectively utilized. Expanding the toggle 
-          button gives additional information on the remaining failure modes in order of their 
-          "Score [%]".
-        </p>
-      </div>
-      
-      <section class="grid grid--70-30">
-        <div class="canvas border-style">
-          <canvas id="column-design-canvas"></canvas>
-        </div>
-        <div class="flex">
-          <button class="save-group border-style" id="saveAsPdfButton">
-            <img
-              class="icon--extra-small icon--white"
-              src="../images/save-icon.svg"
-              alt=""
-            />
-            <p>Results PDF</p>
-          </button>
-          <button class="popover--button" onclick="showModal()">
-            Info❔
-          </button>
-        </div>
-        <div class="border-style" id="steel-section">
-          <div class="results-card-header"><h3>Steel Section</h3></div>
-
-          <div class="radio-group">
-            <div class="radio-item">
-              <label>
-                <input
-                  type="checkbox"
-                  class="checkbox-steel-sizes"
-                  data-value="UB"
-                  checked
-                />
-                UB
-              </label>
-            </div>
-            <div class="radio-item">
-              <label>
-                <input
-                  type="checkbox"
-                  class="checkbox-steel-sizes"
-                  data-value="UC"
-                />
-                UC
-              </label>
-            </div>
-            <div class="radio-item">
-              <label>
-                <input
-                  type="checkbox"
-                  class="checkbox-steel-sizes"
-                  data-value="SHS"
-                />
-                SHS
-              </label>
-            </div>
-            <div class="radio-item">
-              <label>
-                <input
-                  type="checkbox"
-                  class="checkbox-steel-sizes"
-                  data-value="CHS"
-                />
-                CHS
-              </label>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="border-style">
-        <div class="results-card-header"><h3>Column Lengths and Restraints</h3></div>
-
-        <div class="slider-group ">
-          <div class="slider-item">
-            <div>
-              Effective Length in x, L<sub>ex</sub>: <span id="LexRangeValue">5</span>
-              [m]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="10"
-              step="0.1"
-              value="5"
-              class="slider-input"
-              name="params"
-              id="LexRange"
-            />
-          </div>
-          <div class="slider-item">
-            <span>
-              Effective Length in y, L<sub>ey</sub>: <span id="LeyRangeValue">5</span>
-              [m]
-            </span>
-            <span class="radio-item">
-              <label>
-                <input type="checkbox" id="checkbox-FLR" data-value="FLR" />
-                FLR
-              </label>
-            </span>
-            <input
-              type="range"
-              min="0"
-              max="10"
-              step="0.1"
-              value="5"
-              class="slider-input"
-              name="params"
-              id="LeyRange"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="border-style">
-        <div class="results-card-header"><h3>Design Loads</h3></div>
-
-        <div class="slider-group ">
-          <div class="slider-item">
-            <div>
-              Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="500"
-              step="1"
-              value="250"
-              class="slider-input"
-              name="params"
-              id="NRange"
-            />
-          </div>
-          <div class="slider-item">
-            <div>
-              Design Moment M<sub>xi</sub>*:<span id="MxiRangeValue">50</span>
-              [kNm]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value="50"
-              class="slider-input"
-              name="params"
-              id="MxiRange"
-            />
-          </div>
-          <div class="slider-item">
-            <div>
-              Design Moment M<sub>yi</sub>*:<span id="MyiRangeValue">50</span>
-              [kNm]
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value="50"
-              class="slider-input"
-              name="params"
-              id="MyiRange"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="border-style">
-        <div class="results-card-header"><h3>Top 3 Results</h3></div>
-        <div class="results-parameters grid grid--1x4 grid--centred">
-          <div class="results-parameters-items"></div>
-          <div class="results-parameters-items">
-            <h3>Section ID</h3>
-          </div>
-          <div class="results-parameters-items">
-            <h3>Closest Failure Mode</h3>
-          </div>
-
-          <div class="results-parameters-items"><h3>Score [%]</h3></div>
-        </div>
-        <div class="collapsible results-item border-style">
-          <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
-            <img
-              class="icon--small collapsible__chevron"
-              src="../images/icons8-triangle-24.png"
-              alt=""
-            />
-            <span class="results-id">Move the sliders to get started</span>
-            <span class="results-text"></span>
-            <span class="results-score"></span>
-          </div>
-          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-       
-            <span class="results-text"></span>
-            <span class="results-score"></span>
-          </div>
-          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-            <span class="results-text"></span>
-            <span class="results-score"></span>
-          </div>
-          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-            <span class="results-text"></span>
-            <span class="results-score"></span>
-          </div>
-          <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-            <span class="results-text"></span>
-            <span class="results-score"></span>
-          </div>
-        </div>
-      
-      
-      
-      <div class="collapsible results-item border-style">
-        <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
-          <img
-            class="icon--small collapsible__chevron"
-            src="../images/icons8-triangle-24.png"
-            alt=""
-          />
-          <span class="results-id">Move the sliders to get started</span>
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-      </div>
-      <div class="collapsible results-item border-style">
-        <div class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color">
-          <img
-            class="icon--small collapsible__chevron"
-            src="../images/icons8-triangle-24.png"
-            alt=""
-          />
-          <span class="results-id">Move the sliders to get started</span>
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-        <div class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color">
-          <span class="results-text"></span>
-          <span class="results-score"></span>
-        </div>
-      </div>
-    </div>
 
     <!-- Modal -->
     <div id="info-backdrop">
@@ -337,49 +86,460 @@
         <button onclick="hideModal()">
           <span aria-hidden="true">❌</span>
         </button>
-        <h1>Failure Modes</h1>
-        <p>9 Checks are carried out for the beam-column member under compression and applied Moments.
-          The score is a measure of the capacity of utilization of the load with respect to the
-          capacity.
+        <h2>Failure Modes</h2>
+        <p>
+          9 Checks are carried out for the beam-column member under compression
+          and applied Moments. The score is a measure of the capacity of
+          utilization of the load with respect to the capacity.
         </p>
+        <div class="grid grid--1x2 grid--centred">
+          <h3>Failure Mode</h3>
+          <h3>Score Calculation</h3>
+        </div>
         <div class="grid grid--1x2">
-          <h2>Failure Mode</h2>
-          <h2>Score Calculation</h2>
-          <p>1(a). Member Compression Capacity Ncx </p>
+          <p>1(a). Member Compression Capacity Ncx</p>
           <p>$$ = \frac{N^*}{\phi N_cx}$$</p>
-          <p>1(b). Member Compression Capacity Ncy </p>
+          <p>1(b). Member Compression Capacity Ncy</p>
           <p>$$ = \frac{N^*}{\phi N_cy}$$</p>
-          <p>2. Member Moment Capacity Mbx </p>
+          <p>2. Member Moment Capacity Mbx</p>
           <p>$$ = \frac{M_x^*}{\phi M_{bx}}$$</p>
-          <p>3. Section Moment Capacity Msy </p>
+          <p>3. Section Moment Capacity Msy</p>
           <p>$$ = \frac{M_y^*}{\phi M_{sy}}$$</p>
-          <p>4(a). Reduced Section Moment Capacity Mrx </p>
+          <p>4(a). Reduced Section Moment Capacity Mrx</p>
           <p>$$ = \frac{M_x^*}{\phi M_{rx}}$$</p>
-          <p>4(b). Reduced Section Moment Capacity Mry </p>
+          <p>4(b). Reduced Section Moment Capacity Mry</p>
           <p>$$ = \frac{M_y^*}{\phi M_{ry}}$$</p>
-          <p>5(a). In-plane Member Moment Capacity Mix </p>
+          <p>5(a). In-plane Member Moment Capacity Mix</p>
           <p>$$ = \frac{M_x^*}{\phi M_{ix}}$$</p>
-          <p>5(b). In-plane Member Moment Capacity Miy </p>
+          <p>5(b). In-plane Member Moment Capacity Miy</p>
           <p>$$ = \frac{M_y^*}{\phi M_{iy}}$$</p>
-          <p>6. Member Biaxial Bending Capacity </p>
-          <p>$$ = [\frac{M_x^*}{\phi M_{cx}}]^{1.4} + [\frac{M_y^*}{\phi M_{iy}}]^{1.4} $$</p>
+          <p>6. Member Biaxial Bending Capacity</p>
+          <p>
+            $$ = [\frac{M_x^*}{\phi M_{cx}}]^{1.4} + [\frac{M_y^*}{\phi
+            M_{iy}}]^{1.4} $$
+          </p>
         </div>
       </div>
     </div>
 
+    <!-- Headings and info -->
+    <div class="block container">
+      <section class="block__header">
+        <div class="">
+          <h1>Column Design to AS4100</h1>
+        </div>
+        <p>
+          The following program yields the optimal member size for a simply
+          supported beam-column under combined axial compression and biaxial
+          bending. The design checks are performed following the procedure
+          outlined in AS 4100 (click on info for further details on the checks
+          performed).
+        </p>
+        <p>
+          It is possible to fully laterally restrain the column by clicking
+          "FLR". Additionally, the section types can be filtered by selecting
+          the checkboxes under the "Steel Section" panel.
+        </p>
+        <p>
+          The top 3 sections are given in the "Results" panel at the bottom.
+          These are given in order of the most highly stressed and thus the most
+          effectively utilized. Expanding the toggle button gives additional
+          information on the remaining failure modes in order of their "Score
+          [%]".
+        </p>
+      </section>
+    </div>
+
+    <!-- Canvas, Results and User Panel-->
+    <div class="block container">
+      <section class="flex flex--col">
+        <div class="flex flex--columntorow">
+          <!-- Canvas -->
+          <div class="app__tile">
+            <div class="app__tile__header">
+              <h4>2D Canvas Render</h4>
+            </div>
+            <canvas class="canvas" id="column-design-canvas"> </canvas>
+          </div>
+
+          <div class="flex flex--rowtocolumn">
+            <!-- Buttons -->
+            <div class="app__tile">
+              <div class="app__tile__header">
+                <h4>Links</h4>
+              </div>
+              <div class="app__tile__body">
+                <div class="form__group--wrap">
+                  <button
+                    class="pdf__button border-style"
+                    style="font-size: 2rem"
+                    id="saveAsPdfButton"
+                  >
+                    <i class="fa-regular fa-file-pdf"></i>
+                  </button>
+                  <button
+                    class="popover--button information"
+                    onclick="showModal()"
+                  >
+                    <i class="fa-solid fa-info"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Steel Sections -->
+            <div class="app__tile" id="steel-section">
+              <div class="app__tile__header">
+                <h4>Steel Section</h4>
+              </div>
+              <div class="app__tile__body">
+                <div class="form__group--wrap">
+                  <div class="">
+                    <input
+                      type="checkbox"
+                      class="checkbox-steel-sizes"
+                      data-value="UB"
+                      checked
+                    />
+                    <label> UB </label>
+                  </div>
+                  <div class="">
+                    <input
+                      type="checkbox"
+                      class="checkbox-steel-sizes"
+                      data-value="UC"
+                    />
+                    <label> UC </label>
+                  </div>
+                  <div class="">
+                    <input
+                      type="checkbox"
+                      class="checkbox-steel-sizes"
+                      data-value="SHS"
+                    />
+                    <label> SHS </label>
+                  </div>
+                  <div class="">
+                    <input
+                      type="checkbox"
+                      class="checkbox-steel-sizes"
+                      data-value="CHS"
+                    />
+                    <label> CHS </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="app__tile">
+          <div class="app__tile__header">
+            <h4>Column Lengths and Restraints</h4>
+          </div>
+
+          <div class="app__tile__body">
+            <div class="form__group">
+              <div class="">
+                <div>
+                  Effective Length in x, L<sub>ex</sub>:
+                  <span id="LexRangeValue">5</span>
+                  [m]
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="10"
+                  step="0.1"
+                  value="5"
+                  class="slider__input"
+                  name="params"
+                  id="LexRange"
+                />
+              </div>
+
+              <div class="">
+                <span>
+                  Effective Length in y, L<sub>ey</sub>:
+                  <span id="LeyRangeValue">5</span>
+                  [m]
+                </span>
+                <span class="radio-item">
+                  <label>
+                    <input type="checkbox" id="checkbox-FLR" data-value="FLR" />
+                    FLR
+                  </label>
+                </span>
+                <input
+                  type="range"
+                  min="0"
+                  max="10"
+                  step="0.1"
+                  value="5"
+                  class="slider__input"
+                  name="params"
+                  id="LeyRange"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="app__tile">
+          <div class="app__tile__header">
+            <h4>Design Loads</h4>
+          </div>
+
+          <div class="app__tile__body">
+            <div class="form__group">
+              <div class="">
+                <div>
+                  Axial Compression (N*): <span id="NRangeValue">250</span> [kN]
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="500"
+                  step="1"
+                  value="250"
+                  class="slider__input"
+                  name="params"
+                  id="NRange"
+                />
+              </div>
+              <div class="">
+                <div>
+                  Design Moment M<sub>xi</sub>*:<span id="MxiRangeValue"
+                    >50</span
+                  >
+                  [kNm]
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="50"
+                  class="slider__input"
+                  name="params"
+                  id="MxiRange"
+                />
+              </div>
+              <div class="">
+                <div>
+                  Design Moment M<sub>yi</sub>*:<span id="MyiRangeValue"
+                    >50</span
+                  >
+                  [kNm]
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  value="50"
+                  class="slider__input"
+                  name="params"
+                  id="MyiRange"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="app__tile">
+          <div class="app__tile__header">
+            <h4>Top 3 Results</h4>
+          </div>
+
+          <div class="app__tile__body">
+            <div class="grid grid--1x4 grid--centred">
+              <div class=""></div>
+              <div class="">
+                <h4>Section ID</h4>
+              </div>
+              <div class="">
+                <h4>Closest Failure Mode</h4>
+              </div>
+              <div class=""><h4>Score [%]</h4></div>
+            </div>
+
+            <div class="flex flex--col flex--smallgap">
+              <div class="collapsible results-item border-style">
+                <div
+                  class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color"
+                >
+                  <span class="collapsible__chevron"
+                    ><i class="fa-solid fa-chevron-right"></i
+                  ></span>
+                  <span class="results-id"
+                    >Move the sliders to get started</span
+                  >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+              </div>
+              <div class="collapsible results-item border-style">
+                <div
+                  class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color"
+                >
+                  <span class="collapsible__chevron"
+                    ><i class="fa-solid fa-chevron-right"></i
+                  ></span>
+                  <span class="results-id"
+                    >Move the sliders to get started</span
+                  >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+              </div>
+              <div class="collapsible results-item border-style">
+                <div
+                  class="collapsible__header results-sub-item results-sub-item-header grid grid--1x4 green-color"
+                >
+                  <span class="collapsible__chevron"
+                    ><i class="fa-solid fa-chevron-right"></i
+                  ></span>
+                  <span class="results-id"
+                    >Move the sliders to get started</span
+                  >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+                <div
+                  class="collapsible__content results-sub-item results-sub-item-content grid grid--1x4 green-color"
+                >
+                  <span class="results-text"></span>
+                  <span class="results-score"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer  -->
+    <footer class="block block--dark footer">
+      <div class="container flex flex--wrap flex--center">
+        <!-- Footer logo -->
+        <section class="footer__brand">
+          <div class="flex flex--smallgap flex--wrap">
+            <img
+              class="icon icon--large"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="footer__brand__heading">Struct Optima</span>
+          </div>
+          <p class="footer__copyright">Copyright 2023 Gabriel Garayalde</p>
+        </section>
+        <!-- Section 1 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Products</li>
+          <li class="footer__list__item"><a href="">Apps</a></li>
+          <li class="footer__list__item"><a href="">Eurocodes</a></li>
+          <li class="footer__list__item"><a href="">AS/NZ Standards</a></li>
+        </ul>
+
+        <!-- Section 2 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Company</li>
+          <li class="footer__list__item"><a href="">About</a></li>
+          <li class="footer__list__item"><a href="">Research Articles</a></li>
+          <li class="footer__list__item"><a href="">Blog</a></li>
+        </ul>
+
+        <!-- Section 3 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Support</li>
+          <li class="footer__list__item"><a href="">Contact</a></li>
+          <li class="footer__list__item"><a href="">Knowledge Base</a></li>
+          <li class="footer__list__item"><a href="">FAQ</a></li>
+        </ul>
+      </div>
+    </footer>
+
     <script>
       let failureModesModal = document.getElementById("info-backdrop");
       function showModal() {
-        failureModesModal.style.display = "block"
+        failureModesModal.style.display = "block";
       }
       function hideModal() {
-        failureModesModal.style.display = "none"
+        failureModesModal.style.display = "none";
       }
     </script>
+
     <script src="./column-design/main.js" type="module"></script>
     <script src="./column-design/colorChange.js" type="module"></script>
     <script src="../js/collapsible.js" type="module"></script>
     <script src="./column-design/saveAsPdfButton.js" type="module"></script>
   </body>
-
 </html>

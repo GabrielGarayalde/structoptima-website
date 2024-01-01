@@ -1,0 +1,25 @@
+/* Hero */
+.hero__tagline {
+    font-size: 1.5rem;
+    color: #b9c3cf;
+    letter-spacing: 1px;
+  }
+  
+  .hero__image {
+    max-height: 500px;
+    align-self: center;
+  }
+  
+  .hero__content {
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 768px) {
+    /* .hero {
+      padding-top: 0;
+    } */
+    .hero__content {
+      text-align: left;
+      align-self: center;
+    }
+  }
