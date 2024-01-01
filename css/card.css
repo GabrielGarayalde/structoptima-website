@@ -1,7 +1,7 @@
 /* Card */
 .card {
   border-radius: 25px;
-  border: 1px solid var(--color-primary); /* referencing --color-primary variable */
+  border: 1px solid var(--color-headings); /* referencing --color-primary variable */
   background: white;
   box-shadow: 0 0 20px 10px #f3f3f3;
   width: 225px;
@@ -28,13 +28,13 @@
 
 /* Card header */
 .card__header {
-  background-color: var(--color-primary);
+  background-color: var(--color-headings);
   padding: 0.1rem 2rem;
 }
 
 .card__header h4,
 .card__header h5 {
-  color: beige;
+  color: white;
 }
 
 /* Card Body */

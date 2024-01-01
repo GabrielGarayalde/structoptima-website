@@ -50,6 +50,10 @@
   opacity: 1;
 }
 
+.collapsible--expanded .nav__toggler {
+  opacity: 1;
+}
+
 @media screen and (min-width: 768px) {
   .nav__toggler {
     display: none;

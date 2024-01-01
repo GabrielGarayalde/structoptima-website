@@ -44,3 +44,23 @@
 .footer__copyright {
   color: #d2d0db;
 }
+
+/* Footer Toggler */
+.footer__toggler {
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.footer__toggler:hover {
+  opacity: 1;
+}
+
+.footer.collapsible--expanded .footer__toggler {
+  opacity: 1;
+}
+
+.footer .collapsible--expanded i {
+  transform: rotate(90deg);
+  transition: transform 0.3s ease;
+}

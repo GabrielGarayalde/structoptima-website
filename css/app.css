@@ -51,7 +51,7 @@ canvas:focus {
 }
 
 .app__tile__header {
-  background-color: var(--color-primary);
+  background-color: var(--color-headings);
   border: 1px solid #9c9898;
   padding: 0.1rem 2rem;
   color: beige;
