@@ -21,6 +21,27 @@ setCanvasSize();
 
 let responseData = null;
 
+// Save the results to a file
+document
+  .getElementById("downloadBtn")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default action
+
+    if (!window.resultsText) {
+      alert("No results to download! Click 'Calculate' to generate results.");
+      return;
+    }
+
+    var blob = new Blob([window.resultsText], { type: "text/plain" });
+    var downloadLink = document.createElement("a");
+    downloadLink.download = "results.txt";
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.style.display = "none";
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  });
+
 // callAPI function that takes the base and exponent numbers as parameters
 var callAPI = () => {
   const startTime = performance.now(); // Record start time
@@ -70,9 +91,80 @@ var callAPI = () => {
 
       displayResults(responseData, totalTime);
       displayResultsGrid(responseData);
+      resultstoTextFile(responseData, totalTime);
     })
     .catch((error) => console.log("error", error));
 };
+
+function resultstoTextFile(data, totalTime) {
+  // Function to pad strings to a specific length
+  const padString = (str, length) => {
+    return str.length < length ? str + " ".repeat(length - str.length) : str;
+  };
+
+  // Define the maximum length for each column
+  const maxLengths = {
+    type: 9, // 'joist' or 'beam'
+    key: 9, // 'J0', 'B1', etc.
+    size: 9, // '200x45', etc.
+    spacing: 9,
+    quantity: 9,
+    length: 9,
+    volume: 9,
+    displacement: 9,
+    ratio: 9,
+  };
+
+  // Process each row to align columns
+  let textRows = data.State.map((s, index) => {
+    let key = s.type === "joist" ? `J${index}` : `B${index}`;
+
+    return [
+      padString(s.type, maxLengths.type),
+      padString(key, maxLengths.key),
+      padString(s.size, maxLengths.size),
+      padString(
+        s.type === "joist" ? `${s.spacing}` : " - ",
+        maxLengths.spacing
+      ),
+      padString(
+        s.type === "beam" ? `${s.quantity}` : " - ",
+        maxLengths.quantity
+      ),
+      padString(`${s.length}`, maxLengths.length),
+      padString(`${s.volume.toFixed(3)}`, maxLengths.volume),
+      padString(`${s.displacement.toFixed(3)}`, maxLengths.displacement),
+      padString(`1/${Math.round(s.length / s.displacement)}`, maxLengths.ratio),
+    ].join(" ");
+  }).join("\n");
+
+  let allowed = false;
+  if (
+    data["Config allowed"] === true &&
+    data["Within performance constraints"] === true
+  ) {
+    allowed = true;
+  }
+
+  window.resultsText = `Time taken: ${totalTime} secs\n`;
+  if (allowed) {
+    window.resultsText += "Floor config is within constraints\n";
+  } else {
+    window.resultsText +=
+      "Floor config not allowed, try changing the parameters\n";
+  }
+
+  window.resultsText += `Max End State Depth: ${data["Max end state depth"]} [mm]\n`;
+  window.resultsText += `Total Volume: ${data["Total volume"].toFixed(
+    3
+  )} [m^3]\n\n`;
+
+  window.resultsText += "*** Results Table: ***\n";
+  window.resultsText +=
+    "Type      Key       Size      Spacing   Quantity  Length    Volume    Disp.     Ratio\n";
+  window.resultsText += textRows; // Use the processed rows
+  // Rest of the code...
+}
 
 function displayResults(data, totalTime) {
   //  Results Slider Tile
@@ -85,10 +177,13 @@ function displayResults(data, totalTime) {
   ) {
     allowed = true;
   }
+  
+  let color = allowed ? "green" : "red"; // Set color based on config allowed status
+  
   results_slider_tile.innerHTML = `
     <h3>Results</h3>
     <p>Time taken: ${totalTime} secs</p>
-    <p>${
+    <p style="color: ${color}; font-weight: bold">${
       allowed
         ? "Floor config is within constraints"
         : "Floor config not allowed, try changing the parameters"
@@ -158,9 +253,7 @@ ${stateDetails_legend}
             <th>Deflection/Length Ratio</th>
         </tr>
         ${stateRows}
-        
     </table>
-    
 `;
 }
 
@@ -168,11 +261,21 @@ ${stateDetails_legend}
 function updateSliderValue(sliderId, displayId) {
   var slider = document.getElementById(sliderId);
   var display = document.getElementById(displayId);
-  display.textContent = slider.value;
+  // if the sliderId is pressureLoad, then the display value is multiplied by 1000
+  if (sliderId === "pressureLoad") {
+    display.textContent = slider.value * 1000;
+  } else {
+    display.textContent = slider.value;
+  }
 
   // Add event listener to update the display when the slider value changes
   slider.addEventListener("input", function () {
-    display.textContent = slider.value;
+    if (sliderId === "pressureLoad") {
+      display.textContent = slider.value * 1000;
+    } else {
+      display.textContent = slider.value;
+    }
+
     drawGrid();
   });
 }

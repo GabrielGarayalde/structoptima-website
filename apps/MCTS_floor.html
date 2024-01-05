@@ -91,10 +91,12 @@
           optimal solution in a matter of seconds.
         </p>
       </section>
+      
     </div>
-
+    
     <!-- Canvas, Results and User Panel-->
     <div class="block container">
+      
       <div class="flex flex--col">
         <div class="flex flex--columntorow">
           <!-- Canvas -->
@@ -158,7 +160,7 @@
                     id="pressureLoad"
                   />
                   <div>
-                    pressure Load:<span id="pressureLoadValue">0.003</span> MPa
+                    pressure Load:<span id="pressureLoadValue">3</span> kPa
                   </div>
                 </div>
                 <!-- Slider Item -->
@@ -208,6 +210,8 @@
                   <div>Max Timber Depth:<span id="maxDepthValue"> 200</span> mm</div>
                 </div>
                 <button type="button" onclick="callAPI()">CALCULATE</button>
+                <button id="downloadBtn">Save Results to File</button>
+
               </form>
               <div id="results_slider_tile"></div>
             </div>
