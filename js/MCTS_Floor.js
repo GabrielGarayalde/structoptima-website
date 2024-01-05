@@ -29,8 +29,9 @@ var callAPI = () => {
   y = document.getElementById("y").value;
   pressureLoad = document.getElementById("pressureLoad").value;
   maxDeflection = document.getElementById("maxDeflection").value;
+  maxRatio = document.getElementById("maxRatio").value;
   maxDepth = document.getElementById("maxDepth").value;
-  console.log(x, y, pressureLoad, maxDeflection, maxDepth);
+  console.log(x, y, pressureLoad, maxRatio, maxDeflection, maxDepth);
   // instantiate a headers object
   var myHeaders = new Headers();
   // add content type header to object
@@ -41,6 +42,7 @@ var callAPI = () => {
     y: y,
     pressureLoad: pressureLoad,
     maxDeflection: maxDeflection,
+    maxRatio: maxRatio,
     maxDepth: maxDepth,
   });
   // create a JSON object with parameters for API call and store in a variable
@@ -122,19 +124,21 @@ ${stateDetails_legend}
     let volume = s.volume.toFixed(3); // Display volume to 3 decimal places
     let displacement = s.displacement.toFixed(3); // Display volume to 3 decimal places
 
-    return `
-    
-        <tr>
-                <td>${s.type}</td>
-                <td>${key}</td>
-                <td>${s.size}</td>
-                <td>${spacing}</td>
-                <td>${quantity}</td>
-                <td>${s.length}</td>
-                <td>${volume}</td>
-                <td>${displacement}</td>
+    let ratio = s.length / s.displacement; // Calculate the ratio
+    ratio = Math.round(ratio); // Round the ratio to the closest integer
 
-        </tr>
+    return `
+      <tr>
+        <td>${s.type}</td>
+        <td>${key}</td>
+        <td>${s.size}</td>
+        <td>${spacing}</td>
+        <td>${quantity}</td>
+        <td>${s.length}</td>
+        <td>${volume}</td>
+        <td>${displacement}</td>
+        <td>1/${ratio}</td>
+      </tr>
     `;
   }).join("");
 
@@ -150,7 +154,8 @@ ${stateDetails_legend}
             <th>Quantity</th>
             <th>Length [mm]</th>
             <th>Volume [m^3]</th>
-            <th>Displacement [mm]</th>
+            <th>Deflection [mm]</th>
+            <th>Deflection/Length Ratio</th>
         </tr>
         ${stateRows}
         
@@ -238,6 +243,7 @@ updateSliderValue("y", "yValue");
 updateSliderValue("pressureLoad", "pressureLoadValue");
 updateSliderValue("maxDeflection", "maxDeflectionValue");
 updateSliderValue("maxDepth", "maxDepthValue");
+updateSliderValue("maxRatio", "maxRatioValue");
 
 function getGridCoordinates() {
   var xSliderValue = parseInt(document.getElementById("x").value);

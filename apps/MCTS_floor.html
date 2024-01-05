@@ -174,7 +174,23 @@
                     id="maxDeflection"
                   />
                   <div>
-                    maxDeflection:<span id="maxDeflectionValue"> 40</span> mm
+                    Max Allowable Deflection:<span id="maxDeflectionValue"> 40</span> mm
+                  </div>
+                </div>
+                <!-- Slider Item -->
+                <div class="slider__item">
+                  <input
+                    type="range"
+                    min="200"
+                    max="1000"
+                    step="10"
+                    value="500"
+                    class="slider__input"
+                    name="params"
+                    id="maxRatio"
+                  />
+                  <div>
+                    Max Allowable Deflection Ratio:1/<span id="maxRatioValue">500</span>
                   </div>
                 </div>
                 <!-- Slider Item -->
@@ -189,7 +205,7 @@
                     name="params"
                     id="maxDepth"
                   />
-                  <div>max Depth:<span id="maxDepthValue"> 200</span> mm</div>
+                  <div>Max Timber Depth:<span id="maxDepthValue"> 200</span> mm</div>
                 </div>
                 <button type="button" onclick="callAPI()">CALCULATE</button>
               </form>
