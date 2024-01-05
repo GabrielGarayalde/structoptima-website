@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floor Framing Optimizer</title>
+
+    <meta property="og:title" content="StructOptima" />
+    <meta
+      property="og:description"
+      content="Intuitive, easy to use applications for the Modern Engineer"
+    />
+    <script
+      src="https://kit.fontawesome.com/78b2bdc1b5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/css/about.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/block.css" />
+    <link rel="stylesheet" href="/css/button.css" />
+    <link rel="stylesheet" href="/css/callout.css" />
+    <link rel="stylesheet" href="/css/card.css" />
+    <link rel="stylesheet" href="/css/collapsibles.css" />
+    <link rel="stylesheet" href="/css/column-design.css" />
+    <link rel="stylesheet" href="/css/flex.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/grid.css" />
+    <link rel="stylesheet" href="/css/hero.css" />
+    <link rel="stylesheet" href="/css/icon.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/list.css" />
+    <link rel="stylesheet" href="/css/MCTS_floor.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/popover.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/typography.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="nav collapsible">
+        <!-- Navbar Logo -->
+        <a href="../index.html">
+          <div class="flex flex--center flex--smallgap">
+            <img
+              class="icon icon--small"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="nav__heading">Struct Optima</span>
+          </div>
+        </a>
+
+        <!-- Mobile Menu bars -->
+        <div class="nav__toggler">
+          <i class="fa-solid fa-bars fa-2xl" style="color: white"></i>
+        </div>
+
+        <!-- Navbar Items -->
+        <ul class="list nav__list collapsible__content">
+          <li class="nav__item">
+            <a href="../apps.html">Apps</a>
+          </li>
+          <li class="nav__item">
+            <a href="../research-articles.html">Research Articles</a>
+          </li>
+          <li class="nav__item"><a href="../about.html">About</a></li>
+          <li class="nav__item"><a href="../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Headings and info -->
+    <div class="block container">
+      <section class="block__header">
+        <div class="">
+          <h1>Timber Floor Framing Optimizer</h1>
+        </div>
+        <p>
+          The following program yields the optimal timber floor framing solution
+          for a variable rectangular floor layout under a given set of loading
+          parameters and design constraints. The program is based on the
+          Monte-Carlo-Tree-Search algorithm and is capable of finding a near
+          optimal solution in a matter of seconds.
+        </p>
+      </section>
+    </div>
+
+    <!-- Canvas, Results and User Panel-->
+    <div class="block container">
+      <div class="flex flex--col">
+        <div class="flex flex--columntorow">
+          <!-- Canvas -->
+          <div class="app__tile desktop--70" id="">
+            <div class="app__tile__header">
+              <h4>2D Canvas Render</h4>
+            </div>
+            <div class="flex">
+              <canvas id="MCTS_floor_canvas"> </canvas>
+              <div id="results_legend"></div>
+            </div>
+          </div>
+          <!-- Tile 1: Sliders -->
+          <div class="app__tile">
+            <!-- Heading -->
+            <div class="app__tile__header">
+              <h4>Tile 1: Sliders</h4>
+            </div>
+            <!-- Body -->
+            <div class="app__tile__body">
+              <!-- Slider Group -->
+              <form class="form__group">
+                <!-- Slider Item -->
+                <div class="slider__item">
+                  <input
+                    type="range"
+                    min="2000"
+                    max="8000"
+                    step="100"
+                    value="4000"
+                    class="slider__input"
+                    name="params"
+                    id="x"
+                  />
+                  <div>x length:<span id="xValue">4000</span> mm</div>
+                </div>
+                <!-- Slider Item -->
+                <div class="slider__item">
+                  <input
+                    type="range"
+                    min="2000"
+                    max="8000"
+                    step="100"
+                    value="4000"
+                    class="slider__input"
+                    name="params"
+                    id="y"
+                  />
+                  <div>y length:<span id="yValue">4000</span> mm</div>
+                </div>
+                <!-- Slider Item -->
+                <div class="slider__item">
+                  <input
+                    type="range"
+                    min="0"
+                    max="0.01"
+                    step="0.001"
+                    value="0.003"
+                    class="slider__input"
+                    name="params"
+                    id="pressureLoad"
+                  />
+                  <div>
+                    pressure Load:<span id="pressureLoadValue">0.003</span> MPa
+                  </div>
+                </div>
+                <!-- Slider Item -->
+                <div class="slider__item">
+                  <input
+                    type="range"
+                    min="15"
+                    max="100"
+                    step="1"
+                    value="40"
+                    class="slider__input"
+                    name="params"
+                    id="maxDeflection"
+                  />
+                  <div>
+                    maxDeflection:<span id="maxDeflectionValue"> 40</span> mm
+                  </div>
+                </div>
+                <!-- Slider Item -->
+                <div class="slider__item">
+                  <input
+                    type="range"
+                    min="90"
+                    max="300"
+                    step="1"
+                    value="200"
+                    class="slider__input"
+                    name="params"
+                    id="maxDepth"
+                  />
+                  <div>max Depth:<span id="maxDepthValue"> 200</span> mm</div>
+                </div>
+                <button type="button" onclick="callAPI()">CALCULATE</button>
+              </form>
+              <div id="results_slider_tile"></div>
+            </div>
+          </div>
+        </div>
+        <!-- tile 3 -->
+        <div class="app__tile">
+          <div class="app__tile__header">
+            <h4>Results</h4>
+          </div>
+          <div class="app__tile__body">
+            <div id="results"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer  -->
+    <footer class="block block--dark footer">
+      <div class="container flex flex--wrap flex--center">
+        <!-- Footer logo -->
+        <section class="footer__brand">
+          <div class="flex flex--smallgap flex--wrap">
+            <img
+              class="icon icon--large"
+              src="../images/StructOptima_logo.png"
+              alt=""
+            />
+            <span class="footer__brand__heading">Struct Optima</span>
+          </div>
+          <p class="footer__copyright">Copyright 2023 Gabriel Garayalde</p>
+        </section>
+        <!-- Section 1 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Products</li>
+          <li class="footer__list__item"><a href="">Apps</a></li>
+          <li class="footer__list__item"><a href="">Eurocodes</a></li>
+          <li class="footer__list__item"><a href="">AS/NZ Standards</a></li>
+        </ul>
+
+        <!-- Section 2 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Company</li>
+          <li class="footer__list__item"><a href="">About</a></li>
+          <li class="footer__list__item"><a href="">Research Articles</a></li>
+          <li class="footer__list__item"><a href="">Blog</a></li>
+        </ul>
+
+        <!-- Section 3 -->
+        <ul class="list footer__list">
+          <li class="footer__heading">Support</li>
+          <li class="footer__list__item"><a href="">Contact</a></li>
+          <li class="footer__list__item"><a href="">Knowledge Base</a></li>
+          <li class="footer__list__item"><a href="">FAQ</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="../js/MCTS_Floor.js"></script>
+  </body>
+</html>

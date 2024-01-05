@@ -1,0 +1,11 @@
+.results-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px; /* Adjust this value to increase or decrease space between columns */
+  }
+  
+  .results-table th, .results-table td {
+    text-align: left;
+    padding: 5px;
+  }
+  
