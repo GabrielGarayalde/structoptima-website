@@ -4,5 +4,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+    // [require("daisyui")]
+  },
 }
