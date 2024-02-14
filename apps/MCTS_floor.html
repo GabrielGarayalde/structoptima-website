@@ -91,12 +91,10 @@
           optimal solution in a matter of seconds.
         </p>
       </section>
-      
     </div>
-    
+
     <!-- Canvas, Results and User Panel-->
     <div class="block container">
-      
       <div class="flex flex--col">
         <div class="flex flex--columntorow">
           <!-- Canvas -->
@@ -107,6 +105,32 @@
             <div class="flex">
               <canvas id="MCTS_floor_canvas"> </canvas>
               <div id="results_legend"></div>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="configBasic"
+                name="renderOption"
+                value="basic"
+                checked
+              />
+              <label for="configBasic">Basic Configuration</label><br />
+
+              <input
+                type="radio"
+                id="displacement"
+                name="renderOption"
+                value="displacement"
+              />
+              <label for="displacement">Displacement</label><br />
+
+              <input
+                type="radio"
+                id="strength"
+                name="renderOption"
+                value="strength"
+              />
+              <label for="strength">Strength</label>
             </div>
           </div>
           <!-- Tile 1: Sliders -->
@@ -125,7 +149,7 @@
                     type="range"
                     min="2000"
                     max="8000"
-                    step="100"
+                    step="200"
                     value="4000"
                     class="slider__input"
                     name="params"
@@ -139,7 +163,7 @@
                     type="range"
                     min="2000"
                     max="8000"
-                    step="100"
+                    step="200"
                     value="4000"
                     class="slider__input"
                     name="params"
@@ -176,7 +200,10 @@
                     id="maxDeflection"
                   />
                   <div>
-                    Max Allowable Deflection:<span id="maxDeflectionValue"> 40</span> mm
+                    Max Allowable Deflection:<span id="maxDeflectionValue">
+                      40</span
+                    >
+                    mm
                   </div>
                 </div>
                 <!-- Slider Item -->
@@ -192,7 +219,9 @@
                     id="maxRatio"
                   />
                   <div>
-                    Max Allowable Deflection Ratio:1/<span id="maxRatioValue">350</span>
+                    Max Allowable Deflection Ratio:1/<span id="maxRatioValue"
+                      >350</span
+                    >
                   </div>
                 </div>
                 <!-- Slider Item -->
@@ -207,11 +236,12 @@
                     name="params"
                     id="maxDepth"
                   />
-                  <div>Max Timber Depth:<span id="maxDepthValue"> 200</span> mm</div>
+                  <div>
+                    Max Timber Depth:<span id="maxDepthValue"> 200</span> mm
+                  </div>
                 </div>
                 <button type="button" onclick="callAPI()">CALCULATE</button>
                 <button id="downloadBtn">Save Results to File</button>
-
               </form>
               <div id="results_slider_tile"></div>
             </div>

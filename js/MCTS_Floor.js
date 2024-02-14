@@ -1,3 +1,5 @@
+
+
 function setCanvasSize() {
   var canvas = document.getElementById("MCTS_floor_canvas");
 
@@ -90,8 +92,9 @@ var callAPI = () => {
       console.log(`API call took ${totalTime} seconds.`); // Print the time taken
 
       displayResults(responseData, totalTime);
-      displayResultsGrid(responseData);
+      displayResultsGrid(responseData, 'basic');
       resultstoTextFile(responseData, totalTime);
+
     })
     .catch((error) => console.log("error", error));
 };
@@ -116,27 +119,30 @@ function resultstoTextFile(data, totalTime) {
   };
 
   // Process each row to align columns
-  let textRows = data.State.map((s, index) => {
-    let key = s.type === "joist" ? `J${index}` : `B${index}`;
-
-    return [
-      padString(s.type, maxLengths.type),
-      padString(key, maxLengths.key),
-      padString(s.size, maxLengths.size),
-      padString(
-        s.type === "joist" ? `${s.spacing}` : " - ",
-        maxLengths.spacing
-      ),
-      padString(
-        s.type === "beam" ? `${s.quantity}` : " - ",
-        maxLengths.quantity
-      ),
-      padString(`${s.length}`, maxLengths.length),
-      padString(`${s.volume.toFixed(3)}`, maxLengths.volume),
-      padString(`${s.displacement.toFixed(3)}`, maxLengths.displacement),
-      padString(`1/${Math.round(s.length / s.displacement)}`, maxLengths.ratio),
-    ].join(" ");
-  }).join("\n");
+  let textRows = Object.entries(data.state_basic)
+    .map(([key, s], index) => {
+      return [
+        padString(s.type, maxLengths.type),
+        padString(key, maxLengths.key),
+        padString(s.size, maxLengths.size),
+        padString(
+          s.type === "joist" ? `${s.spacing}` : " - ",
+          maxLengths.spacing
+        ),
+        padString(
+          s.type === "beam" ? `${s.quantity}` : " - ",
+          maxLengths.quantity
+        ),
+        padString(`${s.length}`, maxLengths.length),
+        padString(`${s.volume.toFixed(3)}`, maxLengths.volume),
+        // padString(`${s.displacement.toFixed(3)}`, maxLengths.displacement),
+        // padString(
+        //   `1/${Math.round(s.length / s.displacement)}`,
+        //   maxLengths.ratio
+        // ),
+      ].join(" ");
+    })
+    .join("\n");
 
   let allowed = false;
   if (
@@ -177,84 +183,99 @@ function displayResults(data, totalTime) {
   ) {
     allowed = true;
   }
-  
+
   let color = allowed ? "green" : "red"; // Set color based on config allowed status
-  
+
   results_slider_tile.innerHTML = `
     <h3>Results</h3>
     <p>Time taken: ${totalTime} secs</p>
     <p style="color: ${color}; font-weight: bold">${
-      allowed
-        ? "Floor config is within constraints"
-        : "Floor config not allowed, try changing the parameters"
-    }</p>
+    allowed
+      ? "Floor config is within constraints"
+      : "Floor config not allowed, try changing the parameters"
+  }</p>
   `;
 
   //   Results Legend
   let results_legend = document.getElementById("results_legend");
 
-  let stateDetails_legend = data.State.map((s, index) => {
-    let details = "";
-    if (s.type === "joist") {
-      details += `J${index}: ${s.size} @ ${s.spacing}<br>`;
-    } else if (s.type === "beam") {
-      details += `B${index}: ${s.size} (x${s.quantity})<br>`;
+  // Start with the title
+  let legendContent = "<h3>Legend</h3>";
+
+  // Sort the entries by keys to ensure they are listed in order
+  let sortedEntries = Object.entries(data.state_basic).sort((a, b) =>
+    a[0].localeCompare(b[0])
+  );
+
+  // Generate the list items for each element
+  sortedEntries.forEach(([key, element]) => {
+    if (element.type === "joist") {
+      legendContent += `<p>${key}: ${element.size} @ ${element.spacing}</p>`;
+    } else if (element.type === "beam") {
+      legendContent += `<p>${key}: ${element.quantity}x${element.size}</p>`;
     }
-    return details;
-  }).join("");
+  });
 
-  results_legend.innerHTML = `
-<h3>Legend </h3>
-${stateDetails_legend}
-`;
+  // Set the innerHTML of the legend div to the generated content
+  results_legend.innerHTML = legendContent;
 
-  //   Results Table
-  let resultsDiv = document.getElementById("results");
-  console.log(data);
+  // Generate stateRows HTML as provided
+  let stateRows = Object.entries(data.state_basic)
+    .map(([key, s]) => {
+      let spacing = s.type === "joist" ? `${s.spacing}` : ` - `;
+      let quantity = s.type === "beam" ? `${s.quantity}` : ` - `;
+      let volume = s.volume.toFixed(3); // Display volume to 3 decimal places
+      let displacement = s.displacement ? s.displacement.toFixed(3) : ` - `; // Ensure displacement exists before calling toFixed
 
-  let stateRows = data.State.map((s, index) => {
-    let spacing = s.type === "joist" ? `${s.spacing}` : ` - `;
-    let quantity = s.type === "beam" ? `${s.quantity}` : ` - `;
-    let key = s.type === "joist" ? `J${index}` : `B${index}`;
-    let volume = s.volume.toFixed(3); // Display volume to 3 decimal places
-    let displacement = s.displacement.toFixed(3); // Display volume to 3 decimal places
+      let length = s.length ? s.length : ` - `;
+      let ratio =
+        s.length && s.displacement
+          ? Math.round(s.length / s.displacement)
+          : ` - `;
 
-    let ratio = s.length / s.displacement; // Calculate the ratio
-    ratio = Math.round(ratio); // Round the ratio to the closest integer
-
-    return `
-      <tr>
-        <td>${s.type}</td>
-        <td>${key}</td>
-        <td>${s.size}</td>
-        <td>${spacing}</td>
-        <td>${quantity}</td>
-        <td>${s.length}</td>
-        <td>${volume}</td>
-        <td>${displacement}</td>
-        <td>1/${ratio}</td>
-      </tr>
-    `;
-  }).join("");
-
-  resultsDiv.innerHTML = `
-    <p>Max End State Depth: ${data["Max end state depth"]} [mm]</p>
-    <p>Total Volume: ${data["Total volume"].toFixed(3)} [m^3]</p>
-    <table class="results-table">
+      return `
         <tr>
-            <th>Type</th>
-            <th>Key</th>
-            <th>Size [mm]</th>
-            <th>Spacing [mm]</th>
-            <th>Quantity</th>
-            <th>Length [mm]</th>
-            <th>Volume [m^3]</th>
-            <th>Deflection [mm]</th>
-            <th>Deflection/Length Ratio</th>
+          <td>${s.type}</td>
+          <td>${key}</td>
+          <td>${s.size}</td>
+          <td>${spacing}</td>
+          <td>${quantity}</td>
+          <td>${length}</td>
+          <td>${volume}</td>
+          <td>${displacement}</td>
+          <td>${ratio !== ` - ` ? `1/${ratio}` : ` - `}</td>
         </tr>
+      `;
+    })
+    .join("");
+
+  // Assuming you have an element with id="results" in your HTML
+  let resultsDiv = document.getElementById("results");
+
+  // Construct the table with stateRows
+  let resultsHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>ID</th>
+          <th>Size</th>
+          <th>Spacing</th>
+          <th>Quantity</th>
+          <th>Length</th>
+          <th>Volume</th>
+          <th>Displacement</th>
+          <th>Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
         ${stateRows}
+      </tbody>
     </table>
-`;
+  `;
+
+  // Set the innerHTML of the resultsDiv to the constructed resultsHTML
+  resultsDiv.innerHTML = resultsHTML;
 }
 
 // Function to update slider value display
@@ -280,7 +301,6 @@ function updateSliderValue(sliderId, displayId) {
   });
 }
 
-// Function to draw grid on canvas
 function drawGrid() {
   var canvas = document.getElementById("MCTS_floor_canvas");
   var ctx = canvas.getContext("2d");
@@ -288,53 +308,52 @@ function drawGrid() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // Retrieve grid coordinates
+  let coordinates = getGridCoordinates(); // Assuming this returns an array of [x, y] pairs
+
+  // Retrieve slider values for X and Y
   var x = parseInt(document.getElementById("x").value);
   var y = parseInt(document.getElementById("y").value);
 
-  // Define maximum values for sliders
-  var maxX = document.getElementById("x").max;
   var maxY = document.getElementById("y").max;
+  var maxX = document.getElementById("x").max;
 
   // Calculate margins as a fraction of the canvas dimensions
   var marginX = canvas.width * 0.1;
-  var marginY = canvas.height * 0.1;
+  var marginY = canvas.height * 0.1; // - (yMax * scale); // Adjust vertical margin based on yMax
 
-  // Adjusted width and height for grid drawing
-  var adjustedWidth = canvas.width - 2 * marginX;
-  var adjustedHeight = canvas.height - 2 * marginY;
+  // Ensure marginY is not less than a minimum margin to keep the grid visible
+  marginY = Math.max(marginY, 20); // Ensure there's at least a 20px margin at the top
 
-  // Calculate grid size relative to the slider values and adjusted dimensions
-  var gridSizeX = (adjustedWidth / 10) * (x / maxX);
-  var gridSizeY = (adjustedHeight / 10) * (y / maxY);
+  var portHeight = canvas.height - 2 * marginY;
+  var portWidth = canvas.width - 2 * marginX;
+
+  var scaleY = portHeight / maxY;
+  var scaleX = portWidth / maxX;
+
+  var gridSizeX = x * scaleX;
+  var gridSizeY = y * scaleY;
 
   // Set fill color to grey
-  ctx.fillStyle = "rgb(100,100,100";
+  ctx.fillStyle = "rgb(100,100,100)";
 
-  // Draw dots within the adjusted area
-  for (var i = 0; i <= 10; i++) {
-    for (var j = 0; j <= 10; j++) {
-      ctx.beginPath();
-      ctx.arc(
-        marginX + gridSizeX * i,
-        marginY + gridSizeY * j,
-        1,
-        0,
-        2 * Math.PI
-      );
-      ctx.fill();
-    }
-  }
+  // Draw points for each coordinate, adjusting for the margin
+  coordinates.forEach(([x, y]) => {
+    ctx.beginPath();
+    ctx.arc(
+      marginX + x * scaleX, // Use constant scale for X
+      marginY + gridSizeY - y * scaleY, // Adjust Y-coordinate calculation
+      1, // Radius of the circle to draw
+      0, // Start angle
+      2 * Math.PI // End angle
+    );
+    ctx.fill();
+  });
 
-  // Draw a thin black border around the grid
+  // Draw a black rectangle around the grid
   ctx.strokeStyle = "black"; // Set stroke color to black
   ctx.lineWidth = 2; // Set line width
-
-  ctx.strokeRect(
-    marginX,
-    marginY,
-    adjustedWidth * (x / maxX),
-    adjustedHeight * (y / maxY)
-  );
+  ctx.strokeRect(marginX, marginY, gridSizeX, gridSizeY);
 }
 
 // Initialize the canvas grid
@@ -352,11 +371,11 @@ function getGridCoordinates() {
   var xSliderValue = parseInt(document.getElementById("x").value);
   var ySliderValue = parseInt(document.getElementById("y").value);
 
-  var numOfPointsX = 11; // Number of points in x direction
-  var numOfPointsY = 11; // Number of points in y direction
+  var spacingX = 200; // Spacing between points in x direction
+  var spacingY = 200; // Spacing between points in y direction
 
-  var spacingX = xSliderValue / (numOfPointsX - 1); // Spacing between points in x direction
-  var spacingY = ySliderValue / (numOfPointsY - 1); // Spacing between points in y direction
+  var numOfPointsX = xSliderValue / 200 + 1; // Number of points in x direction
+  var numOfPointsY = ySliderValue / 200 + 1; // Number of points in y direction
 
   var coordinates = [];
 
@@ -371,15 +390,274 @@ function getGridCoordinates() {
   return coordinates;
 }
 
-function displayResultsGrid(data) {
+function renderConfigBasic(data) {
+  let coordinates = getGridCoordinates();
+  let canvas = document.getElementById("MCTS_floor_canvas");
+  let ctx = canvas.getContext("2d"); // Access the grid parameters
+
+  let {
+    maxX,
+    maxY,
+    marginX,
+    marginY,
+    adjustedWidth,
+    adjustedHeight,
+    gridSizeX,
+    gridSizeY,
+  } = gridData();
+
+  // Iterate over the state_basic object entries
+  Object.entries(data.state_detailed).forEach(([key, elements]) => {
+    elements.forEach((element) => {
+      let type = element.type;
+      let start, end;
+      // Determine start and end points based on the type of element
+      start = coordinates[element.start];
+      end = coordinates[element.end];
+
+      ctx.beginPath();
+
+      let startX =
+        marginX + adjustedWidth * (coordinates[element.start][0] / maxX);
+
+      let startY =
+        marginY +
+        gridSizeY -
+        adjustedHeight * (coordinates[element.start][1] / maxY);
+
+      let endX = marginX + adjustedWidth * (coordinates[element.end][0] / maxX);
+
+      let endY =
+        marginY +
+        gridSizeY -
+        adjustedHeight * (coordinates[element.end][1] / maxY);
+
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(endX, endY);
+
+      ctx.strokeStyle = type === "joist" ? "green" : "blue";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+  });
+}
+
+function getColorForDisplacementRatio(ratio) {
+  if (ratio < 300) {
+    // Return yellow for ratios less than 300
+    return `rgb(255,255,0)`; // Yellow
+  } else {
+    // Normalize ratio value to [0, 1] within the range of 300 to 1000
+    let normalized = Math.min(Math.max((ratio - 300) / (1000 - 300), 0), 1);
+    // Linear interpolation between red (for normalized = 0) and blue (for normalized = 1)
+    let r = (255 * (1 - normalized)).toFixed(0);
+    let b = (255 * normalized).toFixed(0);
+    return `rgb(${r},0,${b})`;
+  }
+}
+
+function getColorForStrengthRatio(ratio) {
+  if (ratio > 1) {
+    // Return yellow for ratios less than 300
+    return `rgb(255,255,0)`; // Yellow
+  } else {
+    // Normalize ratio value to [0, 1] within the range of 300 to 1000
+    // Linear interpolation between red (for normalized = 0) and blue (for normalized = 1)
+    let r = (255 * ratio).toFixed(0);
+    let b = (255 * (1 - ratio)).toFixed(0);
+    return `rgb(${r},0,${b})`;
+  }
+}
+
+function renderDisplacement(data) {
+  let coordinates = getGridCoordinates(); // Assuming this function returns an array of coordinates for nodes
   let canvas = document.getElementById("MCTS_floor_canvas");
   let ctx = canvas.getContext("2d");
 
-  coordinates = getGridCoordinates();
+  let {
+    maxX,
+    maxY,
+    marginX,
+    marginY,
+    adjustedWidth,
+    adjustedHeight,
+    gridSizeX,
+    gridSizeY,
+  } = gridData();
+
+  Object.entries(data.state_detailed).forEach(([key, elements]) => {
+    elements.forEach((element) => {
+      let nodes = element.nodes_on_line;
+      let displacementRatios = element.displacement_ratio_list;
+
+      for (let i = 0; i < nodes.length - 1; i++) {
+        // Get the start and end node for this segment
+        let startNode = nodes[i];
+        let endNode = nodes[i + 1];
+
+        // Get the coordinates for the start and end node
+        let [startX, startY] = coordinates[startNode];
+        let [endX, endY] = coordinates[endNode];
+
+        // Adjust coordinates based on grid parameters
+        startX = marginX + adjustedWidth * (startX / maxX);
+        startY = marginY + gridSizeY - adjustedHeight * (startY / maxY);
+
+        endX = marginX + adjustedWidth * (endX / maxX);
+        endY = marginY + gridSizeY - adjustedHeight * (endY / maxY);
+
+        // Calculate color based on the average displacement ratio of the two nodes
+        let avgRatio = (displacementRatios[i] + displacementRatios[i + 1]) / 2;
+        let color = getColorForDisplacementRatio(avgRatio);
+
+        // Draw the segment
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    });
+  });
+}
+
+function renderStrength(data) {
+  let coordinates = getGridCoordinates(); // Assuming this function returns an array of coordinates for nodes
+  let canvas = document.getElementById("MCTS_floor_canvas");
+  let ctx = canvas.getContext("2d");
+
+  let {
+    maxX,
+    maxY,
+    marginX,
+    marginY,
+    adjustedWidth,
+    adjustedHeight,
+    gridSizeX,
+    gridSizeY,
+  } = gridData();
+
+  Object.entries(data.state_detailed).forEach(([key, elements]) => {
+    elements.forEach((element) => {
+      let nodes = element.nodes_on_line;
+      let displacementRatios = element.moment_ratio_list;
+
+      for (let i = 0; i < nodes.length - 1; i++) {
+        // Get the start and end node for this segment
+        let startNode = nodes[i];
+        let endNode = nodes[i + 1];
+
+        // Get the coordinates for the start and end node
+        let [startX, startY] = coordinates[startNode];
+        let [endX, endY] = coordinates[endNode];
+
+        // Adjust coordinates based on grid parameters
+        startX = marginX + adjustedWidth * (startX / maxX);
+        startY = marginY + gridSizeY - adjustedHeight * (startY / maxY);
+
+        endX = marginX + adjustedWidth * (endX / maxX);
+        endY = marginY + gridSizeY - adjustedHeight * (endY / maxY);
+
+        // Calculate color based on the average displacement ratio of the two nodes
+        let avgRatio = (displacementRatios[i] + displacementRatios[i + 1]) / 2;
+        let color = getColorForStrengthRatio(avgRatio);
+
+        // Draw the segment
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    });
+  });
+}
+
+function annotateConfig(data) {
+  let coordinates = getGridCoordinates();
+  let canvas = document.getElementById("MCTS_floor_canvas");
+  let ctx = canvas.getContext("2d"); // Access the grid parameters
+
+  let {
+    maxX,
+    maxY,
+    marginX,
+    marginY,
+    adjustedWidth,
+    adjustedHeight,
+    gridSizeX,
+    gridSizeY,
+  } = gridData();
+
+  Object.entries(data.state_basic).forEach(([key, element]) => {
+    const isJoist = element.type === "joist";
+
+    let centerX, centerY;
+
+    if (isJoist) {
+      // For joists, calculate the center using all four node points to form a square
+      const startCoord1 = coordinates[element.start[0]];
+      const startCoord2 = coordinates[element.start[1]];
+      const endCoord1 = coordinates[element.end[0]];
+      const endCoord2 = coordinates[element.end[1]];
+      centerX =
+        (startCoord1[0] + startCoord2[0] + endCoord1[0] + endCoord2[0]) / 4;
+      centerY =
+        (startCoord1[1] + startCoord2[1] + endCoord1[1] + endCoord2[1]) / 4;
+    } else {
+      // For beams, calculate the center using just the start and end node points
+      const startCoords = coordinates[element.start];
+      const endCoords = coordinates[element.end];
+      centerX = (startCoords[0] + endCoords[0]) / 2;
+      centerY = (startCoords[1] + endCoords[1]) / 2;
+    }
+
+    // Adjust coordinates based on canvas dimensions and margins
+    const adjustedCenterX = marginX + adjustedWidth * (centerX / maxX);
+    const adjustedCenterY =
+      marginY + gridSizeY - adjustedHeight * (centerY / maxY);
+
+    // Prepare label properties
+    const labelX = adjustedCenterX + 5; // Slight rightward offset for the label
+    const labelY = adjustedCenterY + 5; // Slight downward offset for the label
+    const labelText = `${key}`; // Use key as the label text
+
+    // Set font size and style for measurement and drawing
+    ctx.font = "16px Arial";
+
+    // Measure the text
+    const metrics = ctx.measureText(labelText);
+    const textWidth = metrics.width;
+    const textHeight = 14; // Approximation for text height; adjust as needed
+    const padding = 4; // Padding around text
+
+    // Calculate background rectangle coordinates and dimensions
+    const backgroundX = labelX - padding / 2;
+    const backgroundY = labelY - textHeight;
+    const backgroundWidth = textWidth + padding;
+    const backgroundHeight = textHeight + padding;
+
+    // Set fill style for background and draw the rectangle
+    ctx.fillStyle = "white"; // Color for the background
+    ctx.fillRect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
+
+    // Now draw the text over the background
+    ctx.fillStyle = "black"; // Set text color
+    ctx.fillText(labelText, labelX, labelY); // Draw text
+
+    
+  });
+}
+
+function gridData() {
+  let canvas = document.getElementById("MCTS_floor_canvas");
 
   // Define maximum values for sliders
   var maxX = document.getElementById("x").max;
   var maxY = document.getElementById("y").max;
+
   // Get the values of xSlider and ySlider
   var xSlider = parseInt(document.getElementById("x").value);
   var ySlider = parseInt(document.getElementById("y").value);
@@ -392,124 +670,51 @@ function displayResultsGrid(data) {
   var adjustedWidth = canvas.width - 2 * marginX;
   var adjustedHeight = canvas.height - 2 * marginY;
 
-  var elementWidth = xSlider / maxX;
-  var elementHeight = ySlider / maxY;
-
   // Calculate grid size relative to the slider values and adjusted dimensions
-  var elementWidth = adjustedWidth * (xSlider / maxX);
-  var elementHeight = adjustedHeight * (ySlider / maxY);
+  var gridSizeX = adjustedWidth * (xSlider / maxX);
+  var gridSizeY = adjustedHeight * (ySlider / maxY);
 
-  // Draw joists from the state data
-  data.State.forEach((element, index) => {
-    let type = element.type;
+  return {
+    marginX,
+    marginY,
+    adjustedWidth,
+    adjustedHeight,
+    gridSizeX,
+    gridSizeY,
+    maxX,
+    maxY,
+  };
+}
 
-    let labelX, labelY, labelText;
-
-    let legendEntry;
-
-    if (type === "joist") {
-      ctx.beginPath();
-      ctx.strokeStyle = "blue"; // Color for the element line
-      ctx.lineWidth = 2; // Width of the element line
-
-      // Map node numbers to coordinates
-      var [x1, y1] = coordinates[element.start[0]];
-      var [x2, y2] = coordinates[element.start[1]];
-      var [x3, y3] = coordinates[element.end[0]];
-      var [x4, y4] = coordinates[element.end[1]];
-
-      // Calculate width and height
-      var width = Math.max(x1, x2, x3, x4) - Math.min(x1, x2, x3, x4);
-      var height = Math.max(y1, y2, y3, y4) - Math.min(y1, y2, y3, y4);
-
-      // Calculate the center of the joist
-      var centerX = (x1 + x2 + x3 + x4) / 4;
-      var centerY = (y1 + y2 + y3 + y4) / 4;
-
-      var centerX_n = marginX + adjustedWidth * (centerX / maxX);
-      var centerY_n =
-        marginY + elementHeight - adjustedHeight * (centerY / maxY);
-
-      // Draw line
-      ctx.beginPath();
-      if (x1 === x2) {
-        // Joist is horizontal
-        var lineLength = width * 0.5;
-        var lineStart = centerX - lineLength / 2;
-        var lineEnd = centerX + lineLength / 2;
-
-        var lineStart_n = marginX + adjustedWidth * (lineStart / maxX);
-        var lineEnd_n = marginX + adjustedWidth * (lineEnd / maxX);
-
-        ctx.moveTo(lineStart_n, centerY_n);
-        ctx.lineTo(lineEnd_n, centerY_n);
-      } else {
-        // Joist is vertical
-        var lineLength = height * 0.5;
-        var lineStart = centerY - lineLength / 2;
-        var lineEnd = centerY + lineLength / 2;
-
-        var lineStart_n =
-          marginY + elementHeight - adjustedHeight * (lineStart / maxY);
-        var lineEnd_n =
-          marginY + elementHeight - adjustedHeight * (lineEnd / maxY);
-
-        ctx.moveTo(centerX_n, lineStart_n);
-        ctx.lineTo(centerX_n, lineEnd_n);
-      }
-
-      console.log(
-        `Element ${index}: Type: ${type}, Start: [${x1}, ${y1}], End: [${x4}, ${y4}]`
-      );
-
-      ctx.strokeStyle = "green";
-      ctx.stroke();
-
-      labelX = centerX_n;
-      labelY = centerY_n;
-      labelText = `J${index}`; // Label for joist
-    } else if (type === "beam") {
-      ctx.beginPath();
-      ctx.strokeStyle = "red"; // Color for the element line
-      ctx.lineWidth = 2; // Width of the element line
-
-      let startNode = [element.start[0]];
-      let endNode = [element.end[0]];
-
-      let startX =
-        marginX + adjustedWidth * (coordinates[element.start[0]][0] / maxX);
-
-      let startY =
-        marginY +
-        elementHeight -
-        adjustedHeight * (coordinates[element.start[0]][1] / maxY);
-
-      let endX =
-        marginX + adjustedWidth * (coordinates[element.end[0]][0] / maxX);
-      let endY =
-        marginY +
-        elementHeight -
-        adjustedHeight * (coordinates[element.end[0]][1] / maxY);
-
-      ctx.moveTo(startX, startY);
-      ctx.lineTo(endX, endY);
-      ctx.stroke();
-
-      console.log(
-        `Element ${index}: Type: ${type} Start Node ID: ${startNode}, End Node ID: ${endNode}, Start: [${startX}, ${startY}], End: [${endX}, ${endY}]`
-      );
-
-      labelX = (startX + endX) / 2;
-      labelY = (startY + endY) / 2;
-      labelText = `B${index}`; // Label for beam
+document.querySelectorAll('input[name="renderOption"]').forEach((radio) => {
+  radio.addEventListener('change', (event) => {
+    if (responseData !== null) { // Check if responseData has been set
+      const selectedOption = event.target.value;
+      displayResultsGrid(responseData, selectedOption); // Use responseData here
+    } else {
+      console.log("Data is not available yet.");
     }
-
-    labelX += 3; // Offset the label a bit to the right
-    labelY += 3; // Offset the label a bit downwards
-
-    // Draw the label
-    ctx.font = "12px Arial"; // Set font size and style
-    ctx.fillStyle = "black"; // Set text color
-    ctx.fillText(labelText, labelX, labelY); // Draw text
   });
+});
+
+
+
+function displayResultsGrid(data, selectedOption) {
+  // Call the appropriate rendering function based on the selected radio button
+  switch (selectedOption) {
+    case "basic":
+      renderConfigBasic(data);
+      break;
+    case "displacement":
+      renderDisplacement(data);
+      break;
+    case "strength":
+      renderStrength(data);
+      break;
+    default:
+      console.error("Unknown render option selected");
+  }
+
+  // Optionally, annotate the configuration if needed
+  annotateConfig(data);
 }
