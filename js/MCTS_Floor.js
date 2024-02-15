@@ -1,5 +1,4 @@
 
-
 function setCanvasSize() {
   var canvas = document.getElementById("MCTS_floor_canvas");
 
@@ -84,6 +83,7 @@ var callAPI = () => {
     .then((response) => response.json())
     .then((data) => {
       responseData = JSON.parse(data.body);
+      console.log(responseData);
       drawGrid();
 
       const endTime = performance.now(); // Record end time
@@ -119,7 +119,7 @@ function resultstoTextFile(data, totalTime) {
   };
 
   // Process each row to align columns
-  let textRows = Object.entries(data.state_basic)
+  let textRows = Object.entries(data.state)
     .map(([key, s], index) => {
       return [
         padString(s.type, maxLengths.type),
@@ -203,7 +203,7 @@ function displayResults(data, totalTime) {
   let legendContent = "<h3>Legend</h3>";
 
   // Sort the entries by keys to ensure they are listed in order
-  let sortedEntries = Object.entries(data.state_basic).sort((a, b) =>
+  let sortedEntries = Object.entries(data.state).sort((a, b) =>
     a[0].localeCompare(b[0])
   );
 
@@ -220,30 +220,39 @@ function displayResults(data, totalTime) {
   results_legend.innerHTML = legendContent;
 
   // Generate stateRows HTML as provided
-  let stateRows = Object.entries(data.state_basic)
+  let stateRows = Object.entries(data.state)
     .map(([key, s]) => {
       let spacing = s.type === "joist" ? `${s.spacing}` : ` - `;
       let quantity = s.type === "beam" ? `${s.quantity}` : ` - `;
       let volume = s.volume.toFixed(3); // Display volume to 3 decimal places
-      let displacement = s.displacement ? s.displacement.toFixed(3) : ` - `; // Ensure displacement exists before calling toFixed
+      let displacement =  s.max_displacement.toFixed(3); // Ensure displacement exists before calling toFixed
 
-      let length = s.length ? s.length : ` - `;
-      let ratio =
-        s.length && s.displacement
-          ? Math.round(s.length / s.displacement)
-          : ` - `;
+      let length = s.length;
+      let ratio = Math.round(s.min_displacement_ratio)
+      let moment = s.max_moment / 10e6
+      moment = moment.toFixed(3)
+      let moment_percent = s.max_moment_ratio * 100
+      moment_percent = moment_percent.toFixed(3)
+      let shear = s.max_shear / 10e3
+      shear = shear.toFixed(3)
+      let shear_percent = s.max_shear_ratio * 100
+      shear_percent = shear_percent.toFixed(3)
 
       return `
         <tr>
-          <td>${s.type}</td>
-          <td>${key}</td>
-          <td>${s.size}</td>
-          <td>${spacing}</td>
-          <td>${quantity}</td>
-          <td>${length}</td>
-          <td>${volume}</td>
+          <td>${key}   </td>
+          <td>${s.size}   </td>
+          <td>${spacing}   </td>
+          <td>${quantity}   </td>
+          <td>${length}   </td>
+          <td>${volume}  </td>
           <td>${displacement}</td>
-          <td>${ratio !== ` - ` ? `1/${ratio}` : ` - `}</td>
+          <td>1 / ${ratio}</td>
+          <td>${moment}</td>
+          <td>${moment_percent}</td>
+          <td>${shear}</td>
+          <td>${shear_percent}</td>
+
         </tr>
       `;
     })
@@ -257,15 +266,34 @@ function displayResults(data, totalTime) {
     <table>
       <thead>
         <tr>
-          <th>Type</th>
-          <th>ID</th>
-          <th>Size</th>
-          <th>Spacing</th>
-          <th>Quantity</th>
-          <th>Length</th>
-          <th>Volume</th>
-          <th>Displacement</th>
-          <th>Ratio</th>
+          <th>ID    </th>
+          <th>Size    </th>
+          <th>Spacing    </th>
+          <th>Qty     </th>
+          <th>Length   </th>
+          <th>Volume    </th>
+          <th>Displacement   </th>
+          <th>Ratio    </th>
+          <th>Moment    </th>
+          <th>Utilization    </th>
+          <th>Shear     </th>
+          <th>Utilization    </th>
+
+        </tr>
+        <tr>
+          <th>     </th>
+          <th>[mm] </th>
+          <th>[mm] </th>
+          <th>     </th>
+          <th>[mm] </th>
+          <th>[mm3]</th>
+          <th>[mm] </th>
+          <th>     </th>
+          <th>[kNm]</th>
+          <th>[%]</th>
+          <th>[kN] </th>
+          <th>[%]</th>
+
         </tr>
       </thead>
       <tbody>
@@ -406,7 +434,7 @@ function renderConfigBasic(data) {
     gridSizeY,
   } = gridData();
 
-  // Iterate over the state_basic object entries
+  // Iterate over the state object entries
   Object.entries(data.state_detailed).forEach(([key, elements]) => {
     elements.forEach((element) => {
       let type = element.type;
@@ -591,7 +619,7 @@ function annotateConfig(data) {
     gridSizeY,
   } = gridData();
 
-  Object.entries(data.state_basic).forEach(([key, element]) => {
+  Object.entries(data.state).forEach(([key, element]) => {
     const isJoist = element.type === "joist";
 
     let centerX, centerY;
