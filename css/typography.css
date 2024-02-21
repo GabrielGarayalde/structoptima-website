@@ -5,12 +5,12 @@ html {
 
 body {
   font-family: "Roboto Mono", monospace;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem;
   line-height: 1.5;
-  color: var(--color-body);
+  color: var(--color-body); */
 }
 
-h1,
+/* h1,
 h2,
 h3 {
   color: var(--color-headings);
@@ -84,4 +84,4 @@ p {
 a {
   text-decoration: none;
 }
-
+ */

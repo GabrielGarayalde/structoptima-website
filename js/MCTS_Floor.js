@@ -2,20 +2,23 @@
 function setCanvasSize() {
   var canvas = document.getElementById("MCTS_floor_canvas");
 
+  
   if (window.innerWidth < 700) {
     canvas.width = 300; // Set the canvas width to 80% of the window width
     canvas.height = 300; // Set the canvas height to 60% of the window height
   } else if (window.innerWidth < 1024) {
-    canvas.width = 400; // Set the canvas width to 80% of the window width
-    canvas.height = 400; // Set the canvas height to 60% of the window height
+    canvas.width = 500; // Set the canvas width to 80% of the window width
+    canvas.height = 500; // Set the canvas height to 60% of the window height
   } else if (window.innerWidth < 1440) {
-    canvas.width = 450; // Set the canvas width to 80% of the window width
-    canvas.height = 450; // Set the canvas height to 60% of the window height
+    canvas.width = 600; // Set the canvas width to 80% of the window width
+    canvas.height = 600; // Set the canvas height to 60% of the window height
   } else {
-    canvas.width = 450; // Set the canvas width to 80% of the window width
-    canvas.height = 450; // Set the canvas height to 60% of the window height
+    canvas.width = 700; // Set the canvas width to 80% of the window width
+    canvas.height = 700; // Set the canvas height to 60% of the window height
   }
+
 }
+
 
 // Call this function on page load or whenever you need to adjust the canvas size
 setCanvasSize();
