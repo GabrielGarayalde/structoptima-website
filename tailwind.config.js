@@ -2,7 +2,8 @@
 module.exports = {
   content: ["./index.html", "./apps/MCTS_floor.html"],
   theme: {
-    extend: {},
+    extend: {
+    },
   },
 
   plugins: [
@@ -13,10 +14,8 @@ module.exports = {
     themes: [
       {
         light: {
-          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
-          "primary": "#172554",
-          "primary-focus": "mediumblue",
-          "secondary": "#f3f4f6",
+          "primary": "#f43f5e",
+
         },
       },
     ],
