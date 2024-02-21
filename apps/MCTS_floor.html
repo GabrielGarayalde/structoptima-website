@@ -25,29 +25,21 @@
       type="text/css"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/src/output.css" />
+    <!-- <link rel="stylesheet" href="/src/output.css" /> -->
 
-    <!-- <link rel="stylesheet" href="/css/about.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/app.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/block.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/button.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/callout.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/card.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/collapsibles.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/column-design.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/flex.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/footer.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/grid.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/hero.css" /> -->
+    <style>
+      :root {
+        /* Override DaisyUI primary color */
+        --daisyui-primary: #ff3c00; /* New primary color */
+        --daisyui-primary-focus: #0056b3; /* Darker shade for focused state */
+        --daisyui-primary-content: #ffffff; /* Text color on primary background */
+      }
+    </style>
+    <link rel="stylesheet" href="/css/daisy.css" />
     <link rel="stylesheet" href="/css/icon.css" />
-    <!-- <link rel="stylesheet" href="/css/layout.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/list.css" /> -->
     <link rel="stylesheet" href="/css/MCTS_floor.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="/css/normalize.css" />
-    <!-- <link rel="stylesheet" href="/css/popover.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/styles.css" /> -->
-    <!-- <link rel="stylesheet" href="/css/typography.css" /> -->
   </head>
   <body>
     <!-- Navbar -->
@@ -83,7 +75,7 @@
         </ul>
       </nav>
     </header>
-
+    
     <div class="container mx-auto p-4">
       <section class="">
         <div class="mb-4">
@@ -105,7 +97,7 @@
         <div
           class="md:col-span-2 card bg-base-100 shadow-xl border border-base-300 rounded-box overflow-hidden"
         >
-          <div class="card-header bg-primary text-white p-4 rounded-t-lg">
+          <div class="card-header bg-blue-950 text-white p-4 rounded-t-lg">
             <h2 class="card-title">2D Canvas Render</h2>
           </div>
           <div class="card-body p-4">
@@ -130,7 +122,7 @@
               class="peer"
             />
             <div
-              class="collapse-title text-xl font-medium bg-primary text-white"
+              class="collapse-title text-xl font-medium bg-blue-950 text-white"
             >
               Dimensions
             </div>
@@ -184,7 +176,7 @@
               class="peer"
             />
             <div
-              class="collapse-title text-xl font-medium bg-primary text-white"
+              class="collapse-title text-xl font-medium bg-blue-950 text-white"
             >
               Constraints
             </div>
@@ -259,7 +251,7 @@
               class="peer"
             />
             <div
-              class="collapse-title text-xl font-medium bg-primary text-white"
+              class="collapse-title text-xl font-medium bg-blue-950 text-white"
             >
               Loads
             </div>
@@ -297,7 +289,7 @@
               class="peer"
             />
             <div
-              class="collapse-title text-xl font-medium bg-primary text-white"
+              class="collapse-title text-xl font-medium bg-blue-950 text-white"
             >
               Results
             </div>
@@ -521,7 +513,7 @@
         <div
           class="md:col-span-3 card bg-base-100 shadow-xl border border-gray-200 rounded-lg overflow-hidden"
         >
-          <div class="card-header bg-primary text-white p-4 rounded-t-lg">
+          <div class="card-header bg-blue-950 text-white p-4 rounded-t-lg">
             <h2 class="card-title">Results</h2>
           </div>
           <div class="card-body p-4">

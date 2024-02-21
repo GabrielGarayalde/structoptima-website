@@ -1,0 +1,5 @@
+:root {
+  --daisyui-primary: #172554; /* New primary color */
+  --daisyui-primary-focus: #0056b3; /* Darker shade for focused state */
+  --daisyui-primary-content: #ffffff; /* Text color on primary background */
+}
